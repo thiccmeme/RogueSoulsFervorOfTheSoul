@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     CrosshairFade _crosshairHandle;
 
+    private EventManager2 eventManager2;
+
     [SerializeField]
     float _crosshairMoveSpeed;
 
@@ -188,7 +190,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        eventManager2 = FindFirstObjectByType<EventManager2>();
+        eventManager2._equipedEvent += SetGun;
+    }
 
+    void SetGun()
+    {
+        _gun = GetComponentInChildren<RangedWeapon>();
     }
 
     // Update is called once per frame
@@ -206,7 +214,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //HandleSpritesAndAnimations();
-
+        
+        
 
         if (_currentlyCarryingAnObject)
         {

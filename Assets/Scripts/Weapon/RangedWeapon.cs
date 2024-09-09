@@ -115,7 +115,7 @@ public virtual void Awake()
     {
         if (gameObject.GetComponentInParent<PlayerController>())
         {
-            if (Time.time >= timeToNextFire && !isReloading && !_uiHandler.IsPaused && !playerController.PreventingInput)// make sure you can't shoot faster than the gun allows to
+            if (Time.time >= timeToNextFire && !isReloading /*&& !_uiHandler.IsPaused && !playerController.PreventingInput*/)// make sure you can't shoot faster than the gun allows to
             {
                 timeToNextFire = Time.time + 1.0f / fireRate;// sets the time for the next bullet to be able to be fired
 
@@ -124,10 +124,10 @@ public virtual void Awake()
                 if(sfxHandler)
                     sfxHandler.PlayOneShot(gun_sounds);
 
-                muzzleFlashEffect?.Stop();
-                muzzleFlashEffect?.Play();
+                //muzzleFlashEffect?.Stop();
+                //muzzleFlashEffect?.Play();
 
-                _screenShakeEffect?.ShakeScreen();
+                //_screenShakeEffect?.ShakeScreen();
 
                 Quaternion defaultSpreadAngle = firePoint.localRotation;
                 float spread = Random.Range(minSpread, maxSpread);
@@ -161,10 +161,10 @@ public virtual void Awake()
                 CurrentAmmo--;
                 //sfxHandler?.PlayOneShot(gun_sounds);
 
-                muzzleFlashEffect?.Stop();
-                muzzleFlashEffect?.Play();
+               // muzzleFlashEffect?.Stop();
+               // muzzleFlashEffect?.Play();
 
-                _screenShakeEffect?.ShakeScreen();
+                //_screenShakeEffect?.ShakeScreen();
 
                 Quaternion defaultSpreadAngle = firePoint.localRotation;
                 float spread = Random.Range(minSpread, maxSpread);
@@ -208,7 +208,7 @@ public virtual void Awake()
 
             if(GetComponentInParent<PlayerController>())
             {
-                _uiHandler.EnableReloadingText(reloadTime);
+                //_uiHandler.EnableReloadingText(reloadTime);
             }
             // sfxHandler.clip = Reload_sounds; // this is commented out until we add back sfx, it was causing errors with not every weapon having one 
             // sfxHandler?.Play();
