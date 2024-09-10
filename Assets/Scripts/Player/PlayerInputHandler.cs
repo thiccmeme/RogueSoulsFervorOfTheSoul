@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InventoryMenu inventoryMenu;
     private UIHandler uiHandler;
     private HUD hud;
+    public PlayerWeapon playerWeapon;
 
     CharacterInput characterInput;
 
@@ -21,6 +22,7 @@ public class PlayerInputHandler : MonoBehaviour
         inventoryMenu = FindObjectOfType<InventoryMenu>();
         UpdateRangedWeaponReference();
         weaponWheel = FindObjectOfType<WeaponWheel>();
+        playerWeapon = GetComponent<PlayerWeapon>();
         if(characterInput == null)
         {
             //if(!uiHandler.IsPaused)
@@ -38,6 +40,8 @@ public class PlayerInputHandler : MonoBehaviour
                 characterInput.CharacterActions.Reload.started += i => rangedWeapon?.Reload();
                 characterInput.CharacterActions.DodgeRoll.started += i => playerController?.HandleDodgeRollInput();
                 characterInput.CharacterActions.Interact.started += i => playerController?.Interact();
+                characterInput.CharacterActions.Attack.started += i => playerWeapon?.OnShoot();
+                
 
                 characterInput.CharacterActions.OpenWeaponWheel.started += i => weaponWheel?.OpenWeaponWheel();
                 characterInput.CharacterActions.OpenWeaponWheel.canceled += i => weaponWheel?.CloseWeaponWheel();
@@ -54,5 +58,10 @@ public class PlayerInputHandler : MonoBehaviour
     public void UpdateRangedWeaponReference()
     {
         rangedWeapon = GetComponentInChildren<RangedWeapon>();
+    }
+
+    public void UpdatePlayerWeaponReference()
+    {
+        playerWeapon = GetComponentInChildren<PlayerWeapon>();
     }
 }

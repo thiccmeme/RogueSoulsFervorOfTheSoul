@@ -6,29 +6,33 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Item", menuName = "SOs/UI/Items/ItemSO", order=1)]
 public class ItemSO : ScriptableObject
 {
-
-    public Image itemSprite;
-
     public Sprite _sprite;
-    
-    public Mesh mesh;
 
     public Material _material;
 
     public EquipableItem equipableItem;
 
     public GameObject inventoryButton;
-
-    public MeshCollider collider;
     
     [field: SerializeField] public string ItemName { get; private set; }
     
     public ItemType itemType;
     [field: SerializeField, TextArea] public string ItemDescription { get; private set; }
+    
+    public int damage;
+    public float fireRate;
+    public float minspread, maxspread;
+    public Transform firePoint;
+    public int bulletCount;
+    public float bulletLifeTime;
+    public int maxAmmo;
+    public float bulletForce;
+    public float reloadTime;
+    public PlayerProjectile bullet;
 
 }
 
 public enum ItemType
 {
-    Key, Weapon,Useless
+    Key, Weapon, Useless
 }

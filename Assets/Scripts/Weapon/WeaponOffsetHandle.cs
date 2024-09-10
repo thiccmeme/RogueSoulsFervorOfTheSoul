@@ -9,7 +9,7 @@ public class WeaponOffsetHandle : MonoBehaviour
     float _weaponOffset;
 
     [SerializeField]
-    RangedWeapon _weapon;
+    PlayerWeapon _weapon;
 
     public void OffsetWeaponPos(float rotationAngle)
     {
@@ -30,6 +30,6 @@ public class WeaponOffsetHandle : MonoBehaviour
 
     public void SetCurrentWeapon()
     {
-        _weapon = GetComponentInChildren<RangedWeapon>();
+        _weapon = GetComponentInChildren<PlayerWeapon>();
     }
 }

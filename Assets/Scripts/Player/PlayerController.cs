@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     float _weaponRotationAngle;
 
     [SerializeField]
-    private RangedWeapon _gun;
+    private PlayerWeapon _gun;
     [SerializeField]
     private Transform _gunLocation;
 
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
     void SetGun()
     {
-        _gun = GetComponentInChildren<RangedWeapon>();
+        _gun = GetComponentInChildren<PlayerWeapon>();
     }
 
     // Update is called once per frame

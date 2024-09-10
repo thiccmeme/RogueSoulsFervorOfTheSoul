@@ -14,7 +14,7 @@ public class EquipableItem : MonoBehaviour
 
     public ItemSO _itemSo;
 
-    private ItemType _itemType;
+    public ItemType _itemType;
     
     [SerializeField] private float detectionRadius;
 
@@ -27,6 +27,10 @@ public class EquipableItem : MonoBehaviour
     public PlayerInput playerInput;
 
     public GameObject _micro;
+
+    public PlayerWeapon weapon;
+
+    public Transform FirePoint;
     
 
     private void Start()
@@ -37,6 +41,14 @@ public class EquipableItem : MonoBehaviour
         _itemType = _itemSo.itemType;
         _itemManager = gameObject.AddComponent<ItemManager>();
         _door = FindObjectOfType<Door2>();
+        if (_itemType == ItemType.Weapon)
+        {
+            weapon = gameObject.AddComponent<PlayerWeapon>();
+            weapon._gun = _itemSo;
+            weapon.firePoint = FirePoint;
+            WeaponOffsetHandle weaponOffsetHandle = FindFirstObjectByType<WeaponOffsetHandle>();
+            weaponOffsetHandle.SetCurrentWeapon();
+        }
     }
 
     private void Awake()

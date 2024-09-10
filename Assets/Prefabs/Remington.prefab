@@ -184,7 +184,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4597167561805285219}
-  - component: {fileID: 7208269343236068847}
   - component: {fileID: -6101538114113283295}
   m_Layer: 0
   m_Name: Remington
@@ -209,36 +208,6 @@ Transform:
   - {fileID: 1983986241829283210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7208269343236068847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7069536097185594251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06047c279fe3a874994fde048eede151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1
-  bulletLifetime: 1
-  <MaxAmmo>k__BackingField: 6
-  bulletCount: 1
-  reloadTime: 1
-  cam: {fileID: 0}
-  muzzleFlashEffect: {fileID: 0}
-  impactEffect: {fileID: 0}
-  firePoint: {fileID: 3315930892354599957}
-  bulletPrefab: {fileID: 5068778660177718172, guid: ea2b72376d028154c99750d8986dbbad, type: 3}
-  bulletForce: 0.15
-  minSpread: 0
-  maxSpread: 0
-  Reload_sounds: {fileID: 0}
-  sfxHandler: {fileID: 0}
-  gun_sounds: {fileID: 0}
-  damage: 5
-  timeToNextFire: 1
 --- !u!114 &-6101538114113283295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +223,7 @@ MonoBehaviour:
   _itemSo: {fileID: 11400000, guid: 0a2dd622a790e3b4ca0c571398619a13, type: 2}
   detectionRadius: 0
   useKey: {fileID: 0}
-  _MeshFilter: {fileID: 0}
-  Renderer: {fileID: 0}
   playerInput: {fileID: 0}
   _micro: {fileID: 0}
+  weapon: {fileID: 0}
+  FirePoint: {fileID: 3315930892354599957}

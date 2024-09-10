@@ -220,7 +220,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "01d8787f-96a8-4d29-bb5a-a8cb754fead0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -238,7 +238,7 @@
                     "name": "OpenWeaponWheel",
                     "type": "Button",
                     "id": "b5a54461-6d6f-42c8-935a-6de247c26aa2",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -256,7 +256,7 @@
                     "name": "PauseMenu",
                     "type": "Button",
                     "id": "e3d8881c-9e59-477b-baed-0f8b8d917001",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -274,7 +274,7 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "ba861141-77cf-4285-b34b-48c10cdf810f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -283,7 +283,16 @@
                     "name": "StopInteract",
                     "type": "Button",
                     "id": "9ce60408-5e0f-49a6-a613-ac1541bd53c9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OnShoot",
+                    "type": "Button",
+                    "id": "908be62c-ca1b-4996-9127-f6e40fcb237f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -551,6 +560,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "StopInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d213352-4cef-44aa-a661-22635d3af383",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

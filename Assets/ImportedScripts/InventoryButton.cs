@@ -17,13 +17,18 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private EquipableItem _equipable;
     private EquipableItem _item;
     private EventManager2 _eventManager2;
+    private WeaponOffsetHandle weaponOffsetHandle;
 
     private void Awake()
     {
+        if (_itemSo.itemType == ItemType.Weapon)
+        {
+            
+        }
         _button = GetComponent<Button>();
         image = GetComponent<Image>();
         _text = GetComponentInChildren<TMP_Text>();
-        _transform = FindObjectOfType<hands>().transform;
+        _transform = FindFirstObjectByType<WeaponOffsetHandle>().transform;
         _eventManager2 = FindObjectOfType<EventManager2>();
         image.sprite = _itemSo._sprite;
         _equipable = _itemSo.equipableItem;
