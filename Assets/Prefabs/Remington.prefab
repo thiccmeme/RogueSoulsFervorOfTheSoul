@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemSo: {fileID: 11400000, guid: 0a2dd622a790e3b4ca0c571398619a13, type: 2}
-  _itemType: 0
+  _itemType: 1
   detectionRadius: 0
   useKey: {fileID: 0}
   playerInput: {fileID: 0}

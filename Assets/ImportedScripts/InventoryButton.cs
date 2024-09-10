@@ -19,13 +19,10 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private EquipableItem _item;
     private EventManager2 _eventManager2;
     private WeaponOffsetHandle weaponOffsetHandle;
+    private ItemType itemType;
 
     private void Awake()
     {
-        if (_itemSo.itemType == ItemType.Weapon)
-        {
-            
-        }
         _button = GetComponent<Button>();
         image = GetComponent<Image>();
         _text = GetComponentInChildren<TMP_Text>();
@@ -36,6 +33,11 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _text.text = _itemSo.ItemName;
         descriptionText.text = _itemSo.ItemDescription;
         descriptionText.enabled = false;
+        
+        if (_itemSo.itemType == ItemType.Weapon)
+        {
+            
+        }
     }
 
     private void Start()
@@ -58,9 +60,10 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         Debug.Log(_equipable);
         _equipable._itemSo = _itemSo;
+        itemType = _itemSo.itemType;
         _item = FindAnyObjectByType<EquipableItem>();
-
-        if (_item == null)
+        
+        if (_item == null )
         {
             EquipableItem Guntemp = Instantiate(_equipable, _transform);
             _eventManager2.RunEquipedEvent();

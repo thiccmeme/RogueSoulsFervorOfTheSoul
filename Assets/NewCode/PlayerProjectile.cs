@@ -12,6 +12,8 @@ public class PlayerProjectile : MonoBehaviour
     protected float _maxTravelDistance;
     protected PlayerController _controller;
     public float bulletLifetime;
+    [SerializeField]
+    private BulletType bulletType;
 
     public virtual void OnEnable()
     {
@@ -35,9 +37,14 @@ public class PlayerProjectile : MonoBehaviour
     // Start is called before the first frame update
     public virtual void OnCollisionEnter2D(Collision2D other) 
 	{
-        if(other.gameObject.CompareTag("enemy"))
+        if(other.gameObject.CompareTag("enemy") && bulletType == BulletType._Player)
         {
             var enemyToHit = other.gameObject.GetComponent<EntityStats>();
+            enemyToHit.TakeDamage(bulletDamage);
+        }
+        else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
+        {
+            PlayerStats enemyToHit = other.gameObject.GetComponent<PlayerStats>();
             enemyToHit.TakeDamage(bulletDamage);
         }
     }
@@ -49,4 +56,11 @@ public class PlayerProjectile : MonoBehaviour
         bulletLifetime = weapon.bulletLifetime;
     }
 }
+
+public enum BulletType
+{
+    _Player,_Enemy,_Explosive
+}
+
+
 

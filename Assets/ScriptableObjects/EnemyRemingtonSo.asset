@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00dc9f7a0d09c5a45970b03bbbf4a401, type: 3}
-  m_Name: RemingtonSo
+  m_Name: EnemyRemingtonSo
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 6c49d59c1bfca6744adfe7bf3d035778, type: 3}
   _material: {fileID: 0}
-  equipableItem: {fileID: -6101538114113283295, guid: 5f49fe4e7d41f6741a37242975121ee4, type: 3}
-  inventoryButton: {fileID: 7760182796335234173, guid: aed7f38ef65ebdd46bbcc0df82292af4, type: 3}
+  equipableItem: {fileID: 0}
+  inventoryButton: {fileID: 0}
   <ItemName>k__BackingField: Remington
-  itemType: 1
+  itemType: 3
   <ItemDescription>k__BackingField: Ye old Revolver
   damage: 5
   fireRate: 2
@@ -29,5 +29,5 @@ MonoBehaviour:
   maxAmmo: 6
   bulletForce: 5
   reloadTime: 1
-  bullet: {fileID: 7321215824797425880, guid: ea2b72376d028154c99750d8986dbbad, type: 3}
+  bullet: {fileID: 7321215824797425880, guid: ab26a532836ffc64d8525674decec37b, type: 3}
   timeToNextFire: 1

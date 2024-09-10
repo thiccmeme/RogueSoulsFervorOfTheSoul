@@ -11,48 +11,53 @@ public class PlayerWeapon : MonoBehaviour
     //weapon basics
 
     [SerializeField]
-    protected float fireRate;
+    public float fireRate;
     [SerializeField]
     public float bulletLifetime;
     [field: SerializeField]
     public int MaxAmmo { get; private set; }
     [SerializeField]
-    protected float bulletCount;
+    public float bulletCount;
     [SerializeField]
-    private float reloadTime;
+    public float reloadTime;
     [SerializeField]
     public Camera cam;
     [SerializeField]
 	public Transform firePoint;
 	[SerializeField]
 	public PlayerProjectile bulletPrefab;
-    [SerializeField] protected float bulletForce;
+    [SerializeField] public float bulletForce;
     [SerializeField]
-    float minSpread;
+    public float minSpread;
     [SerializeField]
-    float maxSpread;
+    public float maxSpread;
     [SerializeField]
-    int damage;
+    public int damage;
     public ItemSO _gun;
     public PlayerInputHandler _inputHandler;
     public PlayerController playerController { get; private set; }
+    public float timeToNextFire;
     
     bool shoot;
 
 
     //end of editable variables within the inspector
 
-    public int CurrentAmmo { get; private set; }
-    private bool isReloading = false;
+    public int CurrentAmmo;
+    public bool isReloading = false;
 #endregion
 
 #region first load
 
     private void OnEnable()
     {
-        _inputHandler = GetComponentInParent<PlayerInputHandler>();
-        _inputHandler.UpdatePlayerWeaponReference();
+
         playerController = GetComponentInParent<PlayerController>();
+        if (playerController)
+        {
+            _inputHandler = GetComponentInParent<PlayerInputHandler>();
+            _inputHandler.UpdatePlayerWeaponReference();
+        }
     }
 
     private void Start()
@@ -67,7 +72,8 @@ public class PlayerWeapon : MonoBehaviour
         reloadTime = _gun.reloadTime;
         bulletLifetime = _gun.bulletLifeTime;
         bulletPrefab = _gun.bullet;
-        
+        timeToNextFire = _gun.timeToNextFire;
+
     }
 
     public void OnShoot()
@@ -83,11 +89,11 @@ public class PlayerWeapon : MonoBehaviour
 
     public virtual void Shoot(Vector2 additionalVelocity = new Vector2())
     {
-        if (gameObject.GetComponentInParent<PlayerController>())
+        if (GetComponentInParent<PlayerController>())
         {
-            if (Time.time >= fireRate && !isReloading)
+            if (Time.time >= timeToNextFire && !isReloading)
             {
-                fireRate = Time.time + 1.0f / fireRate; // sets the time for the next bullet to be able to be fired
+                timeToNextFire = Time.time + 1.0f / fireRate;// sets the time for the next bullet to be able to be fired
 
                 CurrentAmmo--;
 
@@ -100,7 +106,7 @@ public class PlayerWeapon : MonoBehaviour
 
                     firePoint.transform.Rotate(new Vector3(0, 0, 1), angle);
 
-                    PlayerProjectile bullet = Instantiate(bulletPrefab, new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z), Quaternion.identity);
+                    PlayerProjectile bullet = Instantiate(bulletPrefab);
                     bullet.PlayerAssignWeapon(this);
                     bullet.transform.position = firePoint.transform.position;
                     bullet.transform.rotation = firePoint.transform.rotation;
@@ -112,10 +118,41 @@ public class PlayerWeapon : MonoBehaviour
                 firePoint.localRotation = defaultSpreadAngle;
             }
         }
-        else
+        else if (GetComponentInParent<Enemy>())
         {
-            Debug.Log("epicFail");
+            if (Time.time >= timeToNextFire && !isReloading)
+            {
+                timeToNextFire = Time.time + 1.0f / fireRate;// sets the time for the next bullet to be able to be fired
+
+                CurrentAmmo--;
+
+                Quaternion defaultSpreadAngle = firePoint.localRotation;
+                float spread = Random.Range(minSpread, maxSpread);
+                firePoint.transform.Rotate(new Vector3(0, 0, 1), -spread / 2f);
+                for (int i = 0; i < bulletCount; i++)
+                {
+                    float angle = (float)spread / (float)(bulletCount);
+
+                    firePoint.transform.Rotate(new Vector3(0, 0, 1), angle);
+
+                    PlayerProjectile bullet = Instantiate(bulletPrefab);
+                    bulletPrefab.PlayerAssignWeapon(this);
+                    bullet.transform.position = firePoint.transform.position;
+                    bullet.transform.rotation = firePoint.transform.rotation;
+                    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    if(rb != null)
+                    {
+                        rb.linearVelocity = Vector2.zero;
+                        rb?.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);//impulse force represents impact 
+                    }
+                }
+
+                firePoint.localRotation = defaultSpreadAngle;
+            }
         }
+
+            
+            
     }
 
     #endregion

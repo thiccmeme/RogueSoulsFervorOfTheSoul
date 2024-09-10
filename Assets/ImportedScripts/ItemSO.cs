@@ -29,10 +29,11 @@ public class ItemSO : ScriptableObject
     public float bulletForce;
     public float reloadTime;
     public PlayerProjectile bullet;
+    public float timeToNextFire;
 
 }
 
 public enum ItemType
 {
-    Key, Weapon, Useless
+    Key, Weapon, Useless, EnemyWeapon
 }

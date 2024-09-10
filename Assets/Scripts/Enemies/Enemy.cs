@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy : EntityStats
 {
@@ -11,34 +13,27 @@ public class Enemy : EntityStats
     protected NavMeshAgent _agent;
     [SerializeField]
     protected bool isRanged;
-
     [SerializeField]
-    protected RangedWeapon enemyGun;
-    [SerializeField]
-    protected private Transform gunLocation;
+    protected Transform gunLocation;
     [SerializeField]
     protected float _rotateSpeed;
     protected float _enemyWeaponRotationAngle;
     protected bool targetInRange;
     [SerializeField]
     EnemyDoor enemyDoor;
-
+    private EventManager2 eventManager2;
     protected WeaponOffsetHandle _offsetHandle;
-
     protected GameObject enemySprite;
-
     [SerializeField]
     protected ParticleSystem _deathEffect;
-
     [SerializeField]
     protected float detectionRadius;
-
-    Animator _animator;
+    //public ItemSO _itemSo;
+    [SerializeField]
+    private PlayerWeapon enemyGun;
 
     #endregion
-
-
-
+    
 
     #region Start   
     protected virtual void Start()
@@ -49,11 +44,8 @@ public class Enemy : EntityStats
         _agent.updateUpAxis = false;
         enemySprite = GetComponentInChildren<SpriteRenderer>().gameObject;
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
-
-        _animator = GetComponentInChildren<Animator>();
-        
+        eventManager2 = FindFirstObjectByType<EventManager2>();
         target = FindObjectOfType<PlayerController>().transform;
-       
     }
 
     public override void TakeDamage(int damage)
@@ -84,7 +76,7 @@ public class Enemy : EntityStats
             }
         }
 
-        bool flipSprite = _agent.velocity.x < 0;
+        /*bool flipSprite = _agent.velocity.x < 0;
 
         if(flipSprite)
         {
@@ -93,17 +85,12 @@ public class Enemy : EntityStats
         else
         {
             enemySprite.transform.localScale = new Vector3(1, 1, 1);
-        }
+        }*/
     }
 
     protected virtual void FixedUpdate()
     {
         bool moving = _agent.velocity.x != 0 || _agent.velocity.y != 0;
-
-        if (_animator)
-        {
-            _animator.SetBool("Moving", moving);
-        }
 
         float distance = Vector3.Distance(target.position, this.transform.position);
 
@@ -121,35 +108,17 @@ public class Enemy : EntityStats
             _agent.SetDestination(target.position);
         }
     }
-
+    
     public virtual void RangedAttack()
     {
         _enemyWeaponRotationAngle = Mathf.Atan2(target.transform.position.y - this.transform.position.y, target.transform.position.x - this.transform.position.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(_enemyWeaponRotationAngle, Vector3.forward);
         if (_offsetHandle) _offsetHandle.OffsetWeaponPos(_enemyWeaponRotationAngle);
         gunLocation.rotation = Quaternion.Slerp(gunLocation.rotation, rotation, _rotateSpeed * Time.deltaTime);
+
     }
+    
 #endregion
-    #region Triggers
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            target = other.transform;
-            targetInRange = true;
-        }
-    }
-
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            target = null;
-            targetInRange = false;
-        }
-    }*/
-    #endregion
 
     public void StunEnemy()
     {
@@ -167,3 +136,4 @@ public class Enemy : EntityStats
         target = newTarget;
     }
 }
+
