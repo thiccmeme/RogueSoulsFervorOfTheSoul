@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine.EventSystems;
 
 public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -61,8 +62,9 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (_item == null)
         {
-            Instantiate(_equipable, new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z), Quaternion.identity, _transform);
+            EquipableItem Guntemp = Instantiate(_equipable, _transform);
             _eventManager2.RunEquipedEvent();
+            Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
         }
         else
         {

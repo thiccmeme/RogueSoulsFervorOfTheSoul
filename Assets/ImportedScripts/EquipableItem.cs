@@ -37,7 +37,6 @@ public class EquipableItem : MonoBehaviour
     {
         originalPosition = FindObjectOfType<hands>().transform;
         transform.position = originalPosition.position;
-        transform.rotation = originalPosition.rotation;
         _itemType = _itemSo.itemType;
         _itemManager = gameObject.AddComponent<ItemManager>();
         _door = FindObjectOfType<Door2>();
@@ -54,6 +53,7 @@ public class EquipableItem : MonoBehaviour
     private void Awake()
     {
         useKey = playerInput;
+        
     }
 
     private void FixedUpdate()
