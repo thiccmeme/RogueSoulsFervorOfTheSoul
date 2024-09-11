@@ -30,20 +30,23 @@ public class Youdied : MonoBehaviour
 
     private IEnumerator FadeImage()
     {
-        for (float i = 0; i <= 1; i += Time.deltaTime / fadeDuration)//FadeIn
+        Time.timeScale = 0;
+        for (float i = 0; i <= 1; i += Time.fixedUnscaledDeltaTime / fadeDuration)//FadeIn
         {
             _canvasGroup.alpha = i;
             yield return null; // Wait for the next frame
         }
         _canvasGroup.alpha = 1.0f;
         _playerStats.Respawn();
-        yield return new WaitForSeconds(fadeDuration * 2);
-        for (float i = 1; i >= 0; i -= Time.deltaTime / (fadeDuration / 2))//FadeOut
+        yield return new WaitForSecondsRealtime(fadeDuration * 2);
+        for (float i = 1; i >= 0; i -= Time.fixedUnscaledDeltaTime / (fadeDuration / 2))//FadeOut
         {
             _canvasGroup.alpha = i;
             yield return null;
         }
+        Time.timeScale = 1;
         _canvasGroup.alpha = 0.0f;
+        
     }
     // Update is called once per frame
     void Update()

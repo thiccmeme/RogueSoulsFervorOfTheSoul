@@ -16,8 +16,6 @@ public class PlayerStats : EntityStats
     
     Transform _respawnPoint;
 
-    protected float _xpValue;
-
     CinemachineConfiner2D _cameraConfiner;
 
     PolygonCollider2D _newCameraBounds;
@@ -42,10 +40,10 @@ public class PlayerStats : EntityStats
     protected override void Awake()
     {
         base.Awake();
-        _postProcessVolume = FindObjectOfType<Volume>().profile;
-        _cameraConfiner = FindObjectOfType<CinemachineConfiner2D>();
-        _hurtScreenShake = GetComponent<ScreenShakeEffect>();
-        _sfxHandler = GetComponent<AudioSource>();
+        //_postProcessVolume = FindObjectOfType<Volume>().profile;
+        //_cameraConfiner = FindObjectOfType<CinemachineConfiner2D>();
+        //_hurtScreenShake = GetComponent<ScreenShakeEffect>();
+        //_sfxHandler = GetComponent<AudioSource>();
     }
 
     #region Damage
@@ -103,16 +101,16 @@ public class PlayerStats : EntityStats
 
     void StartHurtEffect()
     {
-        if (!_postProcessVolume.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
+        /*if (!_postProcessVolume.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
         vignette.intensity.Override(0.5f);
         InvokeRepeating("DecreaseHurtEffect", 0, 0.02f);
         _hurtScreenShake.ShakeScreen();
-        _sfxHandler.PlayOneShot(hurtEffect);
+        _sfxHandler.PlayOneShot(hurtEffect);*/
     }
 
     void DecreaseHurtEffect() 
     {
-        if (!_postProcessVolume.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
+        /*if (!_postProcessVolume.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
         if(vignette.intensity.value > 0)
         {
             float newIntesity = vignette.intensity.value - 0.01f;
@@ -121,7 +119,7 @@ public class PlayerStats : EntityStats
         else
         {
             CancelInvoke("DecreaseHurtEffect");
-        }
+        }*/
     }
 
 }

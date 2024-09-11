@@ -57,11 +57,16 @@ public class PlayerProjectile : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        /*else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
+        else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
         {
-            PlayerStats enemyToHit = other.gameObject.GetComponent<PlayerStats>();
-            enemyToHit.TakeDamage(bulletDamage);
-        }*/
+            if (!hasHit)
+            {
+                hasHit = true;
+                PlayerStats enemyToHit = other.gameObject.GetComponent<PlayerStats>();
+                enemyToHit.TakeDamage(bulletDamage);
+            }
+            Destroy(this.gameObject);
+        }
     }
 
     public void PlayerAssignWeapon(PlayerWeapon weaponToAssign)
