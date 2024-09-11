@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField]
     private BulletType bulletType;
 
+    public bool hasHit = false;
+
     public virtual void OnEnable()
     {
         _controller = FindObjectOfType<PlayerController>();
@@ -27,6 +30,10 @@ public class PlayerProjectile : MonoBehaviour
         {
             Destroy();
         }
+        if (transform.position.z != 0)
+        {
+            this.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        }
     }
 
     public virtual void Destroy()
@@ -35,18 +42,26 @@ public class PlayerProjectile : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public virtual void OnCollisionEnter2D(Collision2D other) 
-	{
-        if(other.gameObject.CompareTag("enemy") && bulletType == BulletType._Player)
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy") && bulletType == BulletType._Player)
         {
-            var enemyToHit = other.gameObject.GetComponent<EntityStats>();
-            enemyToHit.TakeDamage(bulletDamage);
+            if (!hasHit)
+            {
+                hasHit = true;
+                var enemyToHit = other.gameObject.GetComponent<EntityStats>();
+                Debug.Log(bulletDamage);
+                enemyToHit.TakeDamage(bulletDamage);
+            }
+
+            Destroy(this.gameObject);
         }
-        else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
+        /*else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
         {
             PlayerStats enemyToHit = other.gameObject.GetComponent<PlayerStats>();
             enemyToHit.TakeDamage(bulletDamage);
-        }
+        }*/
     }
 
     public void PlayerAssignWeapon(PlayerWeapon weaponToAssign)

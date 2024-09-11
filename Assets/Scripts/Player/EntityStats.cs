@@ -49,7 +49,7 @@ public class EntityStats : MonoBehaviour
     {
         IncrementHealth(-damage);
         
-        if (Health <= 0 && tag == "enemy")
+        if (Health <= 0 && tag == "Enemy")
         {
             Destroy(this.gameObject);
         }

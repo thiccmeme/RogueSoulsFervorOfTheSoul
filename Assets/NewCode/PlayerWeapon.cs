@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
@@ -106,7 +107,7 @@ public class PlayerWeapon : MonoBehaviour
 
                     firePoint.transform.Rotate(new Vector3(0, 0, 1), angle);
 
-                    PlayerProjectile bullet = Instantiate(bulletPrefab);
+                    PlayerProjectile bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z),Quaternion.identity);
                     bullet.PlayerAssignWeapon(this);
                     bullet.transform.position = firePoint.transform.position;
                     bullet.transform.rotation = firePoint.transform.rotation;
@@ -135,7 +136,7 @@ public class PlayerWeapon : MonoBehaviour
 
                     firePoint.transform.Rotate(new Vector3(0, 0, 1), angle);
 
-                    PlayerProjectile bullet = Instantiate(bulletPrefab);
+                    PlayerProjectile bullet = Instantiate(bulletPrefab,new Vector3(transform.position.x, transform.position.y, 0),Quaternion.identity);
                     bulletPrefab.PlayerAssignWeapon(this);
                     bullet.transform.position = firePoint.transform.position;
                     bullet.transform.rotation = firePoint.transform.rotation;
