@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -3451,7 +3451,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: cc7ffeff66e9feff8e0fffffa831ffffbe31ffffeeacffffa8faffffe6faffff5cb6000074b6000096b60000
+      m_ExpandedIDs: 9247ffff06a8ffff0ca8fffff2b6ffffbcfaffffe6faffff62b60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -4071,7 +4071,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -2.7702186, y: -1.9162419, z: -4.5692587}
     speed: 2
-    m_Value: {x: -0.30395558, y: 0.5211434, z: 1653.4271}
+    m_Value: {x: -2.7702186, y: -1.9162419, z: -4.5692587}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -4123,7 +4123,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 10
     speed: 2
-    m_Value: 8.195999
+    m_Value: 10
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -4301,7 +4301,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Player
+    - Assets/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -4311,15 +4311,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Player
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\theworkhorse\Desktop\C#\RogueSoulsFervorOfTheSoul\RogueSoulsFervorOfTheSoul
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 104}
-    m_SelectedIDs: dcbb0000
-    m_LastClickedID: 48092
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: b0bb0000
+    m_LastClickedID: 48048
     m_ExpandedIDs: 00000000bab80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
