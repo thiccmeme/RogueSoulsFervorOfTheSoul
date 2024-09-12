@@ -62,20 +62,7 @@ public class EquipableItem : MonoBehaviour
             weapon.EnableShootInput();
             Input.UpdateItemRefernce();
             Input.UpdatePlayerWeaponReference();
-            Invoke("FixTransform",0.05f);
-            
         }
-    }
-
-    private void Awake()
-    {
-        //useKey = playerInput;
-        
-    }
-
-    private void FixTransform()
-    {
-        transform.rotation = Quaternion.Euler(0,0,0);
     }
 
     private void FixedUpdate()

@@ -68,8 +68,9 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (_item == null)
         {
-            Instantiate(_equipable, new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z), Quaternion.identity, _transform);
-            _equipable.transform.rotation = Quaternion.Euler(0,0,0);
+            EquipableItem Guntemp = Instantiate(_equipable, _transform);
+            Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
+            _eventManager2.RunEquipedEvent();
         }
         else
         {
