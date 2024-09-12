@@ -134,6 +134,7 @@ MonoBehaviour:
   _maxTravelDistance: 6
   bulletLifetime: 3
   bulletType: 1
+  hasHit: 0
 --- !u!58 &-5815968470790644008
 CircleCollider2D:
   m_ObjectHideFlags: 0

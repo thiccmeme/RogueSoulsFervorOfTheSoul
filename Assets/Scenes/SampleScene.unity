@@ -14069,7 +14069,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: EveythingNeeded
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6311730869200209225, guid: 3760b121d7903d04aac5b500af8f84c4, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7907211047037684045, guid: 3760b121d7903d04aac5b500af8f84c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
