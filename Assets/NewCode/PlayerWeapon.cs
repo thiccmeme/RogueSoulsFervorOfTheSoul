@@ -76,16 +76,21 @@ public class PlayerWeapon : MonoBehaviour
         bulletLifetime = _gun.bulletLifeTime;
         bulletPrefab = _gun.bullet;
         timeToNextFire = _gun.timeToNextFire;
+        CurrentAmmo = MaxAmmo;
 
 
     }
 
     public void OnShoot()
     {
-        if (shoot)
+        if (shoot && CurrentAmmo!= 0)
         {
             Debug.Log("Shoot");
             Shoot();
+        }
+        else if (CurrentAmmo == 0)
+        {
+            Reload();
         }
     }
     
