@@ -61,7 +61,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void ItemSet()
     {
-        //Debug.Log(_equipable);
+        Debug.Log(_equipable);
         _equipable._itemSo = _itemSo;
         _equipable = _itemSo.equipableItem;
         _item = FindAnyObjectByType<EquipableItem>();
