@@ -256,6 +256,7 @@ MonoBehaviour:
   _gun: {fileID: 11400000, guid: 5b6f33f8a92bede48a9ed867c271509c, type: 2}
   _inputHandler: {fileID: 0}
   timeToNextFire: 0
+  _EventManager2: {fileID: 0}
   CurrentAmmo: 0
   isReloading: 0
 --- !u!1 &6480481741802610594

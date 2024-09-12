@@ -11,8 +11,9 @@ public class PlayerInputHandler : MonoBehaviour
     private UIHandler uiHandler;
     private HUD hud;
     public PlayerWeapon playerWeapon;
+    public EquipableItem _Equipable;
 
-    CharacterInput characterInput;
+    private CharacterInput characterInput;
 
     private void OnEnable()
     {
@@ -23,6 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
         UpdateRangedWeaponReference();
         weaponWheel = FindObjectOfType<WeaponWheel>();
         playerWeapon = GetComponent<PlayerWeapon>();
+        _Equipable = FindObjectOfType<EquipableItem>();
         if(characterInput == null)
         {
             //if(!uiHandler.IsPaused)
@@ -34,13 +36,16 @@ public class PlayerInputHandler : MonoBehaviour
 
                 characterInput.CharacterMovement.AimMouse.performed += i => weaponWheel?.HandleArrowInputMouse(i.ReadValue<Vector2>());
                 characterInput.CharacterMovement.AimController.performed += i => weaponWheel?.HandleArrowInputController(i.ReadValue<Vector2>());
-
                 characterInput.CharacterActions.Attack.started += i => rangedWeapon?.EnableShootInput();
                 characterInput.CharacterActions.Attack.canceled += i => rangedWeapon?.DisableShootInput();
-                characterInput.CharacterActions.Reload.started += i => rangedWeapon?.Reload();
+                
+                
+                    characterInput.CharacterActions.Reload.started += i => rangedWeapon?.Reload();
+                    characterInput.CharacterActions.Attack.started += i => playerWeapon?.OnShoot();
                 characterInput.CharacterActions.DodgeRoll.started += i => playerController?.HandleDodgeRollInput();
                 characterInput.CharacterActions.Interact.started += i => playerController?.Interact();
-                characterInput.CharacterActions.Attack.started += i => playerWeapon?.OnShoot();
+                characterInput.CharacterActions.Unequip.performed += i => _Equipable.OnUnequip();
+                    
                 
 
                 characterInput.CharacterActions.OpenWeaponWheel.started += i => weaponWheel?.OpenWeaponWheel();
@@ -57,7 +62,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void UpdateRangedWeaponReference()
     {
+        
         rangedWeapon = GetComponentInChildren<RangedWeapon>();
+    }
+
+    public void UpdateItemRefernce()
+    {
+        _Equipable = GetComponentInChildren<EquipableItem>();
     }
 
     public void UpdatePlayerWeaponReference()

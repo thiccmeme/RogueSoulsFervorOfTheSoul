@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapon: {fileID: 0}
+  _Equipable: {fileID: 0}
 --- !u!95 &8015862787471248485
 Animator:
   serializedVersion: 7

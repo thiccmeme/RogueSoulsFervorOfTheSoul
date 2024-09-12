@@ -15,4 +15,6 @@ public class ItemManager : MonoBehaviour
     {
         InteractEvent?.Invoke();
     }
+    
+    
 }

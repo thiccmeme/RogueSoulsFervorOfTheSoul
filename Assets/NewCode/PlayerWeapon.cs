@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
@@ -38,6 +39,7 @@ public class PlayerWeapon : MonoBehaviour
     public PlayerInputHandler _inputHandler;
     public PlayerController playerController { get; private set; }
     public float timeToNextFire;
+    public EventManager2 _EventManager2;
     
     bool shoot;
 
@@ -75,13 +77,18 @@ public class PlayerWeapon : MonoBehaviour
         bulletPrefab = _gun.bullet;
         timeToNextFire = _gun.timeToNextFire;
 
+
     }
 
     public void OnShoot()
     {
-        Debug.Log("Shoot");
-        Shoot();
+        if (shoot)
+        {
+            Debug.Log("Shoot");
+            Shoot();
+        }
     }
+    
 
     #endregion
 
@@ -170,6 +177,16 @@ public class PlayerWeapon : MonoBehaviour
             }
             Invoke("FinishReload", reloadTime); // we do an invoke so we can add a delay to the reload time, rather than a regular function call
         }
+    }
+    
+    public void EnableShootInput()//virtual function can be overridden 
+    {
+        shoot = true;
+    }
+
+    public void DisableShootInput()
+    {
+        shoot = false;
     }
 
 

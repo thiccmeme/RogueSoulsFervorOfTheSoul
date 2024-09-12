@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
     {
         eventManager2 = FindFirstObjectByType<EventManager2>();
         eventManager2._equipedEvent += SetGun;
+        eventManager2._itemDestroyed += SetGun;
     }
 
     void SetGun()

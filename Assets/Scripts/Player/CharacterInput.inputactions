@@ -296,6 +296,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Unequip",
+                    "type": "Button",
+                    "id": "3afa239c-eb35-4e0b-a819-0d9870cab29c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -571,6 +580,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "OnShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60e4f666-a855-4e22-9825-400339d5e383",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unequip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -20,6 +20,8 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private EventManager2 _eventManager2;
     private WeaponOffsetHandle weaponOffsetHandle;
     private ItemType itemType;
+    Dictionary<EquipableItem, ItemType> itemDictionary = new Dictionary<EquipableItem, ItemType>();
+    public bool Disabled;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void Start()
     {
         _button.onClick.AddListener(ItemSet);
+        
 
     }
 
@@ -58,22 +61,24 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void ItemSet()
     {
-        Debug.Log(_equipable);
+        //Debug.Log(_equipable);
         _equipable._itemSo = _itemSo;
-        itemType = _itemSo.itemType;
+        _equipable = _itemSo.equipableItem;
         _item = FindAnyObjectByType<EquipableItem>();
-        
-        if (_item == null )
+
+        if (_item == null)
         {
-            EquipableItem Guntemp = Instantiate(_equipable, _transform);
-            _eventManager2.RunEquipedEvent();
-            Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
+            Instantiate(_equipable, new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z), Quaternion.identity, _transform);
+            _equipable.transform.rotation = Quaternion.Euler(0,0,0);
         }
         else
         {
-            Debug.Log("Not Enought of item or already have item equipped");
             return;
         }
         
+            //Debug.Log("Not Enought of item or already have item equipped");
     }
+        
+        
+    
 }

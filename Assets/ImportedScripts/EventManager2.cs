@@ -4,6 +4,10 @@ using UnityEngine;
 
 public delegate void ManagedEvent();
 public delegate void ItemEquipedEvent();
+
+public delegate void ItemDestroyEvent();
+
+public delegate void ItemEquipEvent();
 public class EventManager2 : MonoBehaviour
 {
     public event ManagedEvent _ManagedEvent;
@@ -28,5 +32,29 @@ public class EventManager2 : MonoBehaviour
     protected virtual void InvokeEquipedEvent()
     {
         _equipedEvent?.Invoke();
+    }
+
+    public event ItemDestroyEvent _itemDestroyed;
+
+    public void RunDestroyItemEvent()
+    {
+        InvokeDestroyedEvent();
+    }
+
+    protected virtual void InvokeDestroyedEvent()
+    {
+        _itemDestroyed?.Invoke();
+    }
+
+    public event ItemEquipEvent _itemEquip;
+
+    public void RunItemEquipEvent()
+    {
+        InvokeEquipEvent();
+    }
+
+    protected virtual void InvokeEquipEvent()
+    {
+        _itemEquip?.Invoke();
     }
 }

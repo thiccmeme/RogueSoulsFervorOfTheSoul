@@ -131,9 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 5
   weapon: {fileID: 0}
-  _maxTravelDistance: 6
+  _maxTravelDistance: 12
   bulletLifetime: 2
   bulletType: 0
+  hasHit: 0
 --- !u!58 &-6814380095599916890
 CircleCollider2D:
   m_ObjectHideFlags: 0

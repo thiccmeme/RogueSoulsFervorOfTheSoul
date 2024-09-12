@@ -21,16 +21,20 @@ public class EquipableItem : MonoBehaviour
     private ItemManager _itemManager;
 
     private bool canOpen;
+
+    private EventManager2 eventManager2;
     
     public PlayerInput useKey;
-
-    public PlayerInput playerInput;
+    
 
     public GameObject _micro;
 
     public PlayerWeapon weapon;
 
     public Transform FirePoint;
+
+    public PlayerInputHandler Input;
+    
     
 
     private void Start()
@@ -40,20 +44,38 @@ public class EquipableItem : MonoBehaviour
         _itemType = _itemSo.itemType;
         _itemManager = gameObject.AddComponent<ItemManager>();
         _door = FindObjectOfType<Door2>();
+        eventManager2 = FindFirstObjectByType<EventManager2>();
+        //eventManager2._itemDestroyed += OnUnEquip;
+        //eventManager2._itemEquip += Requip;
+        
         if (_itemType == ItemType.Weapon)
         {
-            weapon = gameObject.AddComponent<PlayerWeapon>();
+            if (weapon == null)
+            {
+                weapon = gameObject.AddComponent<PlayerWeapon>();
+            }
             weapon._gun = _itemSo;
             weapon.firePoint = FirePoint;
             WeaponOffsetHandle weaponOffsetHandle = FindFirstObjectByType<WeaponOffsetHandle>();
             weaponOffsetHandle.SetCurrentWeapon();
+            Input = FindFirstObjectByType<PlayerInputHandler>(); 
+            weapon.EnableShootInput();
+            Input.UpdateItemRefernce();
+            Input.UpdatePlayerWeaponReference();
+            Invoke("FixTransform",0.05f);
+            
         }
     }
 
     private void Awake()
     {
-        useKey = playerInput;
+        //useKey = playerInput;
         
+    }
+
+    private void FixTransform()
+    {
+        transform.rotation = Quaternion.Euler(0,0,0);
     }
 
     private void FixedUpdate()
@@ -98,6 +120,11 @@ public class EquipableItem : MonoBehaviour
         }
     }
 
+    public void Requip()
+    {
+        //this.gameObject.SetActive(true);
+    }
+
     public void MicroWave()
     {
         //_micro.Trigger();
@@ -119,9 +146,12 @@ public class EquipableItem : MonoBehaviour
 
     }
     
-    private void OnUnEquip()
+    public void OnUnequip()
     {
-        Destroy(this.gameObject);
+        Debug.Log("fuck");
+        Input.UpdatePlayerWeaponReference();
+        weapon.DisableShootInput();
+       Destroy(this.gameObject);
     }
 
 }

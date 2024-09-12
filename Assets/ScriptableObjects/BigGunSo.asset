@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00dc9f7a0d09c5a45970b03bbbf4a401, type: 3}
-  m_Name: RemingtonSo
+  m_Name: BigGunSo
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 6c49d59c1bfca6744adfe7bf3d035778, type: 3}
+  _sprite: {fileID: 21300000, guid: be83d44b47c029a4ebc90df876ed7bec, type: 3}
   _material: {fileID: 0}
-  equipableItem: {fileID: -2841583259698460135, guid: 5f49fe4e7d41f6741a37242975121ee4, type: 3}
-  inventoryButton: {fileID: 7760182796335234173, guid: aed7f38ef65ebdd46bbcc0df82292af4, type: 3}
-  <ItemName>k__BackingField: Remington
+  equipableItem: {fileID: -6276983541757706462, guid: 73924073f4cbee742a10a7e8b385916f, type: 3}
+  inventoryButton: {fileID: 7760182796335234173, guid: 88fb55c7b0d598843bda5b6eed32203e, type: 3}
+  <ItemName>k__BackingField: BigGun
   itemType: 1
-  <ItemDescription>k__BackingField: Ye old Revolver
-  damage: 5
-  fireRate: 2
-  minspread: 0.5
-  maxspread: 0.45
+  <ItemDescription>k__BackingField: A big fucking gun
+  damage: 10
+  fireRate: 1
+  minspread: 5
+  maxspread: 15
   firePoint: {fileID: 0}
-  bulletCount: 1
-  bulletLifeTime: 3
-  maxAmmo: 6
-  bulletForce: 5
-  reloadTime: 1
+  bulletCount: 3
+  bulletLifeTime: 5
+  maxAmmo: 12
+  bulletForce: 10
+  reloadTime: 2
   bullet: {fileID: 7321215824797425880, guid: ea2b72376d028154c99750d8986dbbad, type: 3}
   timeToNextFire: 1

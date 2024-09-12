@@ -1,0 +1,34 @@
+{
+    "name": "Aydens",
+    "maps": [
+        {
+            "name": "Pain",
+            "id": "6e8800fd-6bf6-497c-a28f-8e4d8eaa048e",
+            "actions": [
+                {
+                    "name": "UnEquipItem",
+                    "type": "Button",
+                    "id": "217fdb9b-6b31-4eff-bd42-0cb0ce576c99",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "289652d9-5f8a-4d54-b9cb-9ac410f58d73",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnEquipItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
