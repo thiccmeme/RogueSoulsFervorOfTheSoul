@@ -1,0 +1,34 @@
+{
+    "name": "Npc",
+    "maps": [
+        {
+            "name": "Talk",
+            "id": "ae6247c1-589f-4ca0-bd2e-45ec28c7e882",
+            "actions": [
+                {
+                    "name": "Talk",
+                    "type": "Button",
+                    "id": "799b9a9b-be46-4067-b5eb-faa06947e6f6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e0d663f0-65fc-4da5-a5d0-4e957c4196b9",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Talk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

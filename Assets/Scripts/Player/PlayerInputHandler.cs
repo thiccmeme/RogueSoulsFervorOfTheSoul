@@ -12,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     private HUD hud;
     public PlayerWeapon playerWeapon;
     public EquipableItem _Equipable;
+    public NpcSystem npcSystem;
 
     private CharacterInput characterInput;
 
@@ -25,6 +26,7 @@ public class PlayerInputHandler : MonoBehaviour
         weaponWheel = FindObjectOfType<WeaponWheel>();
         playerWeapon = GetComponent<PlayerWeapon>();
         _Equipable = FindObjectOfType<EquipableItem>();
+        npcSystem = FindFirstObjectByType<NpcSystem>();
         if(characterInput == null)
         {
             //if(!uiHandler.IsPaused)
@@ -44,7 +46,9 @@ public class PlayerInputHandler : MonoBehaviour
                     characterInput.CharacterActions.Attack.started += i => playerWeapon?.OnShoot();
                 characterInput.CharacterActions.DodgeRoll.started += i => playerController?.HandleDodgeRollInput();
                 characterInput.CharacterActions.Interact.started += i => playerController?.Interact();
+                characterInput.CharacterActions.Interact.started += i => npcSystem?.OnTalk();
                 characterInput.CharacterActions.Unequip.performed += i => _Equipable.OnUnequip();
+                
                     
                 
 
@@ -75,4 +79,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
     }
+
+    public void UpdateNpcSystemReference()
+    {
+        npcSystem = FindFirstObjectByType<NpcSystem>();
+    }
+    
 }

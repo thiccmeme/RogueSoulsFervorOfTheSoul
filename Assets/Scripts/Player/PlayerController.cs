@@ -535,6 +535,7 @@ public class PlayerController : MonoBehaviour
             _playerHUD.OpenChatBox();
             CurrentNPC.ContinueDialogue();
         }
+        
         #endregion
     }
 
