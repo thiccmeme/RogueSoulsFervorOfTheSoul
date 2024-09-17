@@ -7,6 +7,12 @@ public delegate void ItemEquipedEvent();
 
 public delegate void ItemDestroyEvent();
 
+public delegate void HonorIncreasedEvent();
+
+public delegate void HonorDecreasedEvent();
+
+
+
 public delegate void ItemEquipEvent();
 public class EventManager2 : MonoBehaviour
 {
@@ -56,5 +62,29 @@ public class EventManager2 : MonoBehaviour
     protected virtual void InvokeEquipEvent()
     {
         _itemEquip?.Invoke();
+    }
+
+    public HonorDecreasedEvent _honorDecreased;
+
+    public void RunHonorDecreasedEvent()
+    {
+        InvokeHonorDecreased();
+    }
+
+    protected virtual void InvokeHonorDecreased()
+    {
+        _honorDecreased?.Invoke();
+    }
+    
+    public HonorDecreasedEvent _honorIncreased;
+
+    public void RunHonorincreasedEvent()
+    {
+        InvokeHonorIncreased();
+    }
+
+    protected virtual void InvokeHonorIncreased()
+    {
+        _honorIncreased?.Invoke();
     }
 }

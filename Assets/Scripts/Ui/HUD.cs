@@ -110,7 +110,6 @@ public class HUD : MonoBehaviour
     {
         _promptText.transform.position = Vector2.Lerp(_promptText.transform.position, _promptEndPos.transform.position, _promptLerpSpeed * Time.fixedDeltaTime);
         _promptText.text = whatToDisplay;
-        
     }
 
     public void ClosePromptText()

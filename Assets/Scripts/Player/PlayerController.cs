@@ -454,6 +454,7 @@ public class PlayerController : MonoBehaviour
         {
             CurrentNPC = other.GetComponent<NPC>();
             CurrentNPC.ResetIndex();
+            Debug.Log("npcs");
             InRangeOfNPC = true;
         }
     }

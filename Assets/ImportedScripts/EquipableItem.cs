@@ -34,6 +34,8 @@ public class EquipableItem : MonoBehaviour
     public Transform FirePoint;
 
     public PlayerInputHandler Input;
+
+    public SpriteRenderer spriteRenderer;
     
     
 
