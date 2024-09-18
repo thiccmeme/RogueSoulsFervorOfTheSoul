@@ -19,6 +19,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private int PositiveTreshHold;
     [SerializeField] private int NegativeTreshHold;
     [SerializeField] private int currentHonor;
+    [SerializeField] private PlayerInputHandler playerInputHandler;
     public int index = 0;
 
     private EntityStats entityStats;
@@ -49,6 +50,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (other.CompareTag("Player") && triggered == false )
         {
             eventManager2._NextEvent += Interact;
+            playerInputHandler.UpdateNpcSystemReference(this);
             
             triggered = true;
             text.enabled = true;
@@ -83,6 +85,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void HonorNegativeThreshold()
     {
         currentHonor--;
+        Debug.Log(currentHonor);
         if (currentHonor <= NegativeTreshHold)
         {
             CurrentSo = dialogBad;
@@ -92,6 +95,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void HonorPositiveThreshold()
     {
         currentHonor++;
+        Debug.Log(currentHonor);
         if (currentHonor >= PositiveTreshHold)
         {
             CurrentSo = dialogGood;
@@ -108,6 +112,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         text = GetComponentInChildren<TMP_Text>();
         eventManager2._honorDecreased += HonorNegativeThreshold;
         eventManager2._honorIncreased += HonorPositiveThreshold;
+        playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
         entityStats = GetComponent<EntityStats>();
         dialogGood.resetDialog();
         dialogBad.resetDialog();

@@ -16,6 +16,6 @@ MonoBehaviour:
   - joe
   - mama
   - gay
-  currentDialog: gay
+  currentDialog: joe
   sprite: {fileID: 0}
   index: 0

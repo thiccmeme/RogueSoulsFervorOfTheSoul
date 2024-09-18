@@ -57,6 +57,19 @@ public class PlayerProjectile : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Npc") && bulletType == BulletType._Player)
+        {
+            if (!hasHit)
+            {
+                hasHit = true;
+                var enemyToHit = other.gameObject.GetComponent<EntityStats>();
+                Debug.Log(bulletDamage);
+                enemyToHit.TakeDamage(bulletDamage);
+            }
+
+            Destroy(this.gameObject);
+        }
         else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
         {
             if (!hasHit)

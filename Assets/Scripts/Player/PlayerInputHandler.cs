@@ -80,9 +80,9 @@ public class PlayerInputHandler : MonoBehaviour
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
     }
 
-    public void UpdateNpcSystemReference()
+    public void UpdateNpcSystemReference(NpcSystem npcsystem)
     {
-        npcSystem = FindFirstObjectByType<NpcSystem>();
+        npcSystem = npcsystem;
     }
     
 }

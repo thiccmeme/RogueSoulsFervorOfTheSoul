@@ -28,6 +28,8 @@ public class EntityStats : MonoBehaviour
     [SerializeField]
     protected GameManager _gameManager;
 
+    protected EventManager2 eventManager2;
+
     Heart heart;
 
     #endregion
@@ -38,6 +40,7 @@ public class EntityStats : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager>();
         UpdateHeartAmount();
         Health = _maxHealth;
+        eventManager2 = FindFirstObjectByType<EventManager2>();
     }
 
     #region Health
@@ -51,6 +54,13 @@ public class EntityStats : MonoBehaviour
         
         if (Health <= 0 && tag == "Enemy")
         {
+            eventManager2.RunHonorincreasedEvent();
+            Destroy(this.gameObject);
+        }
+
+        if (Health <= 0 && tag == ("Npc"))
+        {
+            eventManager2.RunHonorDecreasedEvent();
             Destroy(this.gameObject);
         }
     } 
