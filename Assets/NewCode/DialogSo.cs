@@ -10,6 +10,7 @@ public class DialogSo : ScriptableObject
     [SerializeField] public string currentDialog;
 
     [SerializeField] public SpriteRenderer sprite;
+    [SerializeField] public bool DialogFinished = false;
 
     public int index = 0;
 
@@ -17,8 +18,11 @@ public class DialogSo : ScriptableObject
 
     public void IncreaseIndex()
     {
-        index++;
-        currentDialog = dialog[index];
+        if (index < dialog.Length)
+        {
+            index++;
+            currentDialog = dialog[index];
+        }
     }
 
     public void resetDialog()

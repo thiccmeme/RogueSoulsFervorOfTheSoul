@@ -13,6 +13,8 @@ public delegate void HonorDecreasedEvent();
 
 public delegate void NextEvent();
 
+public delegate void RewardEvent();
+
 
 
 public delegate void ItemEquipEvent();
@@ -100,5 +102,17 @@ public class EventManager2 : MonoBehaviour
     protected virtual void InvokeNextEvent()
     {
         _NextEvent?.Invoke();
+    }
+
+    public event RewardEvent _rewardEvent;
+
+    public void RunRewardEvent()
+    {
+        InvokeRewardEvent();
+    }
+
+    protected virtual void InvokeRewardEvent()
+    {
+        _rewardEvent?.Invoke();
     }
 }

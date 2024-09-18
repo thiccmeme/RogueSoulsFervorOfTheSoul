@@ -18,4 +18,6 @@ MonoBehaviour:
   - gay
   currentDialog: joe
   sprite: {fileID: 0}
+  DialogFinished: 0
+  eventManager2: {fileID: 1656936238736371113, guid: 63ca51a6dc1a18343ac49bf8d5863147, type: 3}
   index: 0

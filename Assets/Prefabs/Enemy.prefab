@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5467774773064083056}
   - component: {fileID: 1568031168408995728}
-  - component: {fileID: 8458368197448135157}
   - component: {fileID: 3403053221862911568}
   - component: {fileID: 7794978968944133307}
   - component: {fileID: 7267939227853970269}
@@ -65,25 +64,6 @@ MonoBehaviour:
   _deathEffect: {fileID: 0}
   detectionRadius: 12
   enemyGun: {fileID: 4247902087547222839}
---- !u!114 &8458368197448135157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5085384536660420883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99947218f17e9db429dc89710447ec99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Health>k__BackingField: 0
-  _maxHealth: 8
-  <Damage>k__BackingField: 0
-  <Speed>k__BackingField: 3
-  <TimeToAttack>k__BackingField: 1
-  _heartDisplayHandler: {fileID: 0}
-  _gameManager: {fileID: 0}
 --- !u!195 &3403053221862911568
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -185,8 +165,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: -2834228669881685255, guid: 21862d61af9b6f94ea8c65dfaf6052f1, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 1059899495764260414, guid: 5c37b600786a9db479fcc5ad81caedb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

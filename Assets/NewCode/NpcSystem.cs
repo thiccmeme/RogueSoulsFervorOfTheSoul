@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = System.Random;
@@ -20,6 +21,9 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private int NegativeTreshHold;
     [SerializeField] private int currentHonor;
     [SerializeField] private PlayerInputHandler playerInputHandler;
+    [SerializeField] private GameObject goodReward;
+    [SerializeField] private GameObject badReward;
+    [SerializeField] private bool finished = false;
     public int index = 0;
 
     private EntityStats entityStats;
@@ -37,7 +41,6 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnTalk()
     {
         eventManager2.RunNextEvent();
-        Debug.Log(index);
     }
 
     public void Interact()
@@ -78,8 +81,32 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private void IndexText()
     {
-        CurrentSo.IncreaseIndex();
-        text.text = CurrentSo.currentDialog;
+        if (finished == false)
+        {
+            index++;
+        }
+
+        Debug.Log(dialogassets.Length);
+        if (index <= dialogassets.Length)
+        {
+            
+            CurrentSo.IncreaseIndex();
+            text.text = CurrentSo.currentDialog;
+        }
+        else
+        {
+            if (finished)
+            {
+                return;
+            }
+            else
+            {
+                Reward();
+                finished = true;
+            }
+
+        }
+
     }
 
     public void HonorNegativeThreshold()
@@ -89,7 +116,32 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (currentHonor <= NegativeTreshHold)
         {
             CurrentSo = dialogBad;
+            index = 1;
             text.text = CurrentSo.currentDialog;
+        }
+    }
+
+    public void Reward()
+    {
+        if (currentHonor >= PositiveTreshHold && goodReward != null)
+        {
+             var good = Instantiate(goodReward, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
+             good.transform.localRotation = Quaternion.Euler(0,0,0);
+             good.transform.localPosition = this.transform.localPosition;
+             Debug.Log(good);
+        }
+
+        if (currentHonor == 0)
+        {
+            return;
+        }
+
+        if (currentHonor <= NegativeTreshHold && badReward!= null)
+        {
+            var bad = Instantiate(badReward, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
+            bad.transform.localRotation = Quaternion.Euler(0,0,0);
+            bad.transform.localPosition = this.transform.localPosition;
+            Debug.Log(bad);
         }
     }
     
@@ -99,6 +151,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Debug.Log(currentHonor);
         if (currentHonor >= PositiveTreshHold)
         {
+            index = 1;
             CurrentSo = dialogGood;
             text.text = CurrentSo.currentDialog;
         }
@@ -114,6 +167,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         text = GetComponentInChildren<TMP_Text>();
         eventManager2._honorDecreased += HonorNegativeThreshold;
         eventManager2._honorIncreased += HonorPositiveThreshold;
+        eventManager2._rewardEvent += Reward;
         playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
         entityStats = GetComponent<EntityStats>();
         dialogGood.resetDialog();
