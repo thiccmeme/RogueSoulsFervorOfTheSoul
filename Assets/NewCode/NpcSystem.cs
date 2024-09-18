@@ -89,6 +89,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (currentHonor <= NegativeTreshHold)
         {
             CurrentSo = dialogBad;
+            text.text = CurrentSo.currentDialog;
         }
     }
     
@@ -99,6 +100,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (currentHonor >= PositiveTreshHold)
         {
             CurrentSo = dialogGood;
+            text.text = CurrentSo.currentDialog;
         }
     }
 
