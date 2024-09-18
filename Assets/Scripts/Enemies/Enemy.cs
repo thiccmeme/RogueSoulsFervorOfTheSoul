@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -46,6 +47,7 @@ public class Enemy : EntityStats
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         target = FindObjectOfType<PlayerController>().transform;
+        transform.localRotation = Quaternion.Euler(0,0,0);
     }
 
     public override void TakeDamage(int damage)
