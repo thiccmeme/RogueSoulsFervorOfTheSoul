@@ -20,11 +20,13 @@ public class Enemy : EntityStats
     protected float _rotateSpeed = 100;
     public float _enemyWeaponRotationAngle;
     protected bool targetInRange;
-    [SerializeField]
+    [SerializeField] public GameObject weaponHandle;
     EnemyDoor enemyDoor;
     private EventManager2 eventManager2;
     public WeaponOffsetHandle _offsetHandle;
     [SerializeField]protected GameObject enemySprite;
+    [SerializeField]protected SpriteRenderer enemyGunSprite;
+    
     [SerializeField]
     protected ParticleSystem _deathEffect;
     [SerializeField]
@@ -43,11 +45,13 @@ public class Enemy : EntityStats
         _agent.speed = Speed;
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        //enemySprite = GetComponentInChildren<SpriteRenderer>().gameObject;
+        enemySprite = GetComponent<SpriteRenderer>().gameObject;
+        //enemyGunSprite = GetComponentInChildren<SpriteRenderer>();
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         target = FindObjectOfType<PlayerController>().transform;
         transform.localRotation = Quaternion.Euler(0,0,0);
+        weaponHandle = GetComponentInChildren<Handle>().gameObject;
     }
 
     public override void TakeDamage(int damage)
@@ -88,10 +92,14 @@ public class Enemy : EntityStats
         if(flipSprite)
         {
             enemySprite.transform.localScale = new Vector3(-1, 1, 1);
+            weaponHandle.transform.localScale = new Vector3(-1, 1, 1);
+            enemyGunSprite.transform.localRotation = Quaternion.Euler(0,0,0);
         }
         else
         {
             enemySprite.transform.localScale = new Vector3(1, 1, 1);
+            weaponHandle.transform.localScale = new Vector3(1, 1, 1);
+            enemyGunSprite.transform.localRotation = Quaternion.Euler(180,0,0);
         }
     }
 
