@@ -102,19 +102,19 @@ public class Enemy : EntityStats
             this.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
 
-        bool flipSprite = _agent.velocity.x > 0;
+        bool flipSprite = _agent.velocity.x < 0;
 
         if(flipSprite)
         {
             enemySprite.transform.localScale = new Vector3(-1, 1, 1);
             weaponHandle.transform.localScale = new Vector3(-1, 1, 1);
-            enemyGunSprite.transform.localRotation = Quaternion.Euler(0,0,0);
+            enemyGunSprite.transform.localRotation = Quaternion.Euler(180,0,0);
         }
         else
         {
             enemySprite.transform.localScale = new Vector3(1, 1, 1);
             weaponHandle.transform.localScale = new Vector3(1, 1, 1);
-            enemyGunSprite.transform.localRotation = Quaternion.Euler(180,0,0);
+            enemyGunSprite.transform.localRotation = Quaternion.Euler(0,0,0);
         }
     }
 

@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //HandleSpritesAndAnimations();
+        HandleSpritesAndAnimations();
         
         
 
@@ -376,11 +376,11 @@ public class PlayerController : MonoBehaviour
     #region Animations and Effects
 
     //All the animation handling happens here...
-    /*public void HandleSpritesAndAnimations()
+    public void HandleSpritesAndAnimations()
     {
         if(!PreventingInput)
         {
-            if (_movement.x != 0 || _movement.y != 0)
+            /*if (_movement.x != 0 || _movement.y != 0)
             {
                 _animator.SetBool("Running", true);
                 if (!_effectHandler.RunParticlesPlaying())
@@ -390,7 +390,7 @@ public class PlayerController : MonoBehaviour
             {
                 _animator.SetBool("Running", false);
                 _effectHandler.StopRunParticles();
-            }
+            }*/
 
             if (_movement.x < 0)
             {
@@ -401,7 +401,7 @@ public class PlayerController : MonoBehaviour
                 _playerSpriteObject.transform.localScale = new Vector2(1, 1);
             }
         }
-    }*/
+    }
 
     #endregion
 
