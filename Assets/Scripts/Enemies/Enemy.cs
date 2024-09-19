@@ -24,8 +24,10 @@ public class Enemy : EntityStats
     EnemyDoor enemyDoor;
     private EventManager2 eventManager2;
     public WeaponOffsetHandle _offsetHandle;
-    [SerializeField]protected GameObject enemySprite;
+    [SerializeField]protected SpriteRenderer enemySprite;
     [SerializeField]protected SpriteRenderer enemyGunSprite;
+    [SerializeField] protected SpriteRenderer Empty;
+    [SerializeField]protected SpriteRenderer original;
     
     [SerializeField]
     protected ParticleSystem _deathEffect;
@@ -45,7 +47,7 @@ public class Enemy : EntityStats
         _agent.speed = Speed;
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        enemySprite = GetComponent<SpriteRenderer>().gameObject;
+        enemySprite = GetComponent<SpriteRenderer>();
         //enemyGunSprite = GetComponentInChildren<SpriteRenderer>();
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
@@ -77,9 +79,14 @@ public class Enemy : EntityStats
         {
             if (target != null && targetInRange)
             {
+                enemyGunSprite.sprite = original.sprite;
                 enemyGun.Shoot();
                 RangedAttack();
             }
+        }
+        else if (!isRanged)
+        {
+            enemyGunSprite.sprite = Empty.sprite;
         }
 
         if (transform.position.z != 0)

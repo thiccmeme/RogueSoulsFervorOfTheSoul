@@ -149,9 +149,11 @@ MonoBehaviour:
   gunLocation: {fileID: 1804539644979619184}
   _rotateSpeed: 100
   _enemyWeaponRotationAngle: 0
-  enemyDoor: {fileID: 0}
+  weaponHandle: {fileID: 0}
   _offsetHandle: {fileID: 0}
-  enemySprite: {fileID: 5082251220555312596}
+  enemySprite: {fileID: 0}
+  enemyGunSprite: {fileID: 2980163123610220678}
+  Empty: {fileID: 8122697130334530247, guid: a9e52e9ffefda484c8cd634569ec2289, type: 3}
   _deathEffect: {fileID: 0}
   detectionRadius: 12
   enemyGun: {fileID: 4247902087547222839}
@@ -379,11 +381,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3563933719655341643, guid: baa8e5fd5e9c07f42a289dfdf51d7e9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3602992101955007283}
   m_SourcePrefab: {fileID: 100100000, guid: baa8e5fd5e9c07f42a289dfdf51d7e9e, type: 3}
 --- !u!4 &1804539644979619184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6568849473368018518, guid: baa8e5fd5e9c07f42a289dfdf51d7e9e, type: 3}
+  m_PrefabInstance: {fileID: 4765440581877000998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2980163123610220678 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7744384207471973280, guid: baa8e5fd5e9c07f42a289dfdf51d7e9e, type: 3}
   m_PrefabInstance: {fileID: 4765440581877000998}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4247902087547222839 stripped
@@ -395,5 +405,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a897f564de99e73459e34dc8fafe82f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8311283299026056557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3563933719655341643, guid: baa8e5fd5e9c07f42a289dfdf51d7e9e, type: 3}
+  m_PrefabInstance: {fileID: 4765440581877000998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3602992101955007283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8311283299026056557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ed1aef00cbb6c42aaf2ec1f9a4729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
