@@ -38,6 +38,7 @@ public class EquipableItem : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     
     
+    
 
     private void Start()
     {

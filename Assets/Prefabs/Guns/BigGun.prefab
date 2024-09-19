@@ -229,3 +229,4 @@ MonoBehaviour:
   FirePoint: {fileID: 3315930892354599957}
   Input: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  shader: {fileID: -6465566751694194690, guid: b5d8fa8902e599d47b8af93ea47a1e3d, type: 3}
