@@ -17,6 +17,8 @@ public delegate void RewardEvent();
 
 public delegate void NpcDiedEvent();
 
+public delegate void DamagedEvent();
+
 
 
 public delegate void ItemEquipEvent();
@@ -128,5 +130,17 @@ public class EventManager2 : MonoBehaviour
     protected virtual void InvokeNpcDied()
     {
         NpcDied?.Invoke();
+    }
+
+    public event DamagedEvent Damaged;
+
+    public void RunDamagedEvent()
+    {
+        InvokeDamaged();
+    }
+
+    protected virtual void InvokeDamaged()
+    {
+        Damaged?.Invoke();
     }
 }

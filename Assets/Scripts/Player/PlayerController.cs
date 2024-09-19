@@ -152,6 +152,10 @@ public class PlayerController : MonoBehaviour
 
     HUD _playerHUD;
 
+    [SerializeField]private bool isFlashing;
+    [SerializeField]private SpriteRenderer spriteRenderer;
+    [SerializeField]private Color originalColor;
+
     #endregion
 
     #region Effects
@@ -170,6 +174,33 @@ public class PlayerController : MonoBehaviour
     #region Unity Runtime Functions
 
     // Start is called before the first frame update
+
+    void CancleCoroutine()
+    {
+        StopAllCoroutines();
+        spriteRenderer.color = originalColor;
+    }
+
+    void DamageFlash()
+    {
+        StartCoroutine(DamageCoroutine());
+        Invoke("CancleCoroutine",0.5f);
+    }
+    
+    IEnumerator DamageCoroutine()
+    {
+        Color flashColor = Color.red;
+        if (!isFlashing)
+        {
+            spriteRenderer.color = flashColor;
+            yield return new WaitForSeconds(0.2f);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(0.2f);
+        }
+        isFlashing = false;
+        spriteRenderer.color = originalColor;
+        
+    }
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -191,8 +222,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         eventManager2 = FindFirstObjectByType<EventManager2>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         eventManager2._equipedEvent += SetGun;
         eventManager2._itemDestroyed += SetGun;
+        eventManager2.Damaged += DamageFlash;
     }
 
     void SetGun()

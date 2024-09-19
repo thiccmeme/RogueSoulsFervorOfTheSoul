@@ -40,7 +40,6 @@ public class PlayerWeapon : MonoBehaviour
     public PlayerController playerController { get; private set; }
     public float timeToNextFire;
     public EventManager2 _EventManager2;
-    
     bool shoot;
 
 
@@ -92,6 +91,11 @@ public class PlayerWeapon : MonoBehaviour
         {
             Reload();
         }
+    }
+    
+    void DamageFlash()
+    {
+        
     }
     
 

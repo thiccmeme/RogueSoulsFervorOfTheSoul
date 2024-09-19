@@ -16,6 +16,8 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField]
     private BulletType bulletType;
 
+    private EventManager2 eventManager2;
+
     public bool hasHit = false;
 
     public Renderer renderer;
@@ -34,6 +36,7 @@ public class PlayerProjectile : MonoBehaviour
     private void Start()
     {
         renderer = GetComponent<Renderer>();
+        eventManager2 = FindFirstObjectByType<EventManager2>();
         renderer.material.renderQueue = queueOrder;
     }
 
@@ -58,6 +61,7 @@ public class PlayerProjectile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        eventManager2.RunDamagedEvent();
         if(other.gameObject.CompareTag("Enemy") && bulletType == BulletType._Player)
         {
             if (!hasHit)
