@@ -80,8 +80,16 @@ public class Enemy : EntityStats
             if (target != null && targetInRange)
             {
                 enemyGunSprite.sprite = original.sprite;
-                enemyGun.Shoot();
-                RangedAttack();
+                if (enemyGun.CurrentAmmo >= 1)
+                {
+                    enemyGun.Shoot();
+                    RangedAttack();
+                }
+                else
+                {
+                    enemyGun.Reload();
+                }
+
             }
         }
         else if (!isRanged)

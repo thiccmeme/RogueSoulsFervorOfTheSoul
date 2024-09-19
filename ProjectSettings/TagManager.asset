@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Npc
+  - BossWeapon
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Level
   - Items
   - Npc
-  - 
+  - NoWalking
   - 
   - 
   - 
@@ -40,8 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bullet
+    uniqueID: 4179478543
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   m_RenderingLayers:
   - Default
+  - bullet

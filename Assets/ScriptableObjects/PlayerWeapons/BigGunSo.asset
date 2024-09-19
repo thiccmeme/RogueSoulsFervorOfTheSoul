@@ -29,5 +29,5 @@ MonoBehaviour:
   maxAmmo: 12
   bulletForce: 10
   reloadTime: 2
-  bullet: {fileID: 7321215824797425880, guid: ea2b72376d028154c99750d8986dbbad, type: 3}
+  bullet: {fileID: 6534043413483235779, guid: e67a2d488ce3b1e46a0dc4f7a752dc04, type: 3}
   timeToNextFire: 1

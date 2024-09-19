@@ -18,10 +18,23 @@ public class PlayerProjectile : MonoBehaviour
 
     public bool hasHit = false;
 
+    public Renderer renderer;
+    public int queueOrder = 5000;
+    
+    
+    
+    
+
     public virtual void OnEnable()
     {
         _controller = FindObjectOfType<PlayerController>();
         Invoke("Destroy", bulletLifetime);
+    }
+
+    private void Start()
+    {
+        renderer = GetComponent<Renderer>();
+        renderer.material.renderQueue = queueOrder;
     }
 
     public virtual void FixedUpdate()
@@ -70,7 +83,7 @@ public class PlayerProjectile : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        else if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
+        if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
         {
             if (!hasHit)
             {
@@ -78,6 +91,18 @@ public class PlayerProjectile : MonoBehaviour
                 PlayerStats enemyToHit = other.gameObject.GetComponent<PlayerStats>();
                 enemyToHit.TakeDamage(bulletDamage);
             }
+            Destroy(this.gameObject);
+        }
+    }
+
+    protected void OnCollisionEnter2D(Collision2D other)
+    {
+        if (bulletType == BulletType._Enemy && tag != "BossWeapon")
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
             Destroy(this.gameObject);
         }
     }
