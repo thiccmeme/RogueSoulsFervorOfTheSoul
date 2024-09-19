@@ -64,6 +64,11 @@ public class EntityStats : MonoBehaviour
             Destroy(this.gameObject);
             
         }
+
+        if (tag == ("Npc"))
+        {
+            eventManager2.RunNpcDiedEvent();
+        }
     } 
 
     public void IncreaseHealth(int increaseAmount)

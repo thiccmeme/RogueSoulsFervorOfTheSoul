@@ -83,7 +83,7 @@ public class Enemy : EntityStats
             this.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
 
-        bool flipSprite = _agent.velocity.x < 0;
+        bool flipSprite = _agent.velocity.x > 0;
 
         if(flipSprite)
         {

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Random = System.Random;
 
-public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class NpcSystem : MonoBehaviour
 {
 
     [SerializeField] private TMP_Text text;
@@ -15,6 +15,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     [SerializeField] protected DialogSo dialogGood;
     [SerializeField] protected DialogSo dialogBad;
+    [SerializeField] protected DialogSo dialogNeutral;
     [SerializeField] protected string[] dialogassets;
     [SerializeField] protected DialogSo CurrentSo;
     [SerializeField] protected bool triggered = false;
@@ -36,25 +37,17 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private EventManager2 eventManager2;
     
-    
-
-    private void SwitchMessageGood()
-    {
-        CurrentSo = dialogGood;
-
-    }
-    
-    public void OnTalk()
+    public void OnTalk()// take player input to run event
     {
         eventManager2.RunNextEvent();
     }
 
-    public void Interact()
+    public void Interact()// call the index function
     {
         IndexText();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)// show text
     {
         if (other.CompareTag("Player") && triggered == false )
         {
@@ -68,7 +61,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)// stop showing text
     {
         if (other.CompareTag("Player"))
         {
@@ -79,7 +72,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         
     }
 
-    private void becomeAgressive()
+    private void becomeAgressive()// if npc "sees" player kill npc turn agressive regardless of honour
     {
         Debug.Log("agressive");
         if (targetInRange && agent != null)
@@ -89,26 +82,19 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             enemy.isRanged = true;
         }
     }
-    
-    
 
-    private void SwitchMessageBad()
+    private void LootDrop()// drop loot on death
     {
-        CurrentSo = dialogBad;
+        
     }
 
-
-    private void IndexText()
+    private void IndexText()// go to next piece of text
     {
-        if (finished == false)
-        {
-            index++;
-        }
 
         Debug.Log(dialogassets.Length);
-        if (index <= dialogassets.Length)
+        if (index <= dialogassets.Length && finished == false)
         {
-            
+            index++;
             CurrentSo.IncreaseIndex();
             text.text = CurrentSo.currentDialog;
         }
@@ -130,14 +116,16 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void HonorNegativeThreshold()
     {
+        index = 0;
         currentHonor--;
         Debug.Log(currentHonor);
         if (currentHonor <= NegativeTreshHold)
         {
+            dialogBad.resetDialog();
             CurrentSo = dialogBad;
-            index = 1;
             text.text = CurrentSo.currentDialog;
             text.color = Color.red;
+            finished = false;
         }
     }
 
@@ -167,13 +155,31 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     
     public void HonorPositiveThreshold()
     {
+        index = 0;
         currentHonor++;
         Debug.Log(currentHonor);
         if (currentHonor >= PositiveTreshHold)
         {
-            index = 1;
+            dialogGood.resetDialog();
             CurrentSo = dialogGood;
             text.text = CurrentSo.currentDialog;
+            text.color = Color.white;
+            finished = false;
+        }
+    }
+
+    public void HonorNeutralThreshold()
+    {
+        index = 0;
+        if (currentHonor == 0)
+        {
+            
+            dialogNeutral.resetDialog();
+            Debug.Log(dialogNeutral.index);
+            CurrentSo = dialogNeutral;
+            text.text = CurrentSo.currentDialog;
+            text.color = Color.gray;
+            finished = false;
         }
     }
 
@@ -201,6 +207,8 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         text = GetComponentInChildren<TMP_Text>();
         eventManager2._honorDecreased += HonorNegativeThreshold;
         eventManager2._honorIncreased += HonorPositiveThreshold;
+        eventManager2._honorDecreased += HonorNeutralThreshold;
+        eventManager2._honorIncreased += HonorNeutralThreshold;
         eventManager2._rewardEvent += Reward;
         eventManager2.NpcDied += becomeAgressive;
         playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
@@ -209,12 +217,14 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         agent = GetComponent<NavMeshAgent>();
         dialogGood.resetDialog();
         dialogBad.resetDialog();
+        dialogNeutral.resetDialog();
         dialogBad.index = 0;
         dialogGood.index = 0;
-        CurrentSo = dialogGood;
+        CurrentSo = dialogNeutral;
         dialogassets = CurrentSo.dialog;
         text.text = CurrentSo.currentDialog;
         text.enabled = false;
+        text.color = Color.gray;
 
         if (enemy && agent != null)
         {
@@ -222,16 +232,6 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             agent.speed = 0;
             enemy.isRanged = false;
         }
-        
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
         
     }
 }
