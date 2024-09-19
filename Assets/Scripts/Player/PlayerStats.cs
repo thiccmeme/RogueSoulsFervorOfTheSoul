@@ -57,7 +57,7 @@ public class PlayerStats : EntityStats
             {
                 PlayerIsDead = true;
                 youDied.Died();
-                _cameraConfiner.BoundingShape2D = _newCameraBounds;
+                //_cameraConfiner.BoundingShape2D = _newCameraBounds;
             }            
         }
     }

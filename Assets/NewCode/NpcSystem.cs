@@ -32,6 +32,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public int index = 0;
     [SerializeField] protected PlayerWeapon enemyGun;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected TMP_FontAsset font;
 
     private EventManager2 eventManager2;
     
@@ -81,10 +82,10 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private void becomeAgressive()
     {
         Debug.Log("agressive");
-        if (targetInRange)
+        if (targetInRange && agent != null)
         {
             enemy.Speed = 3;
-            agent.speed = 3;
+                agent.speed = 3;
             enemy.isRanged = true;
         }
     }
@@ -136,6 +137,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             CurrentSo = dialogBad;
             index = 1;
             text.text = CurrentSo.currentDialog;
+            text.color = Color.red;
         }
     }
 
@@ -213,12 +215,14 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         dialogassets = CurrentSo.dialog;
         text.text = CurrentSo.currentDialog;
         text.enabled = false;
-        enemy.Speed = 0;
-        agent.speed = 0;
-        enemy.isRanged = false;
 
-
-
+        if (enemy && agent != null)
+        {
+            enemy.Speed = 0;
+            agent.speed = 0;
+            enemy.isRanged = false;
+        }
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)

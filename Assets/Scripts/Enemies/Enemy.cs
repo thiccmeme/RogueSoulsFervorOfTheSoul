@@ -24,7 +24,7 @@ public class Enemy : EntityStats
     EnemyDoor enemyDoor;
     private EventManager2 eventManager2;
     public WeaponOffsetHandle _offsetHandle;
-    protected GameObject enemySprite;
+    [SerializeField]protected GameObject enemySprite;
     [SerializeField]
     protected ParticleSystem _deathEffect;
     [SerializeField]
@@ -43,7 +43,7 @@ public class Enemy : EntityStats
         _agent.speed = Speed;
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        enemySprite = GetComponentInChildren<SpriteRenderer>().gameObject;
+        //enemySprite = GetComponentInChildren<SpriteRenderer>().gameObject;
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         target = FindObjectOfType<PlayerController>().transform;
@@ -83,7 +83,7 @@ public class Enemy : EntityStats
             this.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }
 
-        /*bool flipSprite = _agent.velocity.x < 0;
+        bool flipSprite = _agent.velocity.x < 0;
 
         if(flipSprite)
         {
@@ -92,7 +92,7 @@ public class Enemy : EntityStats
         else
         {
             enemySprite.transform.localScale = new Vector3(1, 1, 1);
-        }*/
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -148,5 +148,7 @@ public class Enemy : EntityStats
     {
         target = newTarget;
     }
+    
+    
 }
 

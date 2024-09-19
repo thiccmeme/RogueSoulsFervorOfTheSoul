@@ -52,7 +52,7 @@ MonoBehaviour:
   <Health>k__BackingField: 8
   _maxHealth: 8
   <Damage>k__BackingField: 0
-  <Speed>k__BackingField: 3
+  Speed: 0
   <TimeToAttack>k__BackingField: 0
   _heartDisplayHandler: {fileID: 0}
   _gameManager: {fileID: 0}
@@ -63,6 +63,7 @@ MonoBehaviour:
   _enemyWeaponRotationAngle: 0
   enemyDoor: {fileID: 0}
   _offsetHandle: {fileID: 0}
+  enemySprite: {fileID: 0}
   _deathEffect: {fileID: 0}
   detectionRadius: 12
   enemyGun: {fileID: 4247902087547222839}
@@ -176,7 +177,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &5973168691140677752

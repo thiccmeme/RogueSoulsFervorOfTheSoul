@@ -265,9 +265,13 @@ MonoBehaviour:
   goodReward: {fileID: 6593655442667879080, guid: 088308c3cf0308d4395498e43770d165, type: 3}
   badReward: {fileID: 5085384536660420883, guid: 358d9844224c3f4429164c012dbe34a7, type: 3}
   finished: 0
+  enemy: {fileID: 0}
+  target: {fileID: 0}
   detectionRadius: 12
-  player: {fileID: 0}
   index: 1
+  enemyGun: {fileID: 0}
+  agent: {fileID: 0}
+  font: {fileID: 0}
 --- !u!114 &6131150990729283739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +287,7 @@ MonoBehaviour:
   <Health>k__BackingField: 0
   _maxHealth: 12
   <Damage>k__BackingField: 0
-  <Speed>k__BackingField: 0
+  Speed: 0
   <TimeToAttack>k__BackingField: 0
   _heartDisplayHandler: {fileID: 0}
   _gameManager: {fileID: 0}
