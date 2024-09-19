@@ -181,7 +181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2834228669881685255, guid: 21862d61af9b6f94ea8c65dfaf6052f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   dialogGood: {fileID: 11400000, guid: 12863c5eb517d744e9de71275820b782, type: 2}
   dialogBad: {fileID: 11400000, guid: fcb4308d9b0208d468cb6f5b93e33721, type: 2}
+  dialogNeutral: {fileID: 0}
   dialogassets: []
   CurrentSo: {fileID: 0}
   triggered: 0
