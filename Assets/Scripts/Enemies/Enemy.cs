@@ -10,28 +10,28 @@ public class Enemy : EntityStats
 {
     #region Global Variables
 
-    [SerializeField] protected Transform target;
+    [SerializeField] public Transform target;
     protected NavMeshAgent _agent;
     [SerializeField]
-    protected bool isRanged;
+    public bool isRanged = true;
     [SerializeField]
-    protected Transform gunLocation;
+    public Transform gunLocation;
     [SerializeField]
-    protected float _rotateSpeed;
-    protected float _enemyWeaponRotationAngle;
+    protected float _rotateSpeed = 100;
+    public float _enemyWeaponRotationAngle;
     protected bool targetInRange;
     [SerializeField]
     EnemyDoor enemyDoor;
     private EventManager2 eventManager2;
-    protected WeaponOffsetHandle _offsetHandle;
+    public WeaponOffsetHandle _offsetHandle;
     protected GameObject enemySprite;
     [SerializeField]
     protected ParticleSystem _deathEffect;
     [SerializeField]
-    protected float detectionRadius;
+    protected float detectionRadius = 12;
     //public ItemSO _itemSo;
     [SerializeField]
-    private PlayerWeapon enemyGun;
+    public PlayerWeapon enemyGun;
 
     #endregion
     
@@ -99,16 +99,22 @@ public class Enemy : EntityStats
     {
         bool moving = _agent.velocity.x != 0 || _agent.velocity.y != 0;
 
-        float distance = Vector3.Distance(target.position, this.transform.position);
+        if (target != null)
+        {
+            float distance = Vector3.Distance(target.position, this.transform.position);
+            
+            
+            if (distance <= detectionRadius)
+            {
+                targetInRange = true;
+            }
+            else
+            {
+                targetInRange = false;
+            }
+        }
+ 
 
-        if (distance <= detectionRadius)
-        {
-            targetInRange = true;
-        }
-        else
-        {
-            targetInRange = false;
-        }
 
         if (target != null && targetInRange && _agent.isActiveAndEnabled)
         {

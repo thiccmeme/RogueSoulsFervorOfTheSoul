@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Random = System.Random;
 
@@ -12,21 +13,25 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     [SerializeField] private SpriteRenderer sprite;
 
-    [SerializeField] private DialogSo dialogGood;
-    [SerializeField] private DialogSo dialogBad;
-    [SerializeField] private string[] dialogassets;
-    [SerializeField] private DialogSo CurrentSo;
-    [SerializeField] private bool triggered = false;
-    [SerializeField] private int PositiveTreshHold;
-    [SerializeField] private int NegativeTreshHold;
-    [SerializeField] private int currentHonor;
-    [SerializeField] private PlayerInputHandler playerInputHandler;
-    [SerializeField] private GameObject goodReward;
-    [SerializeField] private GameObject badReward;
-    [SerializeField] private bool finished = false;
+    [SerializeField] protected DialogSo dialogGood;
+    [SerializeField] protected DialogSo dialogBad;
+    [SerializeField] protected string[] dialogassets;
+    [SerializeField] protected DialogSo CurrentSo;
+    [SerializeField] protected bool triggered = false;
+    [SerializeField] protected int PositiveTreshHold;
+    [SerializeField] protected int NegativeTreshHold;
+    [SerializeField] protected int currentHonor;
+    [SerializeField] protected PlayerInputHandler playerInputHandler;
+    [SerializeField] protected GameObject goodReward;
+    [SerializeField] protected GameObject badReward;
+    [SerializeField] protected bool finished = false;
+    protected bool targetInRange;
+    [SerializeField] protected Enemy enemy;
+    [SerializeField] protected Transform target;
+    [SerializeField] protected float detectionRadius = 12;
     public int index = 0;
-
-    private EntityStats entityStats;
+    [SerializeField] protected PlayerWeapon enemyGun;
+    [SerializeField] protected NavMeshAgent agent;
 
     private EventManager2 eventManager2;
     
@@ -37,7 +42,7 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         CurrentSo = dialogGood;
 
     }
-
+    
     public void OnTalk()
     {
         eventManager2.RunNextEvent();
@@ -72,6 +77,19 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
         
     }
+
+    private void becomeAgressive()
+    {
+        Debug.Log("agressive");
+        if (targetInRange)
+        {
+            enemy.Speed = 3;
+            agent.speed = 3;
+            enemy.isRanged = true;
+        }
+    }
+    
+    
 
     private void SwitchMessageBad()
     {
@@ -162,14 +180,31 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         eventManager2 = FindFirstObjectByType<EventManager2>();
     }
 
+    private void FixedUpdate()
+    {
+        float distance = Vector3.Distance(target.position, this.transform.position);
+
+        if (distance <= detectionRadius)
+        {
+            targetInRange = true;
+        }
+        else
+        {
+            targetInRange = false;
+        }
+    }
+
     private void Start()
     {
         text = GetComponentInChildren<TMP_Text>();
         eventManager2._honorDecreased += HonorNegativeThreshold;
         eventManager2._honorIncreased += HonorPositiveThreshold;
         eventManager2._rewardEvent += Reward;
+        eventManager2.NpcDied += becomeAgressive;
         playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
-        entityStats = GetComponent<EntityStats>();
+        enemy = GetComponent<Enemy>();
+        target = FindFirstObjectByType<PlayerController>().transform;
+        agent = GetComponent<NavMeshAgent>();
         dialogGood.resetDialog();
         dialogBad.resetDialog();
         dialogBad.index = 0;
@@ -178,7 +213,12 @@ public class NpcSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         dialogassets = CurrentSo.dialog;
         text.text = CurrentSo.currentDialog;
         text.enabled = false;
-        
+        enemy.Speed = 0;
+        agent.speed = 0;
+        enemy.isRanged = false;
+
+
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

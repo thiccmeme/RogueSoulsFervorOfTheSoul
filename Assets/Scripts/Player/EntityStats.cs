@@ -16,8 +16,7 @@ public class EntityStats : MonoBehaviour
     [field: SerializeField]
     public int Damage { get; private set; }
 
-    [field: SerializeField]
-    public float Speed { get; private set; }
+    public float Speed;
 
     [field: SerializeField]
     public float TimeToAttack { get; private set; }
@@ -61,7 +60,9 @@ public class EntityStats : MonoBehaviour
         if (Health <= 0 && tag == ("Npc"))
         {
             eventManager2.RunHonorDecreasedEvent();
+            eventManager2.RunNpcDiedEvent();
             Destroy(this.gameObject);
+            
         }
     } 
 
