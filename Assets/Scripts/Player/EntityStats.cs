@@ -27,10 +27,10 @@ public class EntityStats : MonoBehaviour
     [SerializeField]
     protected GameManager _gameManager;
 
-    protected EventManager2 eventManager2;
+    public EventManager2 eventManager2;
 
     Heart heart;
-    [SerializeField] private NpcType type;
+    [SerializeField] public NpcType type;
 
     #endregion
 
@@ -58,7 +58,7 @@ public class EntityStats : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (type == NpcType.Agressive)
+        if (Health <= 0 && type == NpcType.Agressive)
         {
             Destroy(this.gameObject);
         }
@@ -70,9 +70,9 @@ public class EntityStats : MonoBehaviour
             
         }
 
-        if (tag == ("Npc"))
+        if (type == NpcType.Passive || type == NpcType.Neutral)
         {
-            eventManager2.RunNpcDiedEvent();
+            eventManager2.RunNpcShotEvent();
         }
     } 
 

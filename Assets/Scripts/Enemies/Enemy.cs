@@ -22,7 +22,6 @@ public class Enemy : EntityStats
     protected bool targetInRange;
     [SerializeField] public GameObject weaponHandle;
     EnemyDoor enemyDoor;
-    private EventManager2 eventManager2;
     public WeaponOffsetHandle _offsetHandle;
     [SerializeField]protected SpriteRenderer enemyGunSprite;
     [SerializeField] protected SpriteRenderer Empty;
@@ -33,8 +32,6 @@ public class Enemy : EntityStats
     protected float detectionRadius = 12;
     [SerializeField]
     public PlayerWeapon enemyGun;
-    [SerializeField]
-    public NpcType type;
 
     [SerializeField] private int MercyTreshold;
 
@@ -53,20 +50,28 @@ public class Enemy : EntityStats
         _agent.updateUpAxis = false;
         enemyGunSprite = GetComponentInChildren<SpriteRenderer>();
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
-        eventManager2 = FindFirstObjectByType<EventManager2>();
         target = FindObjectOfType<PlayerController>().transform;
         transform.localRotation = Quaternion.Euler(0,0,0);
         weaponHandle = GetComponentInChildren<Handle>().gameObject;
         if (mercySprite != null)
         {
-            mercySprite.SetActive(false);
+            if (type == NpcType.Agressive || type == NpcType.Boss)
+            {
+                mercySprite.SetActive(false);
+                isRanged = true;
+            }
+
+            if (type == NpcType.Passive || type == NpcType.Questing || type == NpcType.Neutral)
+            {
+                enemySprite.SetActive(false);
+            }
         }
     }
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-
+    
         if (enemyDoor != null && Health <= 0)
         {
             enemyDoor.NotifyEnemyDied(this);
@@ -87,6 +92,15 @@ public class Enemy : EntityStats
             enemySprite.SetActive(false);
             mercySprite.SetActive(true);
         }
+        
+        if (type == NpcType.Neutral)
+        {
+            Debug.Log("switchSprite");
+            type = NpcType.Agressive;
+            mercySprite.SetActive(false);
+            enemySprite.SetActive(true);
+        }
+        
     }
 #endregion
     #region Update

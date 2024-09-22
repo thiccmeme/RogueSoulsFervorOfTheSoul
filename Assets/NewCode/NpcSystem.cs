@@ -57,8 +57,6 @@ public class NpcSystem : MonoBehaviour
             
             triggered = true;
             text.enabled = true;
-            //SwitchMessageBad();
-            //IndexText();
         }
     }
 
@@ -82,6 +80,11 @@ public class NpcSystem : MonoBehaviour
             enemy.Speed = 3;
                 agent.speed = 3;
             enemy.isRanged = true;
+            HonorNegativeThreshold();
+            eventManager2._honorIncreased -= HonorPositiveThreshold;
+            eventManager2._honorDecreased -= HonorNegativeThreshold;
+            eventManager2._honorIncreased -= HonorNeutralThreshold;
+            eventManager2._honorDecreased -= HonorNeutralThreshold;
         }
     }
 
@@ -106,12 +109,11 @@ public class NpcSystem : MonoBehaviour
             {
                 return;
             }
-            else
+            else if (type == NpcType.Questing)
             {
                 Reward();
-                finished = true;
             }
-
+            finished = true;
         }
 
     }
@@ -121,7 +123,7 @@ public class NpcSystem : MonoBehaviour
         index = 0;
         currentHonor--;
         Debug.Log(currentHonor);
-        if (currentHonor <= NegativeTreshHold)
+        if (currentHonor <= NegativeTreshHold && dialogBad != null)
         {
             dialogBad.resetDialog();
             CurrentSo = dialogBad;
@@ -160,7 +162,7 @@ public class NpcSystem : MonoBehaviour
         index = 0;
         currentHonor++;
         Debug.Log(currentHonor);
-        if (currentHonor >= PositiveTreshHold)
+        if (currentHonor >= PositiveTreshHold && dialogGood != null)
         {
             dialogGood.resetDialog();
             CurrentSo = dialogGood;
@@ -173,7 +175,7 @@ public class NpcSystem : MonoBehaviour
     public void HonorNeutralThreshold()
     {
         index = 0;
-        if (currentHonor == 0)
+        if (currentHonor == 0 && dialogNeutral != null)
         {
             
             dialogNeutral.resetDialog();
@@ -207,34 +209,59 @@ public class NpcSystem : MonoBehaviour
     private void Start()
     {
         text = GetComponentInChildren<TMP_Text>();
-        eventManager2._honorDecreased += HonorNegativeThreshold;
-        eventManager2._honorIncreased += HonorPositiveThreshold;
-        eventManager2._honorDecreased += HonorNeutralThreshold;
-        eventManager2._honorIncreased += HonorNeutralThreshold;
-        eventManager2._rewardEvent += Reward;
-        eventManager2.NpcDied += becomeAgressive;
         playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
         enemy = GetComponent<Enemy>();
         target = FindFirstObjectByType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
-        dialogGood.resetDialog();
-        dialogBad.resetDialog();
-        dialogNeutral.resetDialog();
-        dialogBad.index = 0;
-        dialogGood.index = 0;
-        CurrentSo = dialogNeutral;
+        if (dialogGood != null)
+        {
+            dialogGood.resetDialog();
+            dialogGood.index = 0;
+        }
+
+        if (dialogBad != null)
+        {
+            dialogBad.resetDialog();
+            dialogBad.index = 0;
+        }
+
+        if (dialogNeutral != null)
+        {
+            dialogNeutral.resetDialog();
+            dialogNeutral.index = 0;
+        }
+        type = enemy.type;
+        if (type == NpcType.Neutral || type == NpcType.Passive || type == NpcType.Questing)
+        {
+            CurrentSo = dialogNeutral;
+            eventManager2._honorDecreased += HonorNegativeThreshold;
+            eventManager2._honorIncreased += HonorPositiveThreshold;
+            eventManager2._honorDecreased += HonorNeutralThreshold;
+            eventManager2._honorIncreased += HonorNeutralThreshold;
+        }
+        
+        if (type == NpcType.Neutral)
+        {
+            eventManager2.NpcShot += becomeAgressive;
+            if (enemy && agent != null)
+            {
+                enemy.Speed = 0;
+                agent.speed = 0;
+                enemy.isRanged = false;
+            }
+        }
+
+        if (type == NpcType.Agressive || type == NpcType.Boss)
+        {
+            CurrentSo = dialogBad;
+            text.color = Color.red;
+        }
+        
+        
         dialogassets = CurrentSo.dialog;
         text.text = CurrentSo.currentDialog;
         text.enabled = false;
         text.color = Color.gray;
-        type = enemy.type;
-
-        if (enemy && agent != null)
-        {
-            enemy.Speed = 0;
-            agent.speed = 0;
-            enemy.isRanged = false;
-        }
         
     }
     
@@ -242,5 +269,5 @@ public class NpcSystem : MonoBehaviour
 
 public enum NpcType
 {
-    Questing,Boss,Passive,Agressive
+    Questing,Boss,Passive,Agressive,Neutral
 }

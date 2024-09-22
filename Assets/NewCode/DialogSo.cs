@@ -18,7 +18,7 @@ public class DialogSo : ScriptableObject
 
     public void IncreaseIndex()
     {
-        if (index < dialog.Length)
+        if (index >= 0 && index < dialog.Length)
         {
             index++;
             currentDialog = dialog[index];

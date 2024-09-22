@@ -300,9 +300,9 @@ public class PlayerController : MonoBehaviour
         GoInvulnerable(_invulnTime);
         //ToggleDashSmear(true);
         yield return new WaitForSeconds(dodgeRollDurationTime);
+        _rb.linearVelocity = Vector2.zero;
         StartCoroutine(BeginDodgeRollCoolDown());
         //ToggleDashSmear(false);
-
         _rolling = false;
     }
 

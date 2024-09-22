@@ -12,7 +12,7 @@ public class QuestNpc : NpcSystem
     private void Start()
     {
         eventManager2 = FindFirstObjectByType<EventManager2>();
-        eventManager2.NpcDied += QuestComplete;
+        eventManager2.NpcShot += QuestComplete;
     }
     
     

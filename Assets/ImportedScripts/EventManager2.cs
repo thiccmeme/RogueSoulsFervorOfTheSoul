@@ -15,7 +15,7 @@ public delegate void NextEvent();
 
 public delegate void RewardEvent();
 
-public delegate void NpcDiedEvent();
+public delegate void NpcShotEvent();
 
 public delegate void DamagedEvent();
 
@@ -120,16 +120,16 @@ public class EventManager2 : MonoBehaviour
         _rewardEvent?.Invoke();
     }
     
-    public event NpcDiedEvent NpcDied;
+    public event NpcShotEvent NpcShot;
 
-    public void RunNpcDiedEvent()
+    public void RunNpcShotEvent()
     {
-        InvokeNpcDied();
+        InvokeNpcShot();
     }
 
-    protected virtual void InvokeNpcDied()
+    protected virtual void InvokeNpcShot()
     {
-        NpcDied?.Invoke();
+        NpcShot?.Invoke();
     }
 
     public event DamagedEvent Damaged;
