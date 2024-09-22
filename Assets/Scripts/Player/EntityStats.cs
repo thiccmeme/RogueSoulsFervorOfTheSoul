@@ -30,6 +30,7 @@ public class EntityStats : MonoBehaviour
     protected EventManager2 eventManager2;
 
     Heart heart;
+    [SerializeField] private NpcType type;
 
     #endregion
 
@@ -51,16 +52,20 @@ public class EntityStats : MonoBehaviour
     {
         IncrementHealth(-damage);
         
-        if (Health <= 0 && tag == "Enemy")
+        if (Health <= 0 && type == NpcType.Boss)
         {
             eventManager2.RunHonorincreasedEvent();
             Destroy(this.gameObject);
         }
 
-        if (Health <= 0 && tag == ("Npc"))
+        if (type == NpcType.Agressive)
+        {
+            Destroy(this.gameObject);
+        }
+
+        if (Health <= 0 && type == NpcType.Passive)
         {
             eventManager2.RunHonorDecreasedEvent();
-            eventManager2.RunNpcDiedEvent();
             Destroy(this.gameObject);
             
         }

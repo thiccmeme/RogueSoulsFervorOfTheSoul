@@ -34,6 +34,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected PlayerWeapon enemyGun;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected TMP_FontAsset font;
+    [SerializeField] protected NpcType type;
 
     private EventManager2 eventManager2;
     
@@ -77,6 +78,7 @@ public class NpcSystem : MonoBehaviour
         Debug.Log("agressive");
         if (targetInRange && agent != null)
         {
+            type = NpcType.Agressive;
             enemy.Speed = 3;
                 agent.speed = 3;
             enemy.isRanged = true;
@@ -225,6 +227,7 @@ public class NpcSystem : MonoBehaviour
         text.text = CurrentSo.currentDialog;
         text.enabled = false;
         text.color = Color.gray;
+        type = enemy.type;
 
         if (enemy && agent != null)
         {
@@ -234,4 +237,10 @@ public class NpcSystem : MonoBehaviour
         }
         
     }
+    
+}
+
+public enum NpcType
+{
+    Questing,Boss,Passive,Agressive
 }

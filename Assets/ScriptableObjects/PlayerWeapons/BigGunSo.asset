@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00dc9f7a0d09c5a45970b03bbbf4a401, type: 3}
   m_Name: BigGunSo
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: be83d44b47c029a4ebc90df876ed7bec, type: 3}
+  _sprite: {fileID: 4292174909405545791, guid: 48e254fb440d9714ead6338acff8bb19, type: 3}
   _material: {fileID: 0}
   equipableItem: {fileID: -6276983541757706462, guid: 73924073f4cbee742a10a7e8b385916f, type: 3}
   inventoryButton: {fileID: 7760182796335234173, guid: 88fb55c7b0d598843bda5b6eed32203e, type: 3}
   <ItemName>k__BackingField: BigGun
   itemType: 1
   <ItemDescription>k__BackingField: A big fucking gun
-  damage: 10
+  damage: 4
   fireRate: 1
   minspread: 5
   maxspread: 15

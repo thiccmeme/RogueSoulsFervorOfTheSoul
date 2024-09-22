@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1314634262887809389}
   - component: {fileID: 1455981727569418314}
   m_Layer: 13
-  m_Name: npcEnemy
+  m_Name: NpcWithHat
   m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   _deathEffect: {fileID: 0}
   detectionRadius: 12
   enemyGun: {fileID: 5285728322787595669}
+  enemySprite: {fileID: 0}
 --- !u!195 &6146060959630704280
 NavMeshAgent:
   m_ObjectHideFlags: 0

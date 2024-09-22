@@ -33,8 +33,13 @@ public class Enemy : EntityStats
     protected float detectionRadius = 12;
     [SerializeField]
     public PlayerWeapon enemyGun;
+    [SerializeField]
+    public NpcType type;
+
+    [SerializeField] private int MercyTreshold;
 
     [SerializeField] protected GameObject enemySprite;
+    [SerializeField] protected GameObject mercySprite;
 
     #endregion
     
@@ -52,6 +57,10 @@ public class Enemy : EntityStats
         target = FindObjectOfType<PlayerController>().transform;
         transform.localRotation = Quaternion.Euler(0,0,0);
         weaponHandle = GetComponentInChildren<Handle>().gameObject;
+        if (mercySprite != null)
+        {
+            mercySprite.SetActive(false);
+        }
     }
 
     public override void TakeDamage(int damage)
@@ -66,6 +75,17 @@ public class Enemy : EntityStats
         if(_deathEffect && Health <= 0)
         {
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
+        }
+
+        if (Health <= MercyTreshold && type == NpcType.Boss)
+        {
+            isRanged = false;
+            Speed = 0;
+            _agent.speed = 0;
+            type = NpcType.Passive;
+            //enemySprite = mercySprite;
+            enemySprite.SetActive(false);
+            mercySprite.SetActive(true);
         }
     }
 #endregion
