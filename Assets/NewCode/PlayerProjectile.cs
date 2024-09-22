@@ -61,7 +61,6 @@ public class PlayerProjectile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        eventManager2.RunDamagedEvent();
         if(other.gameObject.CompareTag("Enemy") && bulletType == BulletType._Player)
         {
             if (!hasHit)
@@ -89,6 +88,7 @@ public class PlayerProjectile : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)
         {
+            eventManager2.RunDamagedEvent();
             if (!hasHit)
             {
                 hasHit = true;

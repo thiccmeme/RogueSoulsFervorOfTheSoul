@@ -24,18 +24,17 @@ public class Enemy : EntityStats
     EnemyDoor enemyDoor;
     private EventManager2 eventManager2;
     public WeaponOffsetHandle _offsetHandle;
-    [SerializeField]protected SpriteRenderer enemySprite;
     [SerializeField]protected SpriteRenderer enemyGunSprite;
     [SerializeField] protected SpriteRenderer Empty;
     [SerializeField]protected SpriteRenderer original;
-    
     [SerializeField]
     protected ParticleSystem _deathEffect;
     [SerializeField]
     protected float detectionRadius = 12;
-    //public ItemSO _itemSo;
     [SerializeField]
     public PlayerWeapon enemyGun;
+
+    [SerializeField] protected GameObject enemySprite;
 
     #endregion
     
@@ -47,8 +46,7 @@ public class Enemy : EntityStats
         _agent.speed = Speed;
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        enemySprite = GetComponent<SpriteRenderer>();
-        //enemyGunSprite = GetComponentInChildren<SpriteRenderer>();
+        enemyGunSprite = GetComponentInChildren<SpriteRenderer>();
         _offsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         target = FindObjectOfType<PlayerController>().transform;
@@ -107,13 +105,11 @@ public class Enemy : EntityStats
         if(flipSprite)
         {
             enemySprite.transform.localScale = new Vector3(-1, 1, 1);
-            weaponHandle.transform.localScale = new Vector3(-1, 1, 1);
             enemyGunSprite.transform.localRotation = Quaternion.Euler(180,0,0);
         }
         else
         {
             enemySprite.transform.localScale = new Vector3(1, 1, 1);
-            weaponHandle.transform.localScale = new Vector3(1, 1, 1);
             enemyGunSprite.transform.localRotation = Quaternion.Euler(0,0,0);
         }
     }

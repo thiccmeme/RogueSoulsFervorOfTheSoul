@@ -92,7 +92,7 @@ public class NpcSystem : MonoBehaviour
     {
 
         Debug.Log(dialogassets.Length);
-        if (index <= dialogassets.Length && finished == false)
+        if (index >= 0 && index < dialogassets.Length && finished == false)
         {
             index++;
             CurrentSo.IncreaseIndex();
