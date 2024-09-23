@@ -101137,6 +101137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PassiveNpc
       objectReference: {fileID: 0}
+    - target: {fileID: 7916921115497447124, guid: 612ae509769f37d49ba660fa9104385e, type: 3}
+      propertyPath: Speed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
