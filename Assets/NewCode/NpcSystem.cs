@@ -25,6 +25,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected PlayerInputHandler playerInputHandler;
     [SerializeField] protected GameObject goodReward;
     [SerializeField] protected GameObject badReward;
+    [SerializeField] protected GameObject neutralReward;
     [SerializeField] protected bool finished = false;
     protected bool targetInRange;
     [SerializeField] protected Enemy enemy;
@@ -35,6 +36,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected TMP_FontAsset font;
     [SerializeField] protected NpcType type;
+    protected bool hasDecreased = false;
 
     private EventManager2 eventManager2;
     
@@ -76,7 +78,7 @@ public class NpcSystem : MonoBehaviour
         Debug.Log("agressive");
         if (targetInRange && agent != null)
         {
-            type = NpcType.Agressive;
+            type = NpcType.Aggressive;
             enemy.Speed = 3;
                 agent.speed = 3;
             enemy.isRanged = true;
@@ -109,7 +111,7 @@ public class NpcSystem : MonoBehaviour
             {
                 return;
             }
-            else if (type == NpcType.Questing)
+            else if (type == NpcType.Questing || type == NpcType.Neutral)
             {
                 Reward();
             }
@@ -143,9 +145,12 @@ public class NpcSystem : MonoBehaviour
              Debug.Log(good);
         }
 
-        if (currentHonor == 0)
+        if (currentHonor == 0 && neutralReward != null)
         {
-            return;
+            var good = Instantiate(neutralReward, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
+            good.transform.localRotation = Quaternion.Euler(0,0,0);
+            good.transform.localPosition = this.transform.localPosition;
+            Debug.Log("neutral");
         }
 
         if (currentHonor <= NegativeTreshHold && badReward!= null)
@@ -182,7 +187,7 @@ public class NpcSystem : MonoBehaviour
             Debug.Log(dialogNeutral.index);
             CurrentSo = dialogNeutral;
             text.text = CurrentSo.currentDialog;
-            text.color = Color.gray;
+            text.color = Color.black;
             finished = false;
         }
     }
@@ -203,6 +208,16 @@ public class NpcSystem : MonoBehaviour
         else
         {
             targetInRange = false;
+        }
+    }
+
+    public void DecreaseHonor()// only decrease once per npc shot who is non aggressive 
+    {
+        if (hasDecreased == false) 
+        {
+            currentHonor--;
+            Debug.Log("decrease");
+            hasDecreased = true;
         }
     }
 
@@ -238,6 +253,7 @@ public class NpcSystem : MonoBehaviour
             eventManager2._honorIncreased += HonorPositiveThreshold;
             eventManager2._honorDecreased += HonorNeutralThreshold;
             eventManager2._honorIncreased += HonorNeutralThreshold;
+            eventManager2.NpcShot += DecreaseHonor;
         }
         
         if (type == NpcType.Neutral)
@@ -251,7 +267,7 @@ public class NpcSystem : MonoBehaviour
             }
         }
 
-        if (type == NpcType.Agressive || type == NpcType.Boss)
+        if (type == NpcType.Aggressive || type == NpcType.Boss)
         {
             CurrentSo = dialogBad;
             text.color = Color.red;
@@ -261,7 +277,7 @@ public class NpcSystem : MonoBehaviour
         dialogassets = CurrentSo.dialog;
         text.text = CurrentSo.currentDialog;
         text.enabled = false;
-        text.color = Color.gray;
+        text.color = Color.black;
         
     }
     
@@ -269,5 +285,5 @@ public class NpcSystem : MonoBehaviour
 
 public enum NpcType
 {
-    Questing,Boss,Passive,Agressive,Neutral
+    Questing,Boss,Passive,Aggressive,Neutral
 }

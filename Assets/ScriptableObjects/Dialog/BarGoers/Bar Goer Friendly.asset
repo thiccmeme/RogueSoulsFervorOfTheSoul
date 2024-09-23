@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99b6cfffa34c6c846b6a111656dccf5c, type: 3}
-  m_Name: Bar goer
+  m_Name: Bar Goer Friendly
   m_EditorClassIdentifier: 
   dialog:
-  - You lookin for a fight kid?
-  - guess not...
-  currentDialog: You lookin for a fight kid?
+  - See you around kid
+  currentDialog: it's Your funeral
   sprite: {fileID: 0}
   DialogFinished: 0
-  index: 0
+  index: 1

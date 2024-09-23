@@ -58,7 +58,7 @@ public class EntityStats : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (Health <= 0 && type == NpcType.Agressive)
+        if (Health <= 0 && type == NpcType.Aggressive)
         {
             Destroy(this.gameObject);
         }

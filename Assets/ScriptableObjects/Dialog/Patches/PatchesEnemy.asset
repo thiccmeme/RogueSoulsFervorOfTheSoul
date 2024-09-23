@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99b6cfffa34c6c846b6a111656dccf5c, type: 3}
-  m_Name: Bar goer 1
+  m_Name: PatchesEnemy
   m_EditorClassIdentifier: 
   dialog:
-  - it's Your funeral
-  currentDialog: You lookin for a fight kid?
+  - You bloody Bastard!
+  - I'll Kill you!
+  currentDialog: Oh thank goodness
   sprite: {fileID: 0}
   DialogFinished: 0
   index: 0

@@ -55,7 +55,7 @@ public class Enemy : EntityStats
         weaponHandle = GetComponentInChildren<Handle>().gameObject;
         if (mercySprite != null)
         {
-            if (type == NpcType.Agressive || type == NpcType.Boss)
+            if (type == NpcType.Aggressive || type == NpcType.Boss)
             {
                 mercySprite.SetActive(false);
                 isRanged = true;
@@ -96,7 +96,7 @@ public class Enemy : EntityStats
         if (type == NpcType.Neutral)
         {
             Debug.Log("switchSprite");
-            type = NpcType.Agressive;
+            type = NpcType.Aggressive;
             mercySprite.SetActive(false);
             enemySprite.SetActive(true);
         }
