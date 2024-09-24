@@ -37,6 +37,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected TMP_FontAsset font;
     [SerializeField] protected NpcType type;
     protected bool hasDecreased = false;
+    [SerializeField] protected GameObject deathItem;
 
     private EventManager2 eventManager2;
     
@@ -90,9 +91,14 @@ public class NpcSystem : MonoBehaviour
         }
     }
 
-    private void LootDrop()// drop loot on death
+    public void LootDrop()// drop loot on death
     {
-        
+        if (deathItem != null)
+        {
+            var loot = Instantiate(deathItem, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
+            loot.transform.localRotation = Quaternion.Euler(0,0,0);
+            loot.transform.localPosition = this.transform.localPosition;
+        }
     }
 
     private void IndexText()// go to next piece of text

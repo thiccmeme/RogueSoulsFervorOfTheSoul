@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,9 +23,14 @@ public class Door : MonoBehaviour
 
     public SpriteRenderer _doorRenderer { get; protected set; }
 
+    private EventManager2 eventManager2;
+
+    public EquipableItem key;
+
     private void Start()
     {
         _doorRenderer = GetComponentInChildren<SpriteRenderer>();
+        eventManager2 = FindFirstObjectByType<EventManager2>();
         _doorObject = _doorRenderer.gameObject;
 
         if(IsBossDoor)
@@ -71,5 +77,10 @@ public class Door : MonoBehaviour
             _doorRenderer.sprite = _unlockedSprite;
             IsLocked = false;
         }
+    }
+
+    public void FixedUpdate()
+    {
+        
     }
 }

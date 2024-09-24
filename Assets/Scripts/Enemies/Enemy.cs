@@ -37,6 +37,7 @@ public class Enemy : EntityStats
 
     [SerializeField] protected GameObject enemySprite;
     [SerializeField] protected GameObject mercySprite;
+    [SerializeField] protected NpcSystem npc;
 
     #endregion
     
@@ -66,6 +67,8 @@ public class Enemy : EntityStats
                 enemySprite.SetActive(false);
             }
         }
+
+        npc = GetComponent<NpcSystem>();
     }
 
     public override void TakeDamage(int damage)
@@ -75,6 +78,7 @@ public class Enemy : EntityStats
         if (enemyDoor != null && Health <= 0)
         {
             enemyDoor.NotifyEnemyDied(this);
+            
         }
         
         if(_deathEffect && Health <= 0)
@@ -97,8 +101,16 @@ public class Enemy : EntityStats
         {
             Debug.Log("switchSprite");
             type = NpcType.Aggressive;
-            mercySprite.SetActive(false);
-            enemySprite.SetActive(true);
+            if (mercySprite != null)
+            {
+                mercySprite.SetActive(false);
+                enemySprite.SetActive(true);
+            }
+        }
+
+        if (Health <= 0)
+        {
+            npc.LootDrop();
         }
         
     }

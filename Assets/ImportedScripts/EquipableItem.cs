@@ -28,6 +28,8 @@ public class EquipableItem : MonoBehaviour
 
     public GameObject _micro;
 
+    public ItemInventory itemInventory;
+
     public PlayerWeapon weapon;
 
     public Transform FirePoint;
@@ -48,6 +50,7 @@ public class EquipableItem : MonoBehaviour
         _itemManager = gameObject.AddComponent<ItemManager>();
         _door = FindFirstObjectByType<Door>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
+        itemInventory = FindFirstObjectByType<ItemInventory>();
         //eventManager2._itemDestroyed += OnUnEquip;
         //eventManager2._itemEquip += Requip;
         
@@ -74,51 +77,42 @@ public class EquipableItem : MonoBehaviour
         useKey = new Aydens();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<Door>()&& _itemType == ItemType.Key)
+        {
+            _door = other.GetComponent<Door>();
+            _itemManager.InteractEvent += UseKey;
+            canOpen = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.GetComponent<Door>() && _itemType == ItemType.Key)
+        {
+            _itemManager.InteractEvent -= UseKey;
+            canOpen = false;
+        }
+    }
+
     private void FixedUpdate()
     {
         
-        if (_door != null && _itemType == ItemType.Key)
-        {
-            float distance = Vector3.Distance(_door.transform.position, this.transform.position);
-            if (distance <= detectionRadius)
-            {
-                _itemManager.InteractEvent += UseKey;
-                canOpen = true;
-            }
-            else
-            {
-                _itemManager.InteractEvent -= UseKey;
-                canOpen = false;
-            }
-        }
-        else if (_micro != null && _itemType == ItemType.Useless)
-        {
-            float distance = Vector3.Distance(_micro.transform.position, this.transform.position);
-            if (distance <= detectionRadius)
-            {
-                //_itemManager.InteractEvent += MicroWave;
-                canOpen = true;
-            }
-            else
-            {
-                //_itemManager.InteractEvent -= MicroWave;
-                canOpen = false;
-            }
-        }
 
     }
     
     public void UseKey()
     {
         Debug.Log("open");
-        if (_itemType == ItemType.Key)
+        if (_itemType == ItemType.Key && _door!= null)
         {
-            _door = FindFirstObjectByType<Door>();
             eventManager2.RunKeyUsedEvent();
             _door.UnlockDoor();
             _door.OpenDoor();
+            itemInventory.Buttons.Remove(this.gameObject);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
     public void Requip()

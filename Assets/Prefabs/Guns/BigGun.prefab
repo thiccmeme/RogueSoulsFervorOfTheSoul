@@ -223,7 +223,6 @@ MonoBehaviour:
   _itemSo: {fileID: 11400000, guid: 37306bea4de2a5a4db57d9db40f4ae61, type: 2}
   _itemType: 1
   detectionRadius: 0
-  useKey: {fileID: 0}
   _micro: {fileID: 0}
   weapon: {fileID: 0}
   FirePoint: {fileID: 3315930892354599957}

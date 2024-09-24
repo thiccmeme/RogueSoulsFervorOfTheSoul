@@ -9,7 +9,8 @@ public class ItemInventory : MonoBehaviour
     private EventManager2 _eventManager2;
     private GameObject _inventoryButton;
     public ItemSO _itemSo;
-    private Dictionary<GameObject, int> Buttons = new Dictionary<GameObject, int>();
+    public Dictionary<GameObject, int> Buttons = new Dictionary<GameObject, int>();
+    public int key;
 
     private void Start()
     {
@@ -21,7 +22,8 @@ public class ItemInventory : MonoBehaviour
     {
         _inventoryButton = _itemSo.inventoryButton;
         Debug.Log(_itemSo);
-        bool exists = Buttons.TryAdd(_inventoryButton, 1);
+        key++;
+        bool exists = Buttons.TryAdd(_inventoryButton, key);
         if (exists)
         {
             GameObject newInventory = Instantiate(_inventoryButton, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity, transform);
@@ -30,6 +32,13 @@ public class ItemInventory : MonoBehaviour
         {
             Debug.Log("allready exists");
         }
+    }
+
+    public void RemoveItem(InventoryButton button)
+    {
+        Debug.Log(button);
+        Buttons.Remove(button.gameObject);
+        
     }
     
 }

@@ -22,6 +22,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private ItemType itemType;
     Dictionary<EquipableItem, ItemType> itemDictionary = new Dictionary<EquipableItem, ItemType>();
     public bool Disabled;
+    public ItemInventory itemInventory;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _text.text = _itemSo.ItemName;
         descriptionText.text = _itemSo.ItemDescription;
         descriptionText.enabled = false;
+        itemInventory = FindFirstObjectByType<ItemInventory>();
         
         if (_itemSo.itemType == ItemType.Weapon)
         {
@@ -56,6 +58,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void Destroy()
     {
+        itemInventory.RemoveItem(this);
         Destroy(this.gameObject);
     }
 
