@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private bool isFlashing;
     [SerializeField]private SpriteRenderer spriteRenderer;
     [SerializeField]private Color originalColor;
+    [SerializeField] private SpriteRenderer eyes;
 
     #endregion
 
@@ -227,6 +228,8 @@ public class PlayerController : MonoBehaviour
         eventManager2._equipedEvent += SetGun;
         eventManager2._itemDestroyed += SetGun;
         eventManager2.Damaged += DamageFlash;
+        eventManager2._honorDecreased += HonorDecreased;
+        eventManager2._honorIncreased += HonorIncreased;
     }
 
     void SetGun()
@@ -286,6 +289,16 @@ public class PlayerController : MonoBehaviour
                 canRoll = false;
             }
         }
+    }
+
+    public void HonorDecreased()
+    {
+        eyes.color = Color.red;
+    }
+
+    public void HonorIncreased()
+    {
+        eyes.color = Color.white;
     }
 
     Vector2 PlayerMovement()

@@ -12,6 +12,7 @@ public class ItemPickup : MonoBehaviour
     private Sprite _sprite;
     private SpriteRenderer _spriteRenderer;
     private CapsuleCollider2D collider2D;
+    bool alreadyPickedUp;
 
     private void Start()
     {
@@ -23,13 +24,17 @@ public class ItemPickup : MonoBehaviour
         _sprite = itemSo._sprite;
         _spriteRenderer.sprite = _sprite;
         _spriteRenderer.sortingOrder = 3;
+        
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<PlayerController>())
         {
+            if (alreadyPickedUp) return;
+            
+            alreadyPickedUp = true;
             OnItemPickedUp();
             Destroy(this.gameObject);
         }
@@ -39,6 +44,6 @@ public class ItemPickup : MonoBehaviour
     void OnItemPickedUp()
     {
         _inventory._itemSo = itemSo;
-        _eventManager2.RunEvent();
+        _inventory.AddItem(itemSo);
     }
 }

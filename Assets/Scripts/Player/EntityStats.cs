@@ -63,12 +63,13 @@ public class EntityStats : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (Health <= 0 && type == NpcType.Passive)
+        if (Health <= 0 && type == NpcType.Passive || type == NpcType.Neutral)
         {
             eventManager2.RunHonorDecreasedEvent();
             Destroy(this.gameObject);
             
         }
+        
 
         if (type == NpcType.Passive || type == NpcType.Neutral)
         {

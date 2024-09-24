@@ -36,8 +36,8 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected TMP_FontAsset font;
     [SerializeField] protected NpcType type;
-    protected bool hasDecreased = false;
-    [SerializeField] protected GameObject deathItem;
+    protected bool hasDecreased = false; 
+    public GameObject deathItem;
 
     private EventManager2 eventManager2;
     
@@ -95,7 +95,7 @@ public class NpcSystem : MonoBehaviour
     {
         if (deathItem != null)
         {
-            var loot = Instantiate(deathItem, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
+            var loot = Instantiate(deathItem, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y,this.transform.localPosition.z), quaternion.Euler(0,0,0));
             loot.transform.localRotation = Quaternion.Euler(0,0,0);
             loot.transform.localPosition = this.transform.localPosition;
         }

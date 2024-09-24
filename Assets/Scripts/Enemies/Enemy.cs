@@ -97,7 +97,7 @@ public class Enemy : EntityStats
             mercySprite.SetActive(true);
         }
         
-        if (type == NpcType.Neutral)
+        if (type == NpcType.Neutral && targetInRange)
         {
             Debug.Log("switchSprite");
             type = NpcType.Aggressive;
@@ -108,7 +108,7 @@ public class Enemy : EntityStats
             }
         }
 
-        if (Health <= 0)
+        if (Health <= 0 && npc != null)
         {
             npc.LootDrop();
         }

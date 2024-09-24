@@ -23,6 +23,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     Dictionary<EquipableItem, ItemType> itemDictionary = new Dictionary<EquipableItem, ItemType>();
     public bool Disabled;
     public ItemInventory itemInventory;
+    public int key;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void Destroy()
     {
-        itemInventory.RemoveItem(this);
+        itemInventory.RemoveItem(_itemSo);
         Destroy(this.gameObject);
     }
 

@@ -7,26 +7,27 @@ using UnityEngine.UIElements;
 public class ItemInventory : MonoBehaviour
 {
     private EventManager2 _eventManager2;
-    private GameObject _inventoryButton;
+    private InventoryButton _inventoryButton;
     public ItemSO _itemSo;
-    public Dictionary<GameObject, int> Buttons = new Dictionary<GameObject, int>();
-    public int key;
+    public Dictionary<ItemSO, int> Buttons = new Dictionary<ItemSO, int>();
+    public int key = 1;
 
     private void Start()
     {
-        _eventManager2 = FindObjectOfType<EventManager2>();
-        _eventManager2._ManagedEvent += AddItem;
+        //_eventManager2 = FindObjectOfType<EventManager2>();
+        //_eventManager2._ManagedEvent += AddItem;
     }
 
-    public void AddItem()
+    public void AddItem(ItemSO item)
     {
-        _inventoryButton = _itemSo.inventoryButton;
         Debug.Log(_itemSo);
+        _itemSo = item;
         key++;
-        bool exists = Buttons.TryAdd(_inventoryButton, key);
+        bool exists = Buttons.TryAdd(_itemSo, key);
         if (exists)
         {
-            GameObject newInventory = Instantiate(_inventoryButton, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity, transform);
+            _inventoryButton = Instantiate(_itemSo.inventoryButton.gameObject,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity, transform).GetComponent<InventoryButton>();
+            _inventoryButton.key = key;
         }
         else
         {
@@ -34,10 +35,10 @@ public class ItemInventory : MonoBehaviour
         }
     }
 
-    public void RemoveItem(InventoryButton button)
+    public void RemoveItem(ItemSO item )
     {
-        Debug.Log(button);
-        Buttons.Remove(button.gameObject);
+        Debug.Log(item);
+        Buttons.Remove(item);
         
     }
     

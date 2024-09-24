@@ -37,6 +37,8 @@ public class EquipableItem : MonoBehaviour
     public PlayerInputHandler Input;
 
     public SpriteRenderer spriteRenderer;
+
+    public int key;
     
     
     
@@ -110,7 +112,6 @@ public class EquipableItem : MonoBehaviour
             eventManager2.RunKeyUsedEvent();
             _door.UnlockDoor();
             _door.OpenDoor();
-            itemInventory.Buttons.Remove(this.gameObject);
             Destroy(this.gameObject);
         }
     }
