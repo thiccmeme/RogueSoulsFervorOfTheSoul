@@ -41,11 +41,12 @@ public class EquipableItem : MonoBehaviour
 
     private void Start()
     {
+        
         originalPosition = FindObjectOfType<hands>().transform;
         transform.position = originalPosition.position;
         _itemType = _itemSo.itemType;
         _itemManager = gameObject.AddComponent<ItemManager>();
-        _door = FindObjectOfType<Door>();
+        _door = FindFirstObjectByType<Door>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         //eventManager2._itemDestroyed += OnUnEquip;
         //eventManager2._itemEquip += Requip;
@@ -65,6 +66,7 @@ public class EquipableItem : MonoBehaviour
             Input.UpdateItemRefernce();
             Input.UpdatePlayerWeaponReference();
         }
+        _itemManager.InteractEvent += UseKey;
     }
 
     private void Awake()
@@ -94,12 +96,12 @@ public class EquipableItem : MonoBehaviour
             float distance = Vector3.Distance(_micro.transform.position, this.transform.position);
             if (distance <= detectionRadius)
             {
-                _itemManager.InteractEvent += MicroWave;
+                //_itemManager.InteractEvent += MicroWave;
                 canOpen = true;
             }
             else
             {
-                _itemManager.InteractEvent -= MicroWave;
+                //_itemManager.InteractEvent -= MicroWave;
                 canOpen = false;
             }
         }
@@ -111,6 +113,7 @@ public class EquipableItem : MonoBehaviour
         Debug.Log("open");
         if (_itemType == ItemType.Key)
         {
+            _door = FindFirstObjectByType<Door>();
             eventManager2.RunKeyUsedEvent();
             _door.UnlockDoor();
             _door.OpenDoor();

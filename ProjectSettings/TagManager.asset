@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Npc
   - BossWeapon
+  - WarpOverlay
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Npc
   - NoWalking
   - Invulnerable
-  - 
+  - BossWeapon
   - 
   - 
   - 

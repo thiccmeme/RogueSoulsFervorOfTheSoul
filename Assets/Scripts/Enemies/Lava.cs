@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class Lava : MonoBehaviour
     PlayerController playerController;
     [SerializeField]
     float LavaDamageTick;
+
+    private EventManager2 eventManager2;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -42,11 +45,17 @@ public class Lava : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        eventManager2 = FindFirstObjectByType<EventManager2>();
+    }
+
     private void LavaDamage()
     {
         playerController._xSpeed = 100;
         playerController._ySpeed = 100;
         stats.TakeDamage(damage);
+        eventManager2.RunDamagedEvent();
         
 
     }

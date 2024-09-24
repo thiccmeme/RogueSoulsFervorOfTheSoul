@@ -74,6 +74,8 @@ public class EntityStats : MonoBehaviour
         {
             eventManager2.RunNpcShotEvent();
         }
+        
+        
     } 
 
     public void IncreaseHealth(int increaseAmount)
