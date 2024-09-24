@@ -15,7 +15,9 @@ MonoBehaviour:
   dialog:
   - Oh thank goodness
   - I really wasn't in a fighting mood today
-  currentDialog: Oi!
+  - You know, If you happen to be looking for the way out...
+  - it's down that hall and to the left
+  currentDialog: Oh thank goodness
   sprite: {fileID: 0}
   DialogFinished: 0
   index: 0
