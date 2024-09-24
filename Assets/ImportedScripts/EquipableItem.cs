@@ -10,7 +10,7 @@ public class EquipableItem : MonoBehaviour
 {
     private Transform originalPosition;
 
-    private Door2 _door;
+    private Door _door;
 
     public ItemSO _itemSo;
 
@@ -24,8 +24,7 @@ public class EquipableItem : MonoBehaviour
 
     private EventManager2 eventManager2;
     
-    public PlayerInput useKey;
-    
+    public Aydens useKey;
 
     public GameObject _micro;
 
@@ -46,7 +45,7 @@ public class EquipableItem : MonoBehaviour
         transform.position = originalPosition.position;
         _itemType = _itemSo.itemType;
         _itemManager = gameObject.AddComponent<ItemManager>();
-        _door = FindObjectOfType<Door2>();
+        _door = FindObjectOfType<Door>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         //eventManager2._itemDestroyed += OnUnEquip;
         //eventManager2._itemEquip += Requip;
@@ -66,6 +65,11 @@ public class EquipableItem : MonoBehaviour
             Input.UpdateItemRefernce();
             Input.UpdatePlayerWeaponReference();
         }
+    }
+
+    private void Awake()
+    {
+        useKey = new Aydens();
     }
 
     private void FixedUpdate()
@@ -104,10 +108,14 @@ public class EquipableItem : MonoBehaviour
     
     public void UseKey()
     {
+        Debug.Log("open");
         if (_itemType == ItemType.Key)
         {
-            _door.Interact();
+            eventManager2.RunKeyUsedEvent();
+            _door.UnlockDoor();
+            _door.OpenDoor();
         }
+        Destroy(this.gameObject);
     }
 
     public void Requip()

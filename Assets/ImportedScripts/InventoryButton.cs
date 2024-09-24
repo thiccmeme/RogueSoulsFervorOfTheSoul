@@ -40,6 +40,11 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             
         }
+
+        if (_itemSo.itemType == ItemType.Key)
+        {
+            _eventManager2.KeyUsed += Destroy;
+        }
     }
 
     private void Start()
@@ -47,6 +52,11 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _button.onClick.AddListener(ItemSet);
         
 
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

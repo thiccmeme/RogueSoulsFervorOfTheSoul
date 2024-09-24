@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00dc9f7a0d09c5a45970b03bbbf4a401, type: 3}
   m_Name: KEy
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 35d2a05bd961237459ee27fcf89b327d, type: 3}
+  _sprite: {fileID: 21300000, guid: 62bca40d29fca964aa0fe19727c407b6, type: 3}
   _material: {fileID: 0}
-  equipableItem: {fileID: -6276983541757706462, guid: 73924073f4cbee742a10a7e8b385916f, type: 3}
-  inventoryButton: {fileID: 7760182796335234173, guid: 88fb55c7b0d598843bda5b6eed32203e, type: 3}
+  equipableItem: {fileID: -6276983541757706462, guid: 73c2e55dd364d034b8d1e56a1e4d0b51, type: 3}
+  inventoryButton: {fileID: 7760182796335234173, guid: 32bc791f92237b04d925f9985d828615, type: 3}
   <ItemName>k__BackingField: BigGun
   itemType: 0
   <ItemDescription>k__BackingField: A key good sir

@@ -19,6 +19,8 @@ public delegate void NpcShotEvent();
 
 public delegate void DamagedEvent();
 
+public delegate void UseKeyEvent();
+
 
 
 public delegate void ItemEquipEvent();
@@ -143,4 +145,18 @@ public class EventManager2 : MonoBehaviour
     {
         Damaged?.Invoke();
     }
+
+    public event UseKeyEvent KeyUsed;
+
+    public void RunKeyUsedEvent()
+    {
+        InvokeKeyUsed();
+    }
+
+    protected virtual void InvokeKeyUsed()
+    {
+        KeyUsed?.Invoke();
+    }
+
+
 }

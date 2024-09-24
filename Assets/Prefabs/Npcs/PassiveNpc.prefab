@@ -334,6 +334,7 @@ MonoBehaviour:
   playerInputHandler: {fileID: 0}
   goodReward: {fileID: 6593655442667879080, guid: c9727c8140d419d4e8188888650186ad, type: 3}
   badReward: {fileID: 200825223787528858, guid: 358d9844224c3f4429164c012dbe34a7, type: 3}
+  neutralReward: {fileID: 0}
   finished: 0
   enemy: {fileID: 0}
   target: {fileID: 0}

@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     [SerializeField]
     bool _startOpen;
 
-    public GameObject _doorObject { get; protected set; }
+    public GameObject _doorObject;
 
     [SerializeField]
     Sprite _unlockedSprite, _lockedSprite;
@@ -52,6 +52,7 @@ public class Door : MonoBehaviour
     {
         if(!IsLocked)
         {
+            Debug.Log("open");
             _doorObject.SetActive(false);
             IsOpen = true;
         }

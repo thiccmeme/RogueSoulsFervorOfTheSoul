@@ -586,6 +586,7 @@ MonoBehaviour:
   playerInputHandler: {fileID: 0}
   goodReward: {fileID: 0}
   badReward: {fileID: 0}
+  neutralReward: {fileID: 0}
   finished: 0
   enemy: {fileID: 0}
   target: {fileID: 0}
