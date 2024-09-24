@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   weapon: {fileID: 0}
-  _maxTravelDistance: 4
+  _maxTravelDistance: 8
   bulletLifetime: 12
   bulletType: 0
   hasHit: 0
