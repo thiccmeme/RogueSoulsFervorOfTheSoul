@@ -38,6 +38,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected NpcType type;
     protected bool hasDecreased = false; 
     public GameObject deathItem;
+    private PlayerController player;
 
     private EventManager2 eventManager2;
     
@@ -95,9 +96,9 @@ public class NpcSystem : MonoBehaviour
     {
         if (deathItem != null)
         {
-            var loot = Instantiate(deathItem, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y,this.transform.localPosition.z), quaternion.Euler(0,0,0));
-            loot.transform.localRotation = Quaternion.Euler(0,0,0);
-            loot.transform.localPosition = this.transform.localPosition;
+            var loot = Instantiate(deathItem, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+            //loot.transform.localPosition = player.transform.localPosition;
+
         }
     }
 
@@ -145,25 +146,19 @@ public class NpcSystem : MonoBehaviour
     {
         if (currentHonor >= PositiveTreshHold && goodReward != null)
         {
-             var good = Instantiate(goodReward, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
-             good.transform.localRotation = Quaternion.Euler(0,0,0);
-             good.transform.localPosition = this.transform.localPosition;
+            var good = Instantiate(goodReward, player.transform);
              Debug.Log(good);
         }
 
         if (currentHonor == 0 && neutralReward != null)
         {
-            var good = Instantiate(neutralReward, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
-            good.transform.localRotation = Quaternion.Euler(0,0,0);
-            good.transform.localPosition = this.transform.localPosition;
+            var good = Instantiate(neutralReward, new Vector3(transform.position.x, transform.position.y,transform.position.z), quaternion.Euler(0,0,0));
             Debug.Log("neutral");
         }
 
         if (currentHonor <= NegativeTreshHold && badReward!= null)
         {
-            var bad = Instantiate(badReward, new Vector3(transform.localPosition.x, transform.localPosition.y,transform.localPosition.z), quaternion.Euler(0,0,0));
-            bad.transform.localRotation = Quaternion.Euler(0,0,0);
-            bad.transform.localPosition = this.transform.localPosition;
+            var bad = Instantiate(badReward, new Vector3(transform.position.x, transform.position.y,transform.position.z), quaternion.Euler(0,0,0));
             Debug.Log(bad);
         }
     }
@@ -229,6 +224,7 @@ public class NpcSystem : MonoBehaviour
 
     private void Start()
     {
+        player = FindFirstObjectByType<PlayerController>();
         text = GetComponentInChildren<TMP_Text>();
         playerInputHandler = FindFirstObjectByType<PlayerInputHandler>();
         enemy = GetComponent<Enemy>();
