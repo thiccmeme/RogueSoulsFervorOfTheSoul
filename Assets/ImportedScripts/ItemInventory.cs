@@ -10,6 +10,7 @@ public class ItemInventory : MonoBehaviour
     private InventoryButton _inventoryButton;
     public ItemSO _itemSo;
     public Dictionary<ItemSO, int> Buttons = new Dictionary<ItemSO, int>();
+    private List<ItemSO> OtherButtons = new List<ItemSO>();
     public int key = 1;
 
     private void Start()
@@ -24,8 +25,9 @@ public class ItemInventory : MonoBehaviour
         _itemSo = item;
         key++;
         bool exists = Buttons.TryAdd(_itemSo, key);
-        if (exists)
+        if (!OtherButtons.Contains(_itemSo))
         {
+            OtherButtons.Add(_itemSo);
             _inventoryButton = Instantiate(_itemSo.inventoryButton.gameObject,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity, transform).GetComponent<InventoryButton>();
             _inventoryButton.key = key;
         }
@@ -37,8 +39,9 @@ public class ItemInventory : MonoBehaviour
 
     public void RemoveItem(ItemSO item )
     {
+        OtherButtons.Remove(item);
         Debug.Log(item);
-        Buttons.Remove(item);
+        //Buttons.Remove(item);
         
     }
     

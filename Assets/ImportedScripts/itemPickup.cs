@@ -23,7 +23,7 @@ public class ItemPickup : MonoBehaviour
         collider2D.isTrigger = true;
         _sprite = itemSo._sprite;
         _spriteRenderer.sprite = _sprite;
-        _spriteRenderer.sortingOrder = 3;
+        //_spriteRenderer.sortingOrder = 3;
         
     }
 
