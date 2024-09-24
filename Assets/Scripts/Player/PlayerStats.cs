@@ -12,9 +12,8 @@ public class PlayerStats : EntityStats
     protected float _amountUntilNextLevel;
     [SerializeField]
     protected float _levelProgressionMultiplier;
-    [SerializeField]
     
-    Transform _respawnPoint;
+    [SerializeField] private Transform _respawnPoint;
 
     CinemachineConfiner2D _cameraConfiner;
 

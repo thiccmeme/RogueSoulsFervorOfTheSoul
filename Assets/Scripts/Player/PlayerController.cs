@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
 
     void CancleCoroutine()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         spriteRenderer.color = originalColor;
     }
 

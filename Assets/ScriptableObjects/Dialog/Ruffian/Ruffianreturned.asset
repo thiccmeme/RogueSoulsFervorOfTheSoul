@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Ruffianreturned
   m_EditorClassIdentifier: 
   dialog:
-  - Looks like I was wrong, hood.
-  - No hard feelings right?
-  currentDialog: 'Hey, hood '
+  - What are you looking at?
+  currentDialog: No hard feelings right?
   sprite: {fileID: 0}
   DialogFinished: 0
-  index: 0
+  index: 1
