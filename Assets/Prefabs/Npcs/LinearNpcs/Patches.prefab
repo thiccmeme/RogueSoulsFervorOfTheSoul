@@ -519,6 +519,7 @@ MonoBehaviour:
   MercyTreshold: 0
   enemySprite: {fileID: 4656456625591362094}
   mercySprite: {fileID: 7440943255881590764}
+  npc: {fileID: 0}
 --- !u!195 &1820994231128206894
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -623,6 +624,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   font: {fileID: 0}
   type: 4
+  deathItem: {fileID: 0}
 --- !u!1 &7440943255881590764
 GameObject:
   m_ObjectHideFlags: 0

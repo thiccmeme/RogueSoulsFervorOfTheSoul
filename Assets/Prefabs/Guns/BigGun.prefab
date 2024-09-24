@@ -224,6 +224,7 @@ MonoBehaviour:
   _itemType: 1
   detectionRadius: 0
   _micro: {fileID: 0}
+  itemInventory: {fileID: 0}
   weapon: {fileID: 0}
   FirePoint: {fileID: 3315930892354599957}
   Input: {fileID: 0}
