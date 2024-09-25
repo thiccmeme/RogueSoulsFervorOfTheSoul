@@ -60,6 +60,7 @@ public class EntityStats : MonoBehaviour
 
         if (Health <= 0 && type == NpcType.Aggressive)
         {
+            eventManager2.RunHonorincreasedEvent();
             Destroy(this.gameObject);
         }
 
