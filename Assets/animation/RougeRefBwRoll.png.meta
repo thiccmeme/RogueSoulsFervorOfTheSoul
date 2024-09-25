@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 75265d011ed6a7041a5877b0a5887d97
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8155714333971147291
+    second: RougeRefBwRoll_0
+  - first:
+      213: -49389204147207786
+    second: RougeRefBwRoll_1
+  - first:
+      213: -7089852359905857477
+    second: RougeRefBwRoll_2
+  - first:
+      213: -1769712150239374679
+    second: RougeRefBwRoll_3
+  - first:
+      213: -6011466127328321907
+    second: RougeRefBwRoll_4
+  - first:
+      213: -3028402271937773678
+    second: RougeRefBwRoll_5
+  - first:
+      213: 7272077453917438440
+    second: RougeRefBwRoll_6
+  - first:
+      213: -4693093117111938706
+    second: RougeRefBwRoll_7
+  - first:
+      213: -3941398464647164085
+    second: RougeRefBwRoll_8
+  - first:
+      213: 7226643810001174999
+    second: RougeRefBwRoll_9
+  - first:
+      213: 3749236499758353947
+    second: RougeRefBwRoll_10
+  - first:
+      213: -4747819063796493239
+    second: RougeRefBwRoll_11
+  - first:
+      213: -3857506694113106795
+    second: RougeRefBwRoll_12
+  - first:
+      213: -7131614766169208861
+    second: RougeRefBwRoll_13
+  - first:
+      213: 6421649838090723139
+    second: RougeRefBwRoll_14
+  - first:
+      213: -537175719107345810
+    second: RougeRefBwRoll_15
+  - first:
+      213: -9093096915532067370
+    second: RougeRefBwRoll_16
+  - first:
+      213: -6178656926132806131
+    second: RougeRefBwRoll_17
+  - first:
+      213: -3277017774632996469
+    second: RougeRefBwRoll_18
+  - first:
+      213: 2977367242781364145
+    second: RougeRefBwRoll_19
+  - first:
+      213: 1972698693150482624
+    second: RougeRefBwRoll_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RougeRefBwRoll_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 29
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5961a260511de80800000000000000
+      internalID: -8155714333971147291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 29
+        width: 52
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691011fc7c8805ff0800000000000000
+      internalID: -49389204147207786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_2
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 29
+        width: 52
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30b8d1a7d8cb9d90800000000000000
+      internalID: -7089852359905857477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 29
+        width: 52
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a21a4afc28b077e0800000000000000
+      internalID: -1769712150239374679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_4
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 29
+        width: 52
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e5d45486bf29ca0800000000000000
+      internalID: -6011466127328321907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_5
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 26
+        width: 47
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29fb928cd24f8f5d0800000000000000
+      internalID: -3028402271937773678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_6
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 26
+        width: 48
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e140eb4aeb9be460800000000000000
+      internalID: 7272077453917438440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_7
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 30
+        width: 62
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6156b0dca8cedeb0800000000000000
+      internalID: -4693093117111938706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_8
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 30
+        width: 62
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f8f649af65d49c0800000000000000
+      internalID: -3941398464647164085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_9
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 34
+        width: 68
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d1456db1423a4460800000000000000
+      internalID: 7226643810001174999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_10
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 31
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1e86037bb6f70430800000000000000
+      internalID: 3749236499758353947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_11
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 31
+        width: 48
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 944159c67bb5c1eb0800000000000000
+      internalID: -4747819063796493239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_12
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 33
+        width: 39
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59462b28912677ac0800000000000000
+      internalID: -3857506694113106795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_13
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 33
+        width: 52
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e7cd83b72a670d90800000000000000
+      internalID: -7131614766169208861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_14
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 44
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34f975f11884e1950800000000000000
+      internalID: 6421649838090723139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_15
+      rect:
+        serializedVersion: 2
+        x: 1946
+        y: 44
+        width: 70
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6244a097819b88f0800000000000000
+      internalID: -537175719107345810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_16
+      rect:
+        serializedVersion: 2
+        x: 2074
+        y: 50
+        width: 68
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ddc2895884dec180800000000000000
+      internalID: -9093096915532067370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_17
+      rect:
+        serializedVersion: 2
+        x: 2206
+        y: 33
+        width: 65
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0ed8d8f240014aa0800000000000000
+      internalID: -6178656926132806131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_18
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 29
+        width: 51
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b81fb5442b1b582d0800000000000000
+      internalID: -3277017774632996469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_19
+      rect:
+        serializedVersion: 2
+        x: 2471
+        y: 29
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bf0ed78bbbb15920800000000000000
+      internalID: 2977367242781364145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RougeRefBwRoll_20
+      rect:
+        serializedVersion: 2
+        x: 2596
+        y: 29
+        width: 51
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0ac16720f606b10800000000000000
+      internalID: 1972698693150482624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f583a15f688210c4bb0fef9d73198a5a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RougeRefBwRoll_0: -8155714333971147291
+      RougeRefBwRoll_1: -49389204147207786
+      RougeRefBwRoll_10: 3749236499758353947
+      RougeRefBwRoll_11: -4747819063796493239
+      RougeRefBwRoll_12: -3857506694113106795
+      RougeRefBwRoll_13: -7131614766169208861
+      RougeRefBwRoll_14: 6421649838090723139
+      RougeRefBwRoll_15: -537175719107345810
+      RougeRefBwRoll_16: -9093096915532067370
+      RougeRefBwRoll_17: -6178656926132806131
+      RougeRefBwRoll_18: -3277017774632996469
+      RougeRefBwRoll_19: 2977367242781364145
+      RougeRefBwRoll_2: -7089852359905857477
+      RougeRefBwRoll_20: 1972698693150482624
+      RougeRefBwRoll_3: -1769712150239374679
+      RougeRefBwRoll_4: -6011466127328321907
+      RougeRefBwRoll_5: -3028402271937773678
+      RougeRefBwRoll_6: 7272077453917438440
+      RougeRefBwRoll_7: -4693093117111938706
+      RougeRefBwRoll_8: -3941398464647164085
+      RougeRefBwRoll_9: 7226643810001174999
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

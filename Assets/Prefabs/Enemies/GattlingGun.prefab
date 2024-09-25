@@ -229,3 +229,4 @@ MonoBehaviour:
   FirePoint: {fileID: 3315930892354599957}
   Input: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  key: 0

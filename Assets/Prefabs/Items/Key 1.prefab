@@ -143,6 +143,7 @@ MonoBehaviour:
   FirePoint: {fileID: 0}
   Input: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  key: 0
 --- !u!114 &4528538775038759314
 MonoBehaviour:
   m_ObjectHideFlags: 0

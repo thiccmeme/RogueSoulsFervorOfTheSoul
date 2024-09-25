@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _crosshairClamp = FindObjectOfType<CrosshairClamp>();
         _crosshairHandle = FindObjectOfType<CrosshairFade>();
@@ -284,6 +284,7 @@ public class PlayerController : MonoBehaviour
         {
             if (canRoll && _rb.linearVelocity != Vector2.zero)
             {
+                _animator.SetBool("walk", false);
                 _animator.SetTrigger("Dodge");
                 StartCoroutine(BeginDodgeRollDuration());
                 canRoll = false;
@@ -317,6 +318,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(BeginDodgeRollCoolDown());
         //ToggleDashSmear(false);
         _rolling = false;
+        _animator.SetTrigger("walk");
     }
 
     IEnumerator BeginDodgeRollCoolDown()
