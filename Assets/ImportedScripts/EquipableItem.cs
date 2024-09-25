@@ -39,6 +39,8 @@ public class EquipableItem : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     public int key;
+
+    public InventoryButton inventoryButton;
     
     
     
@@ -110,6 +112,7 @@ public class EquipableItem : MonoBehaviour
         if (_itemType == ItemType.Key && _door!= null)
         {
             eventManager2.RunKeyUsedEvent();
+            inventoryButton.Destroy();
             _door.UnlockDoor();
             _door.OpenDoor();
             Destroy(this.gameObject);

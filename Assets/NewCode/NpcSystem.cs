@@ -13,11 +13,11 @@ public class NpcSystem : MonoBehaviour
 
     [SerializeField] private SpriteRenderer sprite;
 
-    [SerializeField] protected DialogSo dialogGood;
-    [SerializeField] protected DialogSo dialogBad;
+    [SerializeField] public DialogSo dialogGood;
+    [SerializeField] public DialogSo dialogBad;
     [SerializeField] protected DialogSo dialogNeutral;
     [SerializeField] protected string[] dialogassets;
-    [SerializeField] protected DialogSo CurrentSo;
+    [SerializeField] public DialogSo CurrentSo;
     [SerializeField] protected bool triggered = false;
     [SerializeField] protected int PositiveTreshHold;
     [SerializeField] protected int NegativeTreshHold;

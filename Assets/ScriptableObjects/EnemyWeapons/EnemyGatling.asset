@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00dc9f7a0d09c5a45970b03bbbf4a401, type: 3}
   m_Name: EnemyGatling
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 5c37b600786a9db479fcc5ad81caedb6, type: 3}
+  _sprite: {fileID: 3873830231333678430, guid: 16baabbbb79ee85478b9026cd136e332, type: 3}
   _material: {fileID: 0}
   equipableItem: {fileID: -2841583259698460135, guid: 4a6843d8d5fafec4abf797144b0a2864, type: 3}
   inventoryButton: {fileID: 0}

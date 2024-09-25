@@ -46,7 +46,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (_itemSo.itemType == ItemType.Key)
         {
-            _eventManager2.KeyUsed += Destroy;
+            
         }
     }
 
@@ -84,6 +84,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             EquipableItem Guntemp = Instantiate(_equipable, _transform);
             Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
+            Guntemp.inventoryButton = this;
             _eventManager2.RunEquipedEvent();
         }
         else

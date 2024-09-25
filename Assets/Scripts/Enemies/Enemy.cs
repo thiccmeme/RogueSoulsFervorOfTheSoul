@@ -92,6 +92,8 @@ public class Enemy : EntityStats
             Speed = 0;
             _agent.speed = 0;
             type = NpcType.Passive;
+            npc.dialogGood.resetDialog();
+            npc.CurrentSo = npc.dialogGood;
             //enemySprite = mercySprite;
             enemySprite.SetActive(false);
             mercySprite.SetActive(true);
