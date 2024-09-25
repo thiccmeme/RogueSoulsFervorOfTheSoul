@@ -47,7 +47,10 @@ public class PlayerInputHandler : MonoBehaviour
                 characterInput.CharacterActions.DodgeRoll.started += i => playerController?.HandleDodgeRollInput();
                 characterInput.CharacterActions.Interact.started += i => playerController?.Interact();
                 characterInput.CharacterActions.Interact.started += i => npcSystem?.OnTalk();
+
+                
                 characterInput.CharacterActions.Unequip.performed += i => _Equipable.OnUnequip();
+                
                 
                     
                 
@@ -79,6 +82,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
     }
+    
 
     public void UpdateNpcSystemReference(NpcSystem npcsystem)
     {

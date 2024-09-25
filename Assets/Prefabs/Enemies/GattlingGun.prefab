@@ -230,3 +230,4 @@ MonoBehaviour:
   Input: {fileID: 0}
   spriteRenderer: {fileID: 0}
   key: 0
+  inventoryButton: {fileID: 0}

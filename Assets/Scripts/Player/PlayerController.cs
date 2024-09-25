@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -156,7 +157,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private SpriteRenderer spriteRenderer;
     [SerializeField]private Color originalColor;
     [SerializeField] private SpriteRenderer eyes;
-
+    [SerializeField] private float colorincrease;
     #endregion
 
     #region Effects
@@ -294,7 +295,9 @@ public class PlayerController : MonoBehaviour
 
     public void HonorDecreased()
     {
-        eyes.color = Color.red;
+        colorincrease += 0.1f;
+        eyes.color = Color.Lerp(Color.white, Color.red, colorincrease);
+        
     }
 
     public void HonorIncreased()

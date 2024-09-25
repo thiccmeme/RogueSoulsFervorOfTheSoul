@@ -55,6 +55,7 @@ public class EquipableItem : MonoBehaviour
         _door = FindFirstObjectByType<Door>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
         itemInventory = FindFirstObjectByType<ItemInventory>();
+        Input = FindFirstObjectByType<PlayerInputHandler>(); 
         //eventManager2._itemDestroyed += OnUnEquip;
         //eventManager2._itemEquip += Requip;
         
@@ -68,12 +69,12 @@ public class EquipableItem : MonoBehaviour
             weapon.firePoint = FirePoint;
             WeaponOffsetHandle weaponOffsetHandle = FindFirstObjectByType<WeaponOffsetHandle>();
             weaponOffsetHandle.SetCurrentWeapon();
-            Input = FindFirstObjectByType<PlayerInputHandler>(); 
             weapon.EnableShootInput();
             Input.UpdateItemRefernce();
             Input.UpdatePlayerWeaponReference();
         }
         _itemManager.InteractEvent += UseKey;
+        Input.UpdateItemRefernce();
     }
 
     private void Awake()
@@ -135,7 +136,6 @@ public class EquipableItem : MonoBehaviour
     {
         if(canOpen)
         {
-            Debug.Log("KEY");
             _itemManager.RunInteract();
         }
         else
@@ -147,10 +147,13 @@ public class EquipableItem : MonoBehaviour
     
     public void OnUnequip()
     {
-        Debug.Log("fuck");
-        Input.UpdatePlayerWeaponReference();
-        weapon.DisableShootInput();
-       Destroy(this.gameObject);
+        if (weapon != null)
+        {
+            Input.UpdatePlayerWeaponReference();
+            weapon.DisableShootInput();
+            Destroy(this.gameObject);
+        }
+
     }
 
 }
