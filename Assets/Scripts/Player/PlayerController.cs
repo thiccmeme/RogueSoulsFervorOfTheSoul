@@ -296,13 +296,13 @@ public class PlayerController : MonoBehaviour
     public void HonorDecreased()
     {
         colorincrease += 0.1f;
-        eyes.color = Color.Lerp(Color.white, Color.red, colorincrease);
-        
+        eyes.color = Color.Lerp(eyes.color, Color.red, colorincrease);
     }
 
     public void HonorIncreased()
     {
-        eyes.color = Color.white;
+        colorincrease += 0.1f;
+        eyes.color = Color.Lerp(eyes.color, Color.white,  colorincrease);
     }
 
     Vector2 PlayerMovement()
