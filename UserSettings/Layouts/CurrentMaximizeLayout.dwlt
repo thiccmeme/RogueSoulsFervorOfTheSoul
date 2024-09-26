@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 16479
+  controlID: 23534
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 16433
+  controlID: 23499
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 16424
+  controlID: 23477
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -242,10 +242,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 892}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fa56ffffaef9ffffd0f9ffff50faffff86faffffa8faffffe6faffff56b8000074b8000094b80000deb80000e4b80000feb8000060b90000cab90000deb900003eba000040ba000056ba000060ba00006eba0000e2ba00001abb00003abb0000
+      m_ExpandedIDs: aef9ffff50faffff86faffffe6faffff56b800008eb80000deb8000060b90000cab9000040ba000056ba000060ba00006eba0000e0ba0000e2ba00003abb0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -893,9 +893,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -14.375535, y: -1.4705698, z: 0.07714381}
+    m_Target: {x: 6.863447, y: 18.158508, z: 0.19362746}
     speed: 2
-    m_Value: {x: -14.375535, y: -1.4705698, z: 0.07714381}
+    m_Value: {x: 6.863447, y: 18.158508, z: 0.19362746}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -945,9 +945,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.580114
+    m_Target: 7.5359793
     speed: 2
-    m_Value: 5.580114
+    m_Value: 7.5359793
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -3113,7 +3113,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -3122,14 +3122,14 @@ MonoBehaviour:
     y: 675
     width: 1508
     height: 306
-  m_MinSize: {x: 231, y: 276}
-  m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 13}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 13}
   - {fileID: 14}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -3177,7 +3177,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Player
+    - Assets/ScriptableObjects/Dialog/Knight
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -3187,15 +3187,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Player
+  - Assets/ScriptableObjects/Dialog/Knight
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\theworkhorse\Desktop\C#\RogueSoulsFervorOfTheSoul\RogueSoulsFervorOfTheSoul
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 412}
-    m_SelectedIDs: 66c30000
-    m_LastClickedID: 50022
+    scrollPos: {x: 0, y: 316}
+    m_SelectedIDs: ccc30000
+    m_LastClickedID: 50124
     m_ExpandedIDs: 00000000c6c10000c8c10000cac10000ccc1000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -3251,8 +3251,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 1a560100
+    m_LastClickedInstanceID: 87578
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300004abb00002ab9000056ba0000a0dc00007e020000cedf000026b6000024040000eec00000b6bd0000a6bd000022c3000082c3000092b9000078ce000078c000007a660200c0bc0000
     m_RenameOverlay:
@@ -3389,7 +3389,7 @@ MonoBehaviour:
     m_CachedPref: -322
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 47712
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -3438,7 +3438,7 @@ MonoBehaviour:
     m_CachedPref: -322
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 47712
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 1

@@ -16,6 +16,8 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] public DialogSo dialogGood;
     [SerializeField] public DialogSo dialogBad;
     [SerializeField] protected DialogSo dialogNeutral;
+    [SerializeField] protected DialogSo questDialog;
+    [SerializeField] protected DialogSo alternateQuestDialog;
     [SerializeField] protected string[] dialogassets;
     [SerializeField] public DialogSo CurrentSo;
     [SerializeField] protected bool triggered = false;
@@ -23,9 +25,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected int NegativeTreshHold;
     [SerializeField] protected int currentHonor;
     [SerializeField] protected PlayerInputHandler playerInputHandler;
-    [SerializeField] protected GameObject goodReward;
-    [SerializeField] protected GameObject badReward;
-    [SerializeField] protected GameObject neutralReward;
+    [SerializeField] protected GameObject reward;
     [SerializeField] protected bool finished = false;
     protected bool targetInRange;
     [SerializeField] protected Enemy enemy;
@@ -39,6 +39,8 @@ public class NpcSystem : MonoBehaviour
     protected bool hasDecreased = false; 
     public GameObject deathItem;
     private PlayerController player;
+    private bool QuestComplete;
+    private bool QuestBegun;
 
     private EventManager2 eventManager2;
     
@@ -63,6 +65,7 @@ public class NpcSystem : MonoBehaviour
             text.enabled = true;
         }
     }
+    
 
     private void OnTriggerExit2D(Collider2D other)// stop showing text
     {
@@ -73,6 +76,33 @@ public class NpcSystem : MonoBehaviour
             triggered = false;
         }
         
+    }
+
+    public void ChangeQuestDialog()// run on event that can be given on enemy death or quest completion as reward, only run if npc has been talked to before to prevent dialog from changing otherwise
+    {
+        if (QuestBegun)
+        {
+            index = 0;
+            finished = false;
+            questDialog.resetDialog();
+            CurrentSo = questDialog;
+            dialogassets = CurrentSo.dialog;
+            text.text = CurrentSo.currentDialog;
+        }
+        else
+        {
+            index = 0;
+            finished = false;
+            alternateQuestDialog.resetDialog();
+            CurrentSo = alternateQuestDialog;
+            dialogassets = CurrentSo.dialog;
+            text.text = CurrentSo.currentDialog;
+        }
+    }
+
+    public void AlternateQuestDialog()
+    {
+
     }
 
     private void becomeAgressive()// if npc "sees" player kill npc turn agressive regardless of honour
@@ -114,15 +144,25 @@ public class NpcSystem : MonoBehaviour
         }
         else
         {
-            if (finished)
+            finished = true;
+            if (finished && type != NpcType.Questing)
             {
                 return;
             }
-            else if (type == NpcType.Questing || type == NpcType.Neutral)
+            if (type == NpcType.Questing && QuestComplete)
             {
-                Reward();
+                return;
             }
-            finished = true;
+            else if (type == NpcType.Questing && finished)
+            {
+                QuestBegun = true;
+                if (CurrentSo == alternateQuestDialog || CurrentSo == questDialog) ;
+                {
+                    QuestComplete = true;
+                    Reward();
+                }
+            }
+            
         }
 
     }
@@ -144,22 +184,10 @@ public class NpcSystem : MonoBehaviour
 
     public void Reward()
     {
-        if (currentHonor >= PositiveTreshHold && goodReward != null)
+        if ( reward != null)
         {
-            var good = Instantiate(goodReward, player.transform);
+            var good = Instantiate(reward, transform);
              Debug.Log(good);
-        }
-
-        if (currentHonor == 0 && neutralReward != null)
-        {
-            var good = Instantiate(neutralReward, new Vector3(transform.position.x, transform.position.y,transform.position.z), quaternion.Euler(0,0,0));
-            Debug.Log("neutral");
-        }
-
-        if (currentHonor <= NegativeTreshHold && badReward!= null)
-        {
-            var bad = Instantiate(badReward, new Vector3(transform.position.x, transform.position.y,transform.position.z), quaternion.Euler(0,0,0));
-            Debug.Log(bad);
         }
     }
     
@@ -248,7 +276,7 @@ public class NpcSystem : MonoBehaviour
             dialogNeutral.index = 0;
         }
         type = enemy.type;
-        if (type == NpcType.Neutral || type == NpcType.Passive || type == NpcType.Questing)
+        if (type == NpcType.Neutral || type == NpcType.Passive)
         {
             CurrentSo = dialogNeutral;
             eventManager2._honorDecreased += HonorNegativeThreshold;
@@ -273,6 +301,12 @@ public class NpcSystem : MonoBehaviour
         {
             CurrentSo = dialogBad;
             text.color = Color.red;
+        }
+
+        if (type == NpcType.Questing)
+        {
+            eventManager2._ManagedEvent += ChangeQuestDialog;
+            CurrentSo = dialogNeutral;
         }
         
         
