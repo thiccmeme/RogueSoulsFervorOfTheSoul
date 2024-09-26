@@ -578,6 +578,8 @@ MonoBehaviour:
   dialogGood: {fileID: 0}
   dialogBad: {fileID: 11400000, guid: ab72c3672b1b1794c8c4ea39fec5abe5, type: 2}
   dialogNeutral: {fileID: 0}
+  questDialog: {fileID: 0}
+  alternateQuestDialog: {fileID: 0}
   dialogassets: []
   CurrentSo: {fileID: 0}
   triggered: 0
@@ -585,9 +587,7 @@ MonoBehaviour:
   NegativeTreshHold: 0
   currentHonor: 0
   playerInputHandler: {fileID: 0}
-  goodReward: {fileID: 0}
-  badReward: {fileID: 0}
-  neutralReward: {fileID: 0}
+  reward: {fileID: 0}
   finished: 0
   enemy: {fileID: 0}
   target: {fileID: 0}

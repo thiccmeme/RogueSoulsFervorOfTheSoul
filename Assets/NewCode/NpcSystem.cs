@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -41,6 +42,8 @@ public class NpcSystem : MonoBehaviour
     private PlayerController player;
     private bool QuestComplete;
     private bool QuestBegun;
+    [SerializeField]private bool canReward;
+    public List<Enemy> enemies;
 
     private EventManager2 eventManager2;
     
@@ -48,6 +51,16 @@ public class NpcSystem : MonoBehaviour
     {
         eventManager2.RunNextEvent();
     }
+    
+    public void NotifiyQuestNpc(Enemy enemy)
+    {
+        enemies.Remove(enemy);
+        if (enemies.Count <= 0)
+        {
+            ChangeQuestDialog();
+        }
+    }
+    
 
     public void Interact()// call the index function
     {
@@ -63,6 +76,11 @@ public class NpcSystem : MonoBehaviour
             
             triggered = true;
             text.enabled = true;
+        }
+
+        if (other.GetComponent<PlayerProjectile>() && type == NpcType.Questing)
+        {
+            becomeAgressive();
         }
     }
     
@@ -91,6 +109,7 @@ public class NpcSystem : MonoBehaviour
         }
         else
         {
+            Debug.Log("alternate");
             index = 0;
             finished = false;
             alternateQuestDialog.resetDialog();
@@ -142,7 +161,28 @@ public class NpcSystem : MonoBehaviour
             CurrentSo.IncreaseIndex();
             text.text = CurrentSo.currentDialog;
         }
+        else if (type != NpcType.Questing)
+        {
+            finished = true;
+        }
         else
+        {
+            QuestBegun = true;
+        }
+
+        if (CurrentSo == questDialog || CurrentSo == alternateQuestDialog)
+        {
+            if (index >= dialogassets.Length)
+            {
+                Reward();
+                finished = true;
+            }
+        }
+        
+        
+        
+        
+        /*else
         {
             finished = true;
             if (finished && type != NpcType.Questing)
@@ -156,14 +196,19 @@ public class NpcSystem : MonoBehaviour
             else if (type == NpcType.Questing && finished)
             {
                 QuestBegun = true;
-                if (CurrentSo == alternateQuestDialog || CurrentSo == questDialog) ;
+                if (CurrentSo == alternateQuestDialog && finished || CurrentSo == questDialog && finished) ;
                 {
                     QuestComplete = true;
-                    Reward();
+                    //Reward();
                 }
-            }
-            
-        }
+                if (canReward)
+                {
+                    CurrentSo = questDialog;
+                    dialogassets = CurrentSo.dialog;
+                    text.text = CurrentSo.currentDialog;
+                }
+            }*/
+        
 
     }
 
@@ -249,6 +294,7 @@ public class NpcSystem : MonoBehaviour
             hasDecreased = true;
         }
     }
+    
 
     private void Start()
     {
@@ -274,6 +320,18 @@ public class NpcSystem : MonoBehaviour
         {
             dialogNeutral.resetDialog();
             dialogNeutral.index = 0;
+        }
+
+        if (questDialog != null)
+        {
+            questDialog.resetDialog();
+            questDialog.index = 0;
+        }
+
+        if (alternateQuestDialog != null)
+        {
+            alternateQuestDialog.resetDialog();
+            alternateQuestDialog.index = 0;
         }
         type = enemy.type;
         if (type == NpcType.Neutral || type == NpcType.Passive)
@@ -305,7 +363,6 @@ public class NpcSystem : MonoBehaviour
 
         if (type == NpcType.Questing)
         {
-            eventManager2._ManagedEvent += ChangeQuestDialog;
             CurrentSo = dialogNeutral;
         }
         

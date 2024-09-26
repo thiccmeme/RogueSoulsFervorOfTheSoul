@@ -533,6 +533,8 @@ MonoBehaviour:
   dialogGood: {fileID: 11400000, guid: 7688a4135b864694baf49f5e3afbf3ca, type: 2}
   dialogBad: {fileID: 11400000, guid: 4842b781436655f46adbcdaf4416d943, type: 2}
   dialogNeutral: {fileID: 11400000, guid: e1a7f37e48e4f0c49875e6af8cbaf689, type: 2}
+  questDialog: {fileID: 0}
+  alternateQuestDialog: {fileID: 0}
   dialogassets: []
   CurrentSo: {fileID: 0}
   triggered: 0
@@ -540,9 +542,7 @@ MonoBehaviour:
   NegativeTreshHold: -1
   currentHonor: 0
   playerInputHandler: {fileID: 0}
-  goodReward: {fileID: 0}
-  badReward: {fileID: 4959572769418919477, guid: 793c38c432d9796428b7d4c4df4194ec, type: 3}
-  neutralReward: {fileID: 4889287403821373087, guid: decb0f18cba5aa844ab6b8473b035059, type: 3}
+  reward: {fileID: 0}
   finished: 0
   enemy: {fileID: 0}
   target: {fileID: 0}

@@ -38,6 +38,7 @@ public class Enemy : EntityStats
     [SerializeField] protected GameObject enemySprite;
     [SerializeField] protected GameObject mercySprite;
     [SerializeField] protected NpcSystem npc;
+    [SerializeField] public NpcSystem npcNotify;
 
     #endregion
     
@@ -79,6 +80,12 @@ public class Enemy : EntityStats
         {
             enemyDoor.NotifyEnemyDied(this);
             
+        }
+
+        if (npcNotify != null && Health <= 0)
+        {
+            npcNotify.NotifiyQuestNpc(this);
+            Debug.Log(this);
         }
         
         if(_deathEffect && Health <= 0)
