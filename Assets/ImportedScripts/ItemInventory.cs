@@ -21,7 +21,7 @@ public class ItemInventory : MonoBehaviour
 
     public void AddItem(ItemSO item)
     {
-        Debug.Log(_itemSo);
+        //Debug.Log(_itemSo);
         _itemSo = item;
         key++;
         bool exists = Buttons.TryAdd(_itemSo, key);
@@ -33,7 +33,7 @@ public class ItemInventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("allready exists");
+            //Debug.Log("allready exists");
         }
     }
 

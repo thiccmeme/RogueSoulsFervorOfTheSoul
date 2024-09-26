@@ -75,6 +75,8 @@ MonoBehaviour:
   MercyTreshold: 0
   enemySprite: {fileID: 5716581021536353009}
   mercySprite: {fileID: 0}
+  npc: {fileID: 0}
+  npcNotify: {fileID: 0}
 --- !u!195 &9208034460039396833
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,6 +162,8 @@ MonoBehaviour:
   dialogGood: {fileID: 11400000, guid: 16394efc674c08d469334a1ff3ac4692, type: 2}
   dialogBad: {fileID: 11400000, guid: c17f4225939257a488c33ea56cd17650, type: 2}
   dialogNeutral: {fileID: 11400000, guid: 1d87bbc1d440bd84fa1440447f11ad3e, type: 2}
+  questDialog: {fileID: 0}
+  alternateQuestDialog: {fileID: 0}
   dialogassets: []
   CurrentSo: {fileID: 0}
   triggered: 0
@@ -167,18 +171,19 @@ MonoBehaviour:
   NegativeTreshHold: -1
   currentHonor: 0
   playerInputHandler: {fileID: 0}
-  goodReward: {fileID: 6593655442667879080, guid: c9727c8140d419d4e8188888650186ad, type: 3}
-  badReward: {fileID: 200825223787528858, guid: 358d9844224c3f4429164c012dbe34a7, type: 3}
-  neutralReward: {fileID: 0}
+  reward: {fileID: 0}
   finished: 0
   enemy: {fileID: 0}
   target: {fileID: 0}
   detectionRadius: 4
-  index: 1
+  index: 0
   enemyGun: {fileID: 1004163354777946140, guid: 8ad349ced8469a74ea265a41792c2ef2, type: 3}
   agent: {fileID: 0}
   font: {fileID: 0}
   type: 0
+  deathItem: {fileID: 0}
+  canReward: 0
+  enemies: []
 --- !u!1 &608555998166362823
 GameObject:
   m_ObjectHideFlags: 0

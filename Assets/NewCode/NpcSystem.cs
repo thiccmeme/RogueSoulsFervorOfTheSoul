@@ -32,7 +32,7 @@ public class NpcSystem : MonoBehaviour
     [SerializeField] protected Enemy enemy;
     [SerializeField] protected Transform target;
     [SerializeField] protected float detectionRadius = 12;
-    public int index = 0;
+    public int index = 1;
     [SerializeField] protected PlayerWeapon enemyGun;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected TMP_FontAsset font;
@@ -40,8 +40,8 @@ public class NpcSystem : MonoBehaviour
     protected bool hasDecreased = false; 
     public GameObject deathItem;
     private PlayerController player;
-    private bool QuestComplete;
-    private bool QuestBegun;
+    private bool questComplete;
+    [SerializeField]private bool QuestBegun;
     [SerializeField]private bool canReward;
     public List<Enemy> enemies;
 
@@ -102,7 +102,7 @@ public class NpcSystem : MonoBehaviour
         {
             index = 0;
             finished = false;
-            questDialog.resetDialog();
+            questDialog.ResetDialog();
             CurrentSo = questDialog;
             dialogassets = CurrentSo.dialog;
             text.text = CurrentSo.currentDialog;
@@ -112,7 +112,7 @@ public class NpcSystem : MonoBehaviour
             Debug.Log("alternate");
             index = 0;
             finished = false;
-            alternateQuestDialog.resetDialog();
+            alternateQuestDialog.ResetDialog();
             CurrentSo = alternateQuestDialog;
             dialogassets = CurrentSo.dialog;
             text.text = CurrentSo.currentDialog;
@@ -126,7 +126,7 @@ public class NpcSystem : MonoBehaviour
 
     private void becomeAgressive()// if npc "sees" player kill npc turn agressive regardless of honour
     {
-        Debug.Log("agressive");
+        //Debug.Log("agressive");
         if (targetInRange && agent != null)
         {
             type = NpcType.Aggressive;
@@ -153,73 +153,44 @@ public class NpcSystem : MonoBehaviour
 
     private void IndexText()// go to next piece of text
     {
-
-        Debug.Log(dialogassets.Length);
-        if (index >= 0 && index < dialogassets.Length && finished == false)
+        if ( index < dialogassets.Length)
         {
             index++;
             CurrentSo.IncreaseIndex();
             text.text = CurrentSo.currentDialog;
-        }
-        else if (type != NpcType.Questing)
-        {
-            finished = true;
+            Debug.Log(index);
+            Debug.Log(dialogassets.Length);
         }
         else
         {
-            QuestBegun = true;
-        }
-
-        if (CurrentSo == questDialog || CurrentSo == alternateQuestDialog)
-        {
-            if (index >= dialogassets.Length)
+            Debug.Log("fuckme");
+            if (type == NpcType.Questing)
             {
-                Reward();
-                finished = true;
-            }
-        }
-        
-        
-        
-        
-        /*else
-        {
-            finished = true;
-            if (finished && type != NpcType.Questing)
-            {
-                return;
-            }
-            if (type == NpcType.Questing && QuestComplete)
-            {
-                return;
-            }
-            else if (type == NpcType.Questing && finished)
-            {
+                
                 QuestBegun = true;
-                if (CurrentSo == alternateQuestDialog && finished || CurrentSo == questDialog && finished) ;
-                {
-                    QuestComplete = true;
-                    //Reward();
-                }
                 if (canReward)
                 {
-                    CurrentSo = questDialog;
-                    dialogassets = CurrentSo.dialog;
-                    text.text = CurrentSo.currentDialog;
+                    QuestBegun = true;
+                    ChangeQuestDialog();
                 }
-            }*/
-        
-
+                if (CurrentSo == questDialog || CurrentSo == alternateQuestDialog)
+                {
+                    Reward();
+                }
+                
+            }
+            
+        }
     }
 
     public void HonorNegativeThreshold()
     {
         index = 0;
         currentHonor--;
-        Debug.Log(currentHonor);
+        //Debug.Log(currentHonor);
         if (currentHonor <= NegativeTreshHold && dialogBad != null)
         {
-            dialogBad.resetDialog();
+            dialogBad.ResetDialog();
             CurrentSo = dialogBad;
             text.text = CurrentSo.currentDialog;
             text.color = Color.red;
@@ -229,10 +200,12 @@ public class NpcSystem : MonoBehaviour
 
     public void Reward()
     {
-        if ( reward != null)
+        Debug.Log("good");
+        if ( reward != null && questComplete == false)
         {
             var good = Instantiate(reward, transform);
-             Debug.Log(good);
+            questComplete = true;
+
         }
     }
     
@@ -240,10 +213,10 @@ public class NpcSystem : MonoBehaviour
     {
         index = 0;
         currentHonor++;
-        Debug.Log(currentHonor);
+        //Debug.Log(currentHonor);
         if (currentHonor >= PositiveTreshHold && dialogGood != null)
         {
-            dialogGood.resetDialog();
+            dialogGood.ResetDialog();
             CurrentSo = dialogGood;
             text.text = CurrentSo.currentDialog;
             text.color = Color.white;
@@ -257,8 +230,8 @@ public class NpcSystem : MonoBehaviour
         if (currentHonor == 0 && dialogNeutral != null)
         {
             
-            dialogNeutral.resetDialog();
-            Debug.Log(dialogNeutral.index);
+            dialogNeutral.ResetDialog();
+            //Debug.Log(dialogNeutral.index);
             CurrentSo = dialogNeutral;
             text.text = CurrentSo.currentDialog;
             text.color = Color.black;
@@ -290,7 +263,7 @@ public class NpcSystem : MonoBehaviour
         if (hasDecreased == false) 
         {
             currentHonor--;
-            Debug.Log("decrease");
+            //Debug.Log("decrease");
             hasDecreased = true;
         }
     }
@@ -306,31 +279,31 @@ public class NpcSystem : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (dialogGood != null)
         {
-            dialogGood.resetDialog();
+            dialogGood.ResetDialog();
             dialogGood.index = 0;
         }
 
         if (dialogBad != null)
         {
-            dialogBad.resetDialog();
+            dialogBad.ResetDialog();
             dialogBad.index = 0;
         }
 
         if (dialogNeutral != null)
         {
-            dialogNeutral.resetDialog();
+            dialogNeutral.ResetDialog();
             dialogNeutral.index = 0;
         }
 
         if (questDialog != null)
         {
-            questDialog.resetDialog();
+            questDialog.ResetDialog();
             questDialog.index = 0;
         }
 
         if (alternateQuestDialog != null)
         {
-            alternateQuestDialog.resetDialog();
+            alternateQuestDialog.ResetDialog();
             alternateQuestDialog.index = 0;
         }
         type = enemy.type;

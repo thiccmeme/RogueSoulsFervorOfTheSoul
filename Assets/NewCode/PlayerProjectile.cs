@@ -80,7 +80,7 @@ public class PlayerProjectile : MonoBehaviour
             {
                 hasHit = true;
                 var enemyToHit = other.gameObject.GetComponent<EntityStats>();
-                Debug.Log(bulletDamage);
+                //Debug.Log(bulletDamage);
                 enemyToHit.TakeDamage(bulletDamage);
             }
 

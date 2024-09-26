@@ -99,7 +99,7 @@ public class Enemy : EntityStats
             Speed = 0;
             _agent.speed = 0;
             type = NpcType.Passive;
-            npc.dialogGood.resetDialog();
+            npc.dialogGood.ResetDialog();
             npc.CurrentSo = npc.dialogGood;
             //enemySprite = mercySprite;
             enemySprite.SetActive(false);
@@ -108,7 +108,7 @@ public class Enemy : EntityStats
         
         if (type == NpcType.Neutral && targetInRange)
         {
-            Debug.Log("switchSprite");
+            //Debug.Log("switchSprite");
             type = NpcType.Aggressive;
             if (mercySprite != null)
             {
