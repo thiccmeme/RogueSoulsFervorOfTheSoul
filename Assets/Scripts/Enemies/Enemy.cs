@@ -75,6 +75,17 @@ public class Enemy : EntityStats
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        
+        if (npcNotify != null && Health <= 0)
+        {
+            npcNotify.NotifiyQuestNpc(this);
+            Debug.Log(this);
+            Destroy(this.gameObject);
+        }
+        else if (Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     
         if (enemyDoor != null && Health <= 0)
         {
@@ -82,11 +93,7 @@ public class Enemy : EntityStats
             
         }
 
-        if (npcNotify != null && Health <= 0)
-        {
-            npcNotify.NotifiyQuestNpc(this);
-            Debug.Log(this);
-        }
+
         
         if(_deathEffect && Health <= 0)
         {

@@ -55,19 +55,18 @@ public class EntityStats : MonoBehaviour
         if (Health <= 0 && type == NpcType.Boss)
         {
             eventManager2.RunHonorincreasedEvent();
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
         if (Health <= 0 && type == NpcType.Aggressive)
         {
             eventManager2.RunHonorincreasedEvent();
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
         if (Health <= 0 && type == NpcType.Passive || type == NpcType.Neutral || type == NpcType.Questing)
         {
             eventManager2.RunHonorDecreasedEvent();
-            Destroy(this.gameObject);
             
         }
         

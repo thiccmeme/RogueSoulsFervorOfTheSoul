@@ -55,10 +55,8 @@ public class NpcSystem : MonoBehaviour
     public void NotifiyQuestNpc(Enemy enemy)
     {
         enemies.Remove(enemy);
-        if (enemies.Count <= 0)
-        {
-            ChangeQuestDialog();
-        }
+        ChangeQuestDialog();
+        Debug.Log("quest");
     }
     
 
@@ -107,7 +105,7 @@ public class NpcSystem : MonoBehaviour
             dialogassets = CurrentSo.dialog;
             text.text = CurrentSo.currentDialog;
         }
-        else
+        else if( alternateQuestDialog != null)
         {
             Debug.Log("alternate");
             index = 0;
