@@ -55,10 +55,31 @@ public class WarpObject : MonoBehaviour
         // Restart the coroutine for the reverse animation
         if (hasRanTwice != true)
         {
-            StartCoroutine(ScaleCoroutine());
+            StartCoroutine(ReturnCoroutine());
             hasRanTwice = true;
             Invoke("Stop", duration);
         }
+    }
+
+    private IEnumerator ReturnCoroutine()
+    {
+                float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            Vector3 newScale = isScalingUp ? Vector3.Lerp(targetScale, initialScale, t) : Vector3.Lerp(initialScale, targetScale, t);
+            targetTransform.localScale = newScale;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Toggle direction for the second half of the animation
+        isScalingUp = !isScalingUp;
+
+        // Wait for a brief pause before reversing the scale
+        yield return new WaitForSeconds(0.25f);
     }
 
     private void Stop()

@@ -15,10 +15,11 @@ MonoBehaviour:
   dialog:
   - Is that sorry thing your excuse for a weapon?
   - 'You need an upgrade my friend '
-  - You see I'm the village gunsmith, and have been having some trouble with a couple
-    smucks down at the bar
-  - let's say you took care of em for me, I could get you some better arms
-  currentDialog: You are not welcome here
+  - You see I'm the village gunsmith, And ive got a problem with some smuck in a
+    yellow coat...
+  - let's say you took care of em for me, I could get you a less sorry excuse for
+    a weapon
+  currentDialog: Is that sorry thing your excuse for a weapon?
   sprite: {fileID: 0}
-  DialogFinished: 0
+  dialogFinished: 0
   index: 0

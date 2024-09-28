@@ -16,18 +16,18 @@ MonoBehaviour:
   _material: {fileID: 0}
   equipableItem: {fileID: -6276983541757706462, guid: 73924073f4cbee742a10a7e8b385916f, type: 3}
   inventoryButton: {fileID: 7760182796335234173, guid: 88fb55c7b0d598843bda5b6eed32203e, type: 3}
-  <ItemName>k__BackingField: BigGun
+  <ItemName>k__BackingField: Double barrel
   itemType: 1
-  <ItemDescription>k__BackingField: A big fucking gun
+  <ItemDescription>k__BackingField: 'A classic in any souls arsenal '
   damage: 4
   fireRate: 1
   minspread: 5
   maxspread: 15
   firePoint: {fileID: 0}
-  bulletCount: 3
+  bulletCount: 2
   bulletLifeTime: 5
-  maxAmmo: 12
+  maxAmmo: 2
   bulletForce: 10
-  reloadTime: 2
+  reloadTime: 1
   bullet: {fileID: 6534043413483235779, guid: e67a2d488ce3b1e46a0dc4f7a752dc04, type: 3}
   timeToNextFire: 1
