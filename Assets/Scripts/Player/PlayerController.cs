@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     float _weaponRotationAngle;
 
     [SerializeField]
-    private PlayerWeapon _gun;
+    public PlayerWeapon _gun;
     [SerializeField]
     private Transform _gunLocation;
 
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         eventManager2 = FindFirstObjectByType<EventManager2>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<Playersprite>().spriteRenderer;
         originalColor = spriteRenderer.color;
         eventManager2._equipedEvent += SetGun;
         eventManager2._itemDestroyed += SetGun;
@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
         eventManager2._honorIncreased += HonorIncreased;
     }
 
-    void SetGun()
+    public void SetGun()
     {
         _gun = GetComponentInChildren<PlayerWeapon>();
     }

@@ -520,6 +520,7 @@ MonoBehaviour:
   enemySprite: {fileID: 4656456625591362094}
   mercySprite: {fileID: 7440943255881590764}
   npc: {fileID: 0}
+  npcNotify: {fileID: 0}
 --- !u!195 &1820994231128206894
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -625,6 +626,9 @@ MonoBehaviour:
   font: {fileID: 0}
   type: 4
   deathItem: {fileID: 0}
+  QuestBegun: 0
+  canReward: 0
+  enemies: []
 --- !u!1 &7440943255881590764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,5 +1055,6 @@ MonoBehaviour:
   _inputHandler: {fileID: 0}
   timeToNextFire: 0
   _EventManager2: {fileID: 0}
+  _uiHandler: {fileID: 0}
   CurrentAmmo: 0
   isReloading: 0

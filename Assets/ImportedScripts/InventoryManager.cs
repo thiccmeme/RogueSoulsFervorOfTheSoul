@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
         _eventManager2 = FindObjectOfType<EventManager2>();
         inputManagment = FindFirstObjectByType<InputManagment>();
         input = inputManagment.input;
-        _inventoryOpen = true;
+        //_inventoryOpen = true;
     }
 
     void OnInventory()

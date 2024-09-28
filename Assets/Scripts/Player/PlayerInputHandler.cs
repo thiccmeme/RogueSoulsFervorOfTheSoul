@@ -6,8 +6,6 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerController playerController;
     private RangedWeapon rangedWeapon;
-    private WeaponWheel weaponWheel;
-    private InventoryMenu inventoryMenu;
     private UIHandler uiHandler;
     private HUD hud;
     public PlayerWeapon playerWeapon;
@@ -21,9 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         uiHandler = FindObjectOfType<UIHandler>();
         hud = FindObjectOfType<HUD>();
-        inventoryMenu = FindObjectOfType<InventoryMenu>();
         UpdateRangedWeaponReference();
-        weaponWheel = FindObjectOfType<WeaponWheel>();
         playerWeapon = GetComponent<PlayerWeapon>();
         _Equipable = FindObjectOfType<EquipableItem>();
         npcSystem = FindFirstObjectByType<NpcSystem>();
@@ -35,9 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
                 characterInput.CharacterMovement.Movement.performed += i => playerController?.HandleMovementInput(i.ReadValue<Vector2>());
                 characterInput.CharacterMovement.AimMouse.performed += i => playerController?.HandleAimMouseInput(i.ReadValue<Vector2>());
                 characterInput.CharacterMovement.AimController.performed += i => playerController?.HandleAimControllerInput(i.ReadValue<Vector2>());
-
-                characterInput.CharacterMovement.AimMouse.performed += i => weaponWheel?.HandleArrowInputMouse(i.ReadValue<Vector2>());
-                characterInput.CharacterMovement.AimController.performed += i => weaponWheel?.HandleArrowInputController(i.ReadValue<Vector2>());
+                
                 characterInput.CharacterActions.Attack.started += i => rangedWeapon?.EnableShootInput();
                 characterInput.CharacterActions.Attack.canceled += i => rangedWeapon?.DisableShootInput();
                 
@@ -51,17 +45,10 @@ public class PlayerInputHandler : MonoBehaviour
                 
                 characterInput.CharacterActions.Unequip.performed += i => _Equipable.OnUnequip();
                 
-                
-                    
-                
-
-                characterInput.CharacterActions.OpenWeaponWheel.started += i => weaponWheel?.OpenWeaponWheel();
-                characterInput.CharacterActions.OpenWeaponWheel.canceled += i => weaponWheel?.CloseWeaponWheel();
             }
             
             characterInput.CharacterActions.PauseMenu.started += i => uiHandler?.TogglePauseMenu();
             characterInput.CharacterActions.StopInteract.started += i => hud?.CloseTextBox();
-            characterInput.CharacterActions.SlotBinding.performed += i => inventoryMenu?.RequestBindSlot(i.ReadValue<Vector2>());
         }
 
         characterInput.Enable();

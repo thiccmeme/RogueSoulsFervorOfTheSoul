@@ -9,13 +9,10 @@ public class UIHandler : MonoBehaviour
     GameObject _pauseMenu;
 
     [SerializeField]
-    GameObject _inventoryMenu, _optionsMenu, _gameMenu;
+    GameObject _optionsMenu, _gameMenu;
 
     [SerializeField]
     GameObject _heartsDisplay;
-
-    [SerializeField]
-    GameObject _playerStatsPanel;
 
     [SerializeField]
     Transform _heartDisplayHandlePosition;
@@ -28,44 +25,38 @@ public class UIHandler : MonoBehaviour
     TMP_Text _ammoCounter;
     [SerializeField]
     TMP_Text _maxAmmoNumber;
-    RangedWeapon _targetWeapon;
+    PlayerWeapon _targetWeapon;
 
     [SerializeField]
     GameObject _reloadingText;
 
-    [SerializeField]
-    TMP_Text _minorSoulCount, _majorSoulCount;
-
-    [SerializeField]
-    TMP_Text _smallKeyCount, _bossKeyCount;
-
-    [SerializeField]
-    Image _weaponPreviewImage;
-
-    [SerializeField]
-    Sprite _emptyHandSprite;
-
     PlayerStats _playerStats;
 
-    Inventory _playerInventory;
-
-    [SerializeField]
-    Image[] _slotImages;
+    public GameObject inventory;
+    public GameObject innerInventory;
+    private EventManager2 eventManager2;
 
     public bool IsPaused {  get; private set; }
 
     private void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
-        _playerInventory = FindObjectOfType<Inventory>();
     }
 
     private void Start()
     {
         CloseAllMenus();
-        _inventoryMenu.SetActive(true);
         _reloadingText.SetActive(false);
         _pauseMenu.SetActive(false);
+        inventory.transform.localScale = new Vector3(0, 0, 0);
+        //inventory.GetComponentInChildren<Image>().enabled = false;
+        //innerInventory.GetComponent<Image>().enabled = false;
+        eventManager2 = FindFirstObjectByType<EventManager2>();
+    }
+
+    public void SetGun(PlayerWeapon gun)
+    {
+        _targetWeapon = gun;
     }
 
     private void FixedUpdate()
@@ -90,25 +81,15 @@ public class UIHandler : MonoBehaviour
         {
             IsPaused = false;
             _pauseMenu.SetActive(false);
-            ChangeHealthDisplayParent(transform.parent);
+            //ChangeHealthDisplayParent(transform.parent);
             Time.timeScale = 1.0f;
         }
         else
         {
-            if (!_targetWeapon)
-            {
-                _weaponPreviewImage.sprite = _emptyHandSprite;
-            }
-
             IsPaused = true;
             _pauseMenu.SetActive(true);
-            _currentMenu = _inventoryMenu;
+            _currentMenu = _pauseMenu;
             OpenSpecificMenu(_currentMenu);
-            UpdateItemsCollectedText(_majorSoulCount, _playerStats.MajorSoulsCollected);
-            UpdateItemsCollectedText(_minorSoulCount, _playerStats.MinorSoulsCollected);
-            UpdateItemsCollectedText(_smallKeyCount, _playerInventory.Keys.Count);
-            UpdateItemsCollectedText(_bossKeyCount, _playerInventory.BossKeys.Count);
-            ChangeHealthDisplayParent(_heartDisplayHandlePosition);
             Time.timeScale = 0.0f;
         }
 
@@ -127,32 +108,29 @@ public class UIHandler : MonoBehaviour
         targetText.text = soulAmount.ToString();
     }
 
-    public void UpdateWeaponWheelSlots(int index, Sprite image)
-    {
-        if(image != null)
-        {
-            _slotImages[index].sprite = image;
-            _slotImages[index].SetNativeSize();
-        }
-        else
-        {
-            _slotImages[index].sprite = _emptyHandSprite;
-            _slotImages[index].SetNativeSize();
-        }
-    }
-
     public void OpenSpecificMenu(GameObject menuToOpen)
     {
         CloseAllMenus();
         _currentMenu = menuToOpen;
         _currentMenu.SetActive(true);
-    }
+        if (_currentMenu != _pauseMenu)
+        {
+            _pauseMenu.SetActive(false);
+        }
 
-    public void AssignTargetWeapon(RangedWeapon weapon)
-    {
-        _targetWeapon = weapon;
-        _weaponPreviewImage.sprite = _targetWeapon.GetComponentInChildren<SpriteRenderer>().sprite;
-        _weaponPreviewImage.SetNativeSize();
+        if (_currentMenu == inventory)
+        {
+            inventory.transform.localScale = new Vector3(1, 1, 1);
+            //inventory.GetComponentInChildren<Image>().enabled = true;
+            //innerInventory.GetComponent<Image>().enabled = true;
+        }
+
+        if (_currentMenu != inventory)
+        {
+            inventory.transform.localScale = new Vector3(0, 0, 0);
+            //inventory.GetComponentInChildren<Image>().enabled = false;
+            //innerInventory.GetComponent<Image>().enabled = false;
+        }
     }
 
     public void EnableReloadingText(float reloadTime)
@@ -168,7 +146,6 @@ public class UIHandler : MonoBehaviour
 
     private void CloseAllMenus()
     {
-        _inventoryMenu.SetActive(false);
         _optionsMenu.SetActive(false);
         _gameMenu.SetActive(false);
     }

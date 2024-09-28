@@ -9,7 +9,7 @@ public class WeaponOffsetHandle : MonoBehaviour
     float _weaponOffset;
 
     [SerializeField]
-    PlayerWeapon _weapon;
+    public PlayerWeapon _weapon;
 
     public void OffsetWeaponPos(float rotationAngle)
     {

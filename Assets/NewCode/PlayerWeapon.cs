@@ -41,6 +41,7 @@ public class PlayerWeapon : MonoBehaviour
     public float timeToNextFire;
     public EventManager2 _EventManager2;
     bool shoot;
+    public UIHandler _uiHandler;
 
 
     //end of editable variables within the inspector
@@ -59,6 +60,8 @@ public class PlayerWeapon : MonoBehaviour
         {
             _inputHandler = GetComponentInParent<PlayerInputHandler>();
             _inputHandler.UpdatePlayerWeaponReference();
+            _uiHandler = FindObjectOfType<UIHandler>();
+            _uiHandler.SetGun(this);
         }
     }
 
@@ -182,7 +185,7 @@ public class PlayerWeapon : MonoBehaviour
 
             if(GetComponentInParent<PlayerController>())
             {
-                //_uiHandler.EnableReloadingText(reloadTime);
+                _uiHandler.EnableReloadingText(reloadTime);
             }
             Invoke("FinishReload", reloadTime); // we do an invoke so we can add a delay to the reload time, rather than a regular function call
         }

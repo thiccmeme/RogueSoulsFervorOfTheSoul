@@ -236,5 +236,6 @@ MonoBehaviour:
   _inputHandler: {fileID: 0}
   timeToNextFire: 0
   _EventManager2: {fileID: 0}
+  _uiHandler: {fileID: 0}
   CurrentAmmo: 0
   isReloading: 0

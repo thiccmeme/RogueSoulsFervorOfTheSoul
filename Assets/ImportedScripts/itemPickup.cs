@@ -12,7 +12,10 @@ public class ItemPickup : MonoBehaviour
     private Sprite _sprite;
     private SpriteRenderer _spriteRenderer;
     private CapsuleCollider2D collider2D;
+    public EquipableItem equipableItem;
     bool alreadyPickedUp;
+    private WeaponOffsetHandle weaponOffsetHandle;
+    private PlayerController playerController;
 
     private void Start()
     {
@@ -20,6 +23,8 @@ public class ItemPickup : MonoBehaviour
         _eventManager2 = FindFirstObjectByType<EventManager2>();
         _spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         collider2D = gameObject.AddComponent<CapsuleCollider2D>();
+        playerController = FindFirstObjectByType<PlayerController>();
+        weaponOffsetHandle = FindFirstObjectByType<WeaponOffsetHandle>();
         collider2D.isTrigger = true;
         _sprite = itemSo._sprite;
         _spriteRenderer.sprite = _sprite;
@@ -36,6 +41,15 @@ public class ItemPickup : MonoBehaviour
             
             alreadyPickedUp = true;
             OnItemPickedUp();
+            if (weaponOffsetHandle._weapon == null && itemSo.itemType == ItemType.Weapon)
+            {
+                equipableItem._itemSo = itemSo;
+                equipableItem = itemSo.equipableItem;
+                equipableItem = Instantiate(itemSo.equipableItem, weaponOffsetHandle.transform);
+                equipableItem.transform.localRotation = Quaternion.Euler(0,0,0);
+                equipableItem.inventoryButton = itemSo.equipableItem.inventoryButton;
+                _eventManager2.RunEquipedEvent();
+            }
             Destroy(this.gameObject);
         }
     }
