@@ -44,6 +44,9 @@ public class NpcSystem : MonoBehaviour
     [SerializeField]private bool QuestBegun;
     [SerializeField]private bool canReward;
     public List<Enemy> enemies;
+    public bool listenToHonor;
+    public bool opensDoor;
+    [SerializeField] private Door door;
 
     private EventManager2 eventManager2;
     
@@ -171,11 +174,18 @@ public class NpcSystem : MonoBehaviour
                     QuestBegun = true;
                     ChangeQuestDialog();
                 }
-                if (CurrentSo == questDialog || CurrentSo == alternateQuestDialog)
+                if (CurrentSo == questDialog || CurrentSo == alternateQuestDialog || CurrentSo == dialogGood)
                 {
                     Reward();
                 }
                 
+            }
+            else if (type == NpcType.Neutral)
+            {
+                if (CurrentSo == dialogGood || questDialog || alternateQuestDialog)
+                {
+                    Reward();
+                }
             }
             
         }
@@ -191,19 +201,30 @@ public class NpcSystem : MonoBehaviour
             dialogBad.ResetDialog();
             CurrentSo = dialogBad;
             text.text = CurrentSo.currentDialog;
+            text.faceColor = Color.red;
             text.color = Color.red;
+            text.outlineColor = Color.black;
             finished = false;
         }
     }
 
     public void Reward()
     {
-        Debug.Log("good");
+        
         if ( reward != null && questComplete == false)
         {
             var good = Instantiate(reward, transform);
             questComplete = true;
+            Debug.Log("good");
 
+        }
+
+        else if (opensDoor && door != null)
+        {
+            door.OpenDoor();
+            door.UnlockDoor();
+            questComplete = true;
+            Debug.Log("Door");
         }
     }
     
@@ -217,6 +238,16 @@ public class NpcSystem : MonoBehaviour
             dialogGood.ResetDialog();
             CurrentSo = dialogGood;
             text.text = CurrentSo.currentDialog;
+            text.color = Color.white;
+            text.faceColor = Color.white;
+            finished = false;
+        }
+        else if (currentHonor >= PositiveTreshHold && questDialog != null && listenToHonor)
+        {
+            questDialog.ResetDialog();
+            CurrentSo = questDialog;
+            text.text = CurrentSo.currentDialog;
+            text.faceColor = Color.white;
             text.color = Color.white;
             finished = false;
         }
@@ -232,6 +263,7 @@ public class NpcSystem : MonoBehaviour
             //Debug.Log(dialogNeutral.index);
             CurrentSo = dialogNeutral;
             text.text = CurrentSo.currentDialog;
+            text.faceColor = Color.black;
             text.color = Color.black;
             finished = false;
         }

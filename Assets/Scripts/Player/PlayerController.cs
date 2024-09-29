@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         eventManager2 = FindFirstObjectByType<EventManager2>();
-        spriteRenderer = GetComponentInChildren<Playersprite>().spriteRenderer;
+        //spriteRenderer = GetComponentInChildren<Playersprite>().spriteRenderer;
         originalColor = spriteRenderer.color;
         eventManager2._equipedEvent += SetGun;
         eventManager2._itemDestroyed += SetGun;
