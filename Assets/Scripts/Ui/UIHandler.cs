@@ -113,13 +113,10 @@ public class UIHandler : MonoBehaviour
         CloseAllMenus();
         _currentMenu = menuToOpen;
         _currentMenu.SetActive(true);
-        if (_currentMenu != _pauseMenu)
-        {
-            _pauseMenu.SetActive(false);
-        }
 
         if (_currentMenu == inventory)
         {
+            _pauseMenu.SetActive(false);
             inventory.transform.localScale = new Vector3(1, 1, 1);
             //inventory.GetComponentInChildren<Image>().enabled = true;
             //innerInventory.GetComponent<Image>().enabled = true;

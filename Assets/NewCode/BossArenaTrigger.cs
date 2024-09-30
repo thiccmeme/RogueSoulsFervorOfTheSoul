@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Splines.Interpolators;
 
 public class BossArenaTrigger : MonoBehaviour
@@ -24,6 +25,18 @@ public class BossArenaTrigger : MonoBehaviour
     [SerializeField] private float T;
 
     [SerializeField] private Volume volume;
+
+    [SerializeField] private Vignette vignette;
+
+    [SerializeField] private float vignetteStrength;
+
+    [SerializeField] private float vignetteLastTime;
+
+    [SerializeField] private AnimationCurve curve1;
+    
+    [SerializeField] private AnimationCurve curve2;
+    
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +44,7 @@ public class BossArenaTrigger : MonoBehaviour
         camera = FindFirstObjectByType<Camera>();
         audioManager = FindFirstObjectByType<AudioManager>();
         volume = FindFirstObjectByType<Volume>();
+        volume.profile.TryGet(out vignette);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -56,6 +70,8 @@ public class BossArenaTrigger : MonoBehaviour
             {
                 T += 0.05f;
                 camera.fieldOfView = Mathf.Lerp(startFov, fov, T);
+                float vignetteIntensity = curve1.Evaluate(Time.realtimeSinceStartup - vignetteLastTime);
+                vignette.intensity.value = vignetteIntensity;
             }
             
         }
@@ -68,6 +84,7 @@ public class BossArenaTrigger : MonoBehaviour
         {
             audioManager.StopMusic();
             camera.fieldOfView = 60;
+            vignetteLastTime = Time.realtimeSinceStartup;
             T = 0;
             Debug.Log("notBossTime");
             started = false;
