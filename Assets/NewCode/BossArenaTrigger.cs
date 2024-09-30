@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Splines.Interpolators;
 
 public class BossArenaTrigger : MonoBehaviour
@@ -21,12 +22,15 @@ public class BossArenaTrigger : MonoBehaviour
     [SerializeField] private bool started;
 
     [SerializeField] private float T;
+
+    [SerializeField] private Volume volume;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         camera = FindFirstObjectByType<Camera>();
         audioManager = FindFirstObjectByType<AudioManager>();
+        volume = FindFirstObjectByType<Volume>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
