@@ -17,6 +17,10 @@ public class BossArenaTrigger : MonoBehaviour
     [SerializeField] private float startFov;
 
     [SerializeField] private float timetolerp;
+
+    [SerializeField] private bool started;
+
+    [SerializeField] private float T;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,22 +33,29 @@ public class BossArenaTrigger : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
-            audioManager.ChangeMusic(audioClip);
-            audioManager.StartMusic();
-            StartCoroutine("ArenaFov");
-            
+            started = true;
+            if (started)
+            {
+                audioManager.StopMusic();
+                audioManager.ChangeMusic(audioClip);
+                audioManager.StartMusic();
+            }
             Debug.Log("bosstime");
         }
     }
 
-    IEnumerator ArenaFov()
+    private void FixedUpdate()
     {
-        while (fov >= startFov - 0.01f)
+        if (started)
         {
-            camera.fieldOfView = Mathf.Lerp(startFov, fov, timetolerp);
+            if (T != 1)
+            {
+                T += 0.05f;
+                camera.fieldOfView = Mathf.Lerp(startFov, fov, T);
+            }
+            
         }
 
-        yield return null;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -53,7 +64,9 @@ public class BossArenaTrigger : MonoBehaviour
         {
             audioManager.StopMusic();
             camera.fieldOfView = 60;
+            T = 0;
             Debug.Log("notBossTime");
+            started = false;
         }
     }
 

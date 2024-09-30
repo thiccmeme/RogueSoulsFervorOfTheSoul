@@ -24,9 +24,11 @@ public class AudioManager : MonoBehaviour
         clip = Clip;
     }
 
-    public void ChangeMusic(AudioClip music)
+    public void ChangeMusic(AudioClip Music)
     {
-        musicClip = music;
+        musicClip = Music;
+        music.clip = musicClip;
+        Debug.Log(Music);
     }
 
     public void PlayClip()
@@ -36,6 +38,7 @@ public class AudioManager : MonoBehaviour
 
     public void StartMusic()
     {
+        music.clip = musicClip;
         music.Play();
     }
 
