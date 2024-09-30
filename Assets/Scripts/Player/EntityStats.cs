@@ -10,7 +10,7 @@ public class EntityStats : MonoBehaviour
     public int Health { get; private set; }
 
     [SerializeField]
-    protected int _maxHealth;
+    public int _maxHealth;
     public int AmountOfHearts { get; private set; }
 
     [field: SerializeField]

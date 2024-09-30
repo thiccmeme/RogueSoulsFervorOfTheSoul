@@ -19,8 +19,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Gattling
   itemType: 3
   <ItemDescription>k__BackingField: Death
-  damage: 5
-  fireRate: 10
+  damage: 2
+  fireRate: 7
   minspread: 0.5
   maxspread: 0.45
   firePoint: {fileID: 0}

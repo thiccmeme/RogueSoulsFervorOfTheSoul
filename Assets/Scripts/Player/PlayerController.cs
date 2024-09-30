@@ -162,14 +162,14 @@ public class PlayerController : MonoBehaviour
 
     #region Effects
 
-    /*[Header("Effects"), Space(5)]
+    [Header("Effects"), Space(5)]
 
     PlayerEffectHandler _effectHandler;
 
     [SerializeField]
     TrailRenderer _dodgeSmearRenderer;
 
-    //[Space(10)]*/
+    //[Space(10)]
 
     #endregion
 
@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
         _crosshairHandle = FindObjectOfType<CrosshairFade>();
         _crosshairSprite = _crosshairHandle.GetComponentInChildren<SpriteRenderer>();
         _weaponOffsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
-        //_effectHandler = GetComponentInChildren<PlayerEffectHandler>();
+        _effectHandler = GetComponentInChildren<PlayerEffectHandler>();
         _playerInventory = FindObjectOfType<Inventory>();
        // _dodgeSmearRenderer.enabled = false;
         _playerHUD = GetComponentInChildren<HUD>();
@@ -432,7 +432,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!PreventingInput)
         {
-            /*if (_movement.x != 0 || _movement.y != 0)
+            if (_movement.x != 0 || _movement.y != 0)
             {
                 _animator.SetBool("Running", true);
                 if (!_effectHandler.RunParticlesPlaying())
@@ -442,7 +442,7 @@ public class PlayerController : MonoBehaviour
             {
                 _animator.SetBool("Running", false);
                 _effectHandler.StopRunParticles();
-            }*/
+            }
 
             if (_movement.x < 0)
             {
@@ -458,32 +458,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Collision Detection
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.GetComponent<Enemy>())
-        {
-            if(_rolling)
-            {
-                collision.gameObject.GetComponent<Enemy>().TakeDamage(_bonkDamage);
-                PoolObject tempParticle = PoolManager.Instance.Spawn(_bonkEffect.name);
-                tempParticle.transform.position = (transform.position + collision.transform.position) / 2;
-                tempParticle.GetComponent<ParticleSystem>().Play();
-            }
-            else if(_grappling)
-            {
-                collision.gameObject.GetComponent<Enemy>().TakeDamage(_grappleBonkDamage);
-                PoolObject tempParticle = PoolManager.Instance.Spawn(_bonkEffect.name);
-                tempParticle.transform.position = (transform.position + collision.transform.position) / 2;
-                tempParticle.GetComponent<ParticleSystem>().Play();
-                StopGrappling();
-            }
-            _rb.linearVelocity = Vector2.zero;
-            _rb.AddForce((transform.position - collision.transform.position).normalized * _bonkKnockback, ForceMode2D.Impulse);
-        }
-
-        if (_grappling)
-            StopGrappling();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -559,11 +533,6 @@ public class PlayerController : MonoBehaviour
             _currentlyCarryingAnObject = false;
             BoxCollider2D heldCollider = _carryableObject.GetComponent<BoxCollider2D>();
             heldCollider.enabled = true;
-        }
-
-        if (InRangeOfChest)
-        {
-            CurrentChest.OpenChest();
         }
 
         if (InRangeOfDoor)

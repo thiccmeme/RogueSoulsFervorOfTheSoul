@@ -165,6 +165,14 @@ public class NpcSystem : MonoBehaviour
         else
         {
             Debug.Log("fuckme");
+            
+            if (type == NpcType.Neutral)
+            {
+                if (CurrentSo == dialogGood || questDialog || alternateQuestDialog)
+                {
+                    Reward();
+                }
+            }
             if (type == NpcType.Questing)
             {
                 
@@ -179,14 +187,7 @@ public class NpcSystem : MonoBehaviour
                     Reward();
                 }
                 
-            }
-            else if (type == NpcType.Neutral)
-            {
-                if (CurrentSo == dialogGood || questDialog || alternateQuestDialog)
-                {
-                    Reward();
-                }
-            }
+            } 
             
         }
     }
