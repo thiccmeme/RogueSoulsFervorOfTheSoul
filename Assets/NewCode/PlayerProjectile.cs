@@ -61,29 +61,15 @@ public class PlayerProjectile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Enemy") && bulletType == BulletType._Player)
+
+        if (other.GetComponent<NpcHitBox>() && bulletType == BulletType._Player)
         {
             if (!hasHit)
             {
-                hasHit = true;
-                var enemyToHit = other.gameObject.GetComponent<EntityStats>();
+                var enemyToHit = other.gameObject.GetComponentInParent<EntityStats>();
                 Debug.Log(bulletDamage);
                 enemyToHit.TakeDamage(bulletDamage);
             }
-
-            Destroy(this.gameObject);
-        }
-
-        if (other.gameObject.CompareTag("Npc") && bulletType == BulletType._Player)
-        {
-            if (!hasHit)
-            {
-                hasHit = true;
-                var enemyToHit = other.gameObject.GetComponent<EntityStats>();
-                //Debug.Log(bulletDamage);
-                enemyToHit.TakeDamage(bulletDamage);
-            }
-
             Destroy(this.gameObject);
         }
         if (other.gameObject.CompareTag("Player")&& bulletType == BulletType._Enemy)

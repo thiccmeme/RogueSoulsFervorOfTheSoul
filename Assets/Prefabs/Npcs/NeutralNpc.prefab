@@ -1,5 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &299365642816133776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666480719108979844}
+  - component: {fileID: 5756542829008657858}
+  - component: {fileID: 750572933717945550}
+  m_Layer: 13
+  m_Name: hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666480719108979844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299365642816133776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3542760551570639107}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5756542829008657858
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299365642816133776}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &750572933717945550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299365642816133776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9dec7a1ed56224ca77ce8bffed5a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623731717738652401
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +834,7 @@ Transform:
   - {fileID: 1746747782702176326}
   - {fileID: 1343730740794537429}
   - {fileID: 6930512352612263052}
+  - {fileID: 1666480719108979844}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4598162716605027032
@@ -782,6 +874,8 @@ MonoBehaviour:
   MercyTreshold: 0
   enemySprite: {fileID: 948661110389630898}
   mercySprite: {fileID: 623731717738652401}
+  npc: {fileID: 0}
+  npcNotify: {fileID: 0}
 --- !u!195 &916371525316243720
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -867,6 +961,8 @@ MonoBehaviour:
   dialogGood: {fileID: 11400000, guid: 16394efc674c08d469334a1ff3ac4692, type: 2}
   dialogBad: {fileID: 11400000, guid: c17f4225939257a488c33ea56cd17650, type: 2}
   dialogNeutral: {fileID: 11400000, guid: 1d87bbc1d440bd84fa1440447f11ad3e, type: 2}
+  questDialog: {fileID: 0}
+  alternateQuestDialog: {fileID: 0}
   dialogassets: []
   CurrentSo: {fileID: 0}
   triggered: 0
@@ -874,9 +970,7 @@ MonoBehaviour:
   NegativeTreshHold: -1
   currentHonor: 0
   playerInputHandler: {fileID: 0}
-  goodReward: {fileID: 6593655442667879080, guid: c9727c8140d419d4e8188888650186ad, type: 3}
-  badReward: {fileID: 200825223787528858, guid: 358d9844224c3f4429164c012dbe34a7, type: 3}
-  neutralReward: {fileID: 0}
+  reward: {fileID: 0}
   finished: 0
   enemy: {fileID: 0}
   target: {fileID: 0}
@@ -886,6 +980,13 @@ MonoBehaviour:
   agent: {fileID: 0}
   font: {fileID: 0}
   type: 4
+  deathItem: {fileID: 0}
+  QuestBegun: 0
+  canReward: 0
+  enemies: []
+  listenToHonor: 0
+  opensDoor: 0
+  door: {fileID: 0}
 --- !u!1 &7944254347375367990
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +1048,7 @@ MonoBehaviour:
   _inputHandler: {fileID: 0}
   timeToNextFire: 0
   _EventManager2: {fileID: 0}
+  _uiHandler: {fileID: 0}
   CurrentAmmo: 0
   isReloading: 0
 --- !u!1 &8094980398712456947

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines.Interpolators;
 
@@ -12,6 +13,8 @@ public class BossArenaTrigger : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
 
     [SerializeField] private float fov;
+
+    [SerializeField] private float startFov;
 
     [SerializeField] private float timetolerp;
     
@@ -28,9 +31,20 @@ public class BossArenaTrigger : MonoBehaviour
         {
             audioManager.ChangeMusic(audioClip);
             audioManager.StartMusic();
-            camera.fieldOfView = Mathf.Lerp(60f, fov, timetolerp);
+            StartCoroutine("ArenaFov");
+            
             Debug.Log("bosstime");
         }
+    }
+
+    IEnumerator ArenaFov()
+    {
+        while (fov >= startFov - 0.01f)
+        {
+            camera.fieldOfView = Mathf.Lerp(startFov, fov, timetolerp);
+        }
+
+        yield return null;
     }
 
     private void OnTriggerExit2D(Collider2D other)
