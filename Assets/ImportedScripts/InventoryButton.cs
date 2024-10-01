@@ -24,6 +24,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool Disabled;
     public ItemInventory itemInventory;
     public int key;
+    private UIHandler uiHandler;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _text = GetComponentInChildren<TMP_Text>();
         _transform = FindFirstObjectByType<WeaponOffsetHandle>().transform;
         _eventManager2 = FindObjectOfType<EventManager2>();
+        uiHandler = FindFirstObjectByType<UIHandler>();
         image.sprite = _itemSo._sprite;
         _equipable = _itemSo.equipableItem;
         _text.text = _itemSo.ItemName;
@@ -78,6 +80,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _equipable._itemSo = _itemSo;
         _equipable = _itemSo.equipableItem;
         _item = FindAnyObjectByType<EquipableItem>();
+        uiHandler.TogglePauseMenu();
 
         if (_item == null)
         {
@@ -97,10 +100,13 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void ItemReplace()
     {
-        EquipableItem Guntemp = Instantiate(_equipable, _transform);
-        Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
-        Guntemp.inventoryButton = this;
-        _eventManager2.RunEquipedEvent();
+        if (_item == null)
+        {
+            EquipableItem Guntemp = Instantiate(_equipable, _transform);
+            Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
+            Guntemp.inventoryButton = this;
+            _eventManager2.RunEquipedEvent();
+        }
     }
         
         

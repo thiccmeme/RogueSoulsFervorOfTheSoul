@@ -22,6 +22,8 @@ public class EquipableItem : MonoBehaviour
 
     private bool canOpen;
 
+    public bool hasSpawned;
+
     private EventManager2 eventManager2;
     
     public Aydens useKey;
@@ -61,10 +63,13 @@ public class EquipableItem : MonoBehaviour
         
         if (_itemType == ItemType.Weapon)
         {
+            weapon = GetComponentInParent<PlayerWeapon>();
+
             if (weapon == null)
             {
                 weapon = gameObject.AddComponent<PlayerWeapon>();
             }
+            
             weapon._gun = _itemSo;
             weapon.firePoint = FirePoint;
             WeaponOffsetHandle weaponOffsetHandle = FindFirstObjectByType<WeaponOffsetHandle>();
@@ -147,13 +152,12 @@ public class EquipableItem : MonoBehaviour
     
     public void OnUnequip()
     {
-        if (weapon != null)
+        if (_itemType == ItemType.Weapon)
         {
             Input.UpdatePlayerWeaponReference();
             weapon.DisableShootInput();
-            Destroy(this.gameObject);
         }
-
+        Destroy(this.gameObject);
     }
 
 }
