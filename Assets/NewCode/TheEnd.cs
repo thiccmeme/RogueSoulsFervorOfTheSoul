@@ -10,7 +10,7 @@ public class TheEnd : MonoBehaviour
     private AudioManager audioManager;
     [SerializeField] private AudioClip clip;
     [SerializeField] private Vector3 targetScale = new Vector3(2f, 2f, 2f);
-    [SerializeField] private float duration = 2f;
+    [SerializeField] private float duration = 4f;
     private Vector3 initialScale;
     private bool isScalingUp = true;
     [SerializeField] private Transform targetTransform;
@@ -46,9 +46,7 @@ public class TheEnd : MonoBehaviour
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
-            Vector3 newScale = isScalingUp
-                ? Vector3.Lerp(initialScale, targetScale, t)
-                : Vector3.Lerp(targetScale, initialScale, t);
+            var newScale = Vector3.Lerp(initialScale, targetScale, t);
             targetTransform.localScale = newScale;
 
             elapsedTime += Time.deltaTime;
@@ -59,7 +57,7 @@ public class TheEnd : MonoBehaviour
         isScalingUp = !isScalingUp;
 
         // Wait for a brief pause before reversing the scale
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(8.0f);
         
         SceneManager.LoadScene("MainMenuTest");
         

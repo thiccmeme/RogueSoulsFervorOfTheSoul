@@ -19,8 +19,7 @@ public class DialogSo : ScriptableObject
 
     public void IncreaseIndex()
     {
-
-        Debug.Log(index);
+        
         if (index <= dialog.Length && dialogFinished != true)
         {
             index++;
@@ -30,10 +29,6 @@ public class DialogSo : ScriptableObject
                 dialogFinished = true;
             }
         }
-        /*else
-        {
-            ResetDialog();
-        }*/
     }
 
     public void ResetDialog()
@@ -42,11 +37,5 @@ public class DialogSo : ScriptableObject
         currentDialog = dialog[index];
         dialogFinished = false;
     }
-
-    public void Awake()
-    {
-        //index = 0;
-        //currentDialog = dialog[index];
-        //Debug.Log(currentDialog);
-    }
+    
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
   <ItemDescription>k__BackingField: Ye old Revolver
   shootSfx: {fileID: 8300000, guid: f0dcb1a93e5e6d74c9aa66c2888daa16, type: 3}
   reloadSfx: {fileID: 8300000, guid: 88cf85387111a9b4db6f189bc153c0ec, type: 3}
-  damage: 60
+  damage: 4
   fireRate: 3
   minspread: 0.5
   maxspread: 0.45

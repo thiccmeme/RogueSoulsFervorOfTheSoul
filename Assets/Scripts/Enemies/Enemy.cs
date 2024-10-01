@@ -87,7 +87,6 @@ public class Enemy : EntityStats
         if (npcNotify != null && Health <= 0)
         {
             npcNotify.NotifiyQuestNpc(this);
-            Debug.Log(this);
             Destroy(this.gameObject);
         }
         if (theEnd != null && Health <= 0)
@@ -116,7 +115,6 @@ public class Enemy : EntityStats
         
         if (type == NpcType.Neutral && targetInRange)
         {
-            //Debug.Log("switchSprite");
             type = NpcType.Aggressive;
             if (mercySprite != null)
             {

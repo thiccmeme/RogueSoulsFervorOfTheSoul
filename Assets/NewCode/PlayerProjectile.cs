@@ -63,7 +63,6 @@ public class PlayerProjectile : MonoBehaviour
             if (!hasHit)
             {
                 var enemyToHit = other.gameObject.GetComponentInParent<EntityStats>();
-                Debug.Log(bulletDamage);
                 enemyToHit.TakeDamage(bulletDamage);
                 var blood = Instantiate(Blood, enemyToHit.transform);
 

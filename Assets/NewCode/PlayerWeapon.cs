@@ -80,7 +80,6 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (shoot && CurrentAmmo!= 0)
         {
-            Debug.Log("Shoot");
             Shoot();
         }
         else if (CurrentAmmo == 0)

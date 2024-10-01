@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
   - You bloody Bastard!
+  - You'll regret this!
   currentDialog: You Bastard
   sprite: {fileID: 0}
-  DialogFinished: 0
+  dialogFinished: 0
   index: 0

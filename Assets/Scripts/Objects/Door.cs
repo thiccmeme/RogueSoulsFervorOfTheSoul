@@ -58,7 +58,6 @@ public class Door : MonoBehaviour
     {
         if(!IsLocked)
         {
-            Debug.Log("open");
             _doorObject.SetActive(false);
             IsOpen = true;
         }

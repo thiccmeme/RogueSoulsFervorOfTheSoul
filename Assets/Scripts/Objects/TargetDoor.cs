@@ -15,17 +15,14 @@ public class TargetDoor : Door
 
     public void CheckPlates(BackwardsPressurePlate plates)
     {
-            Debug.Log("triggered");
             platesTriggered++;
 
         if (platesTriggered == platesToTrigger.Length)
         {
-            Debug.Log("DoorOpen");
             base.UnlockDoor();
             base.OpenDoor();
             if (npc != null)
             {
-                Debug.Log("agressive");
                 npc.becomeAgressive();
             }
         }

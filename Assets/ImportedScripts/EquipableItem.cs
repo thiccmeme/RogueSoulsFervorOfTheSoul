@@ -154,8 +154,8 @@ public class EquipableItem : MonoBehaviour
     {
         if (_itemType == ItemType.Weapon)
         {
-            Input.UpdatePlayerWeaponReference();
             weapon.DisableShootInput();
+            Input.UpdatePlayerWeaponReference();
         }
         Destroy(this.gameObject);
     }

@@ -42,7 +42,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.69411767, g: 0.93333334, b: 0.93333334, a: 1}
+    - _BaseColor: {r: 0.69411767, g: 0.740744, b: 0.93333334, a: 1}
     - _secondary: {r: 0.3803921, g: 0.72156864, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

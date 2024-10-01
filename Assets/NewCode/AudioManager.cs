@@ -45,7 +45,6 @@ public class AudioManager : MonoBehaviour
     {
         musicClip = Music;
         music.clip = musicClip;
-        Debug.Log(Music);
     }
 
     public void PlayClip()

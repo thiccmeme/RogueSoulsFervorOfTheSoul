@@ -60,7 +60,6 @@ public class NpcSystem : MonoBehaviour
     {
         enemies.Remove(enemy);
         ChangeQuestDialog();
-        Debug.Log("quest");
     }
     
 
@@ -116,7 +115,6 @@ public class NpcSystem : MonoBehaviour
         }
         else if( alternateQuestDialog != null)
         {
-            Debug.Log("alternate");
             index = 0;
             finished = false;
             alternateQuestDialog.ResetDialog();
@@ -133,7 +131,6 @@ public class NpcSystem : MonoBehaviour
 
     public void becomeAgressive()// if npc "sees" player kill npc turn agressive regardless of honour
     {
-        //Debug.Log("agressive");
         if (targetInRange && agent != null)
         {
             type = NpcType.Aggressive;
@@ -174,13 +171,9 @@ public class NpcSystem : MonoBehaviour
             index++;
             CurrentSo.IncreaseIndex();
             text.text = CurrentSo.currentDialog;
-            Debug.Log(index);
-            Debug.Log(dialogassets.Length);
         }
         else
         {
-            Debug.Log("fuckme");
-            
             if (type == NpcType.Neutral)
             {
                 if (CurrentSo == dialogGood || questDialog || alternateQuestDialog)
@@ -215,7 +208,6 @@ public class NpcSystem : MonoBehaviour
     {
         index = 0;
         currentHonor--;
-        //Debug.Log(currentHonor);
         if (currentHonor <= NegativeTreshHold && dialogBad != null)
         {
             dialogBad.ResetDialog();
@@ -235,7 +227,6 @@ public class NpcSystem : MonoBehaviour
         {
             var good = Instantiate(reward, transform);
             questComplete = true;
-            Debug.Log("good");
 
         }
 
@@ -244,7 +235,6 @@ public class NpcSystem : MonoBehaviour
             door.OpenDoor();
             door.UnlockDoor();
             questComplete = true;
-            Debug.Log("Door");
         }
     }
     
@@ -252,7 +242,6 @@ public class NpcSystem : MonoBehaviour
     {
         index = 0;
         currentHonor++;
-        //Debug.Log(currentHonor);
         if (currentHonor >= PositiveTreshHold && dialogGood != null)
         {
             dialogGood.ResetDialog();
@@ -280,7 +269,6 @@ public class NpcSystem : MonoBehaviour
         {
             
             dialogNeutral.ResetDialog();
-            //Debug.Log(dialogNeutral.index);
             CurrentSo = dialogNeutral;
             text.text = CurrentSo.currentDialog;
             text.faceColor = Color.black;
@@ -313,7 +301,6 @@ public class NpcSystem : MonoBehaviour
         if (hasDecreased == false) 
         {
             currentHonor--;
-            //Debug.Log("decrease");
             hasDecreased = true;
         }
     }
