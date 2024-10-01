@@ -47,6 +47,7 @@ public class NpcSystem : MonoBehaviour
     public bool listenToHonor;
     public bool opensDoor;
     [SerializeField] private Door door;
+    [SerializeField] private bool isBen;
 
     private EventManager2 eventManager2;
     
@@ -99,6 +100,11 @@ public class NpcSystem : MonoBehaviour
 
     public void ChangeQuestDialog()// run on event that can be given on enemy death or quest completion as reward, only run if npc has been talked to before to prevent dialog from changing otherwise
     {
+
+        if (isBen)
+        {
+            QuestBegun = true;
+        }
         if (QuestBegun)
         {
             index = 0;
@@ -180,6 +186,10 @@ public class NpcSystem : MonoBehaviour
                 if (CurrentSo == dialogGood || questDialog || alternateQuestDialog)
                 {
                     Reward();
+                    if (isBen && QuestBegun)
+                    {
+                        becomeAgressive();
+                    }
                 }
             }
             if (type == NpcType.Questing)

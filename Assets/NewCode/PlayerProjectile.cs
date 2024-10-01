@@ -19,9 +19,6 @@ public class PlayerProjectile : MonoBehaviour
     private EventManager2 eventManager2;
 
     public bool hasHit = false;
-
-    public Renderer renderer;
-    public int queueOrder = 5000;
     [SerializeField]private GameObject Blood;
     
     
@@ -36,9 +33,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
         eventManager2 = FindFirstObjectByType<EventManager2>();
-        renderer.material.renderQueue = queueOrder;
     }
 
     public virtual void FixedUpdate()

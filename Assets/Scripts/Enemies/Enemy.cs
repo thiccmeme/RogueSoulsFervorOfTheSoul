@@ -35,8 +35,6 @@ public class Enemy : EntityStats
 
     [SerializeField] private SpriteRenderer damageSprite;
 
-    [SerializeField] private int MercyTreshold;
-
     [SerializeField] protected GameObject enemySprite;
     [SerializeField] protected GameObject mercySprite;
     [SerializeField] protected NpcSystem npc;
@@ -44,11 +42,13 @@ public class Enemy : EntityStats
     [SerializeField]private AudioManager audioManager;
     [SerializeField] private AudioClip shootSfx;
     [SerializeField] private AudioClip reloadSfx;
+    [SerializeField]private TheEnd theEnd;
 
     #endregion
     
 
     #region Start   
+    
     protected virtual void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -90,6 +90,11 @@ public class Enemy : EntityStats
             Debug.Log(this);
             Destroy(this.gameObject);
         }
+        if (theEnd != null && Health <= 0)
+        {
+            theEnd.NotifyEnd(this);
+            Destroy(this.gameObject);
+        }
         else if (Health <= 0)
         {
             Destroy(this.gameObject);
@@ -98,6 +103,7 @@ public class Enemy : EntityStats
         if (enemyDoor != null && Health <= 0)
         {
             enemyDoor.NotifyEnemyDied(this);
+            Destroy(this.gameObject);
             
         }
 
@@ -106,19 +112,6 @@ public class Enemy : EntityStats
         if(_deathEffect && Health <= 0)
         {
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
-        }
-
-        if (Health <= MercyTreshold && type == NpcType.Boss)
-        {
-            isRanged = false;
-            Speed = 0;
-            _agent.speed = 0;
-            type = NpcType.Passive;
-            npc.dialogGood.ResetDialog();
-            npc.CurrentSo = npc.dialogGood;
-            //enemySprite = mercySprite;
-            enemySprite.SetActive(false);
-            mercySprite.SetActive(true);
         }
         
         if (type == NpcType.Neutral && targetInRange)

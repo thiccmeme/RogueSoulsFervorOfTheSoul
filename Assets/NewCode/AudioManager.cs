@@ -38,6 +38,7 @@ public class AudioManager : MonoBehaviour
     {
         musicClip = originalMusic;
         music.clip = musicClip;
+        music.Play();
     }
 
     public void ChangeMusic(AudioClip Music)

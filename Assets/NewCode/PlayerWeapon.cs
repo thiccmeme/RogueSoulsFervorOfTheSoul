@@ -11,29 +11,17 @@ public class PlayerWeapon : MonoBehaviour
 {
     #region global Variables
     //weapon basics
-
-    [SerializeField]
     public float fireRate;
-    [SerializeField]
     public float bulletLifetime;
-    [field: SerializeField]
     public int MaxAmmo { get; private set; }
-    [SerializeField]
     public float bulletCount;
-    [SerializeField]
     public float reloadTime;
-    [SerializeField]
     public Camera cam;
-    [SerializeField]
 	public Transform firePoint;
-	[SerializeField]
-	public PlayerProjectile bulletPrefab;
-    [SerializeField] public float bulletForce;
-    [SerializeField]
+	public PlayerProjectile bulletPrefab; 
+    public float bulletForce;
     public float minSpread;
-    [SerializeField]
     public float maxSpread;
-    [SerializeField]
     public int damage;
     public ItemSO _gun;
     public PlayerInputHandler _inputHandler;
