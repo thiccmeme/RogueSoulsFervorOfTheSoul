@@ -19,6 +19,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: better Remington
   itemType: 1
   <ItemDescription>k__BackingField: better Ye old Revolver
+  shootSfx: {fileID: 8300000, guid: f0dcb1a93e5e6d74c9aa66c2888daa16, type: 3}
+  reloadSfx: {fileID: 8300000, guid: 88cf85387111a9b4db6f189bc153c0ec, type: 3}
   damage: 5
   fireRate: 4
   minspread: 0.5

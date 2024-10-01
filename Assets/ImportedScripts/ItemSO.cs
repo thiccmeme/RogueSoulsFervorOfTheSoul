@@ -19,6 +19,9 @@ public class ItemSO : ScriptableObject
     public ItemType itemType;
     [field: SerializeField, TextArea] public string ItemDescription { get; private set; }
     
+    [SerializeField] public AudioClip shootSfx;
+    [SerializeField] public AudioClip reloadSfx;
+    
     public int damage;
     public float fireRate;
     public float minspread, maxspread;

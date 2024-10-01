@@ -42,6 +42,9 @@ public class PlayerWeapon : MonoBehaviour
     public EventManager2 _EventManager2;
     bool shoot;
     public UIHandler _uiHandler;
+    [SerializeField]private AudioManager audioManager;
+    [SerializeField] private AudioClip shootSfx;
+    [SerializeField] private AudioClip reloadSfx;
 
 
     //end of editable variables within the inspector
@@ -54,7 +57,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnEnable()
     {
-
+        audioManager = FindFirstObjectByType<AudioManager>();
         playerController = GetComponentInParent<PlayerController>();
         if (playerController)
         {
@@ -79,6 +82,8 @@ public class PlayerWeapon : MonoBehaviour
         bulletPrefab = _gun.bullet;
         timeToNextFire = _gun.timeToNextFire;
         CurrentAmmo = MaxAmmo;
+        reloadSfx = _gun.reloadSfx;
+        shootSfx = _gun.shootSfx;
 
 
     }
@@ -117,6 +122,12 @@ public class PlayerWeapon : MonoBehaviour
 
                 CurrentAmmo--;
 
+                if (shootSfx != null)
+                {
+                    audioManager.ChangeCurrentClip(shootSfx);
+                    audioManager.PlayClip();
+                }
+                
                 Quaternion defaultSpreadAngle = firePoint.localRotation;
                 float spread = Random.Range(minSpread, maxSpread);
                 firePoint.transform.Rotate(new Vector3(0, 0, 1), -spread / 2f);
@@ -145,6 +156,12 @@ public class PlayerWeapon : MonoBehaviour
                 timeToNextFire = Time.time + 1.0f / fireRate;// sets the time for the next bullet to be able to be fired
 
                 CurrentAmmo--;
+                
+                if (shootSfx != null)
+                {
+                    audioManager.ChangeCurrentClip(shootSfx);
+                    audioManager.PlayClip();
+                }
 
                 Quaternion defaultSpreadAngle = firePoint.localRotation;
                 float spread = Random.Range(minSpread, maxSpread);
@@ -181,7 +198,14 @@ public class PlayerWeapon : MonoBehaviour
     {
         if(CurrentAmmo != MaxAmmo)
         {
+            if (isReloading == false && reloadSfx != null)
+            {
+                audioManager.StopClip();
+                audioManager.ChangeCurrentClip(reloadSfx);
+                audioManager.PlayClip();
+            }
             isReloading = true;
+
 
             if(GetComponentInParent<PlayerController>())
             {

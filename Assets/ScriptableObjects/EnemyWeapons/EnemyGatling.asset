@@ -19,6 +19,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Gattling
   itemType: 3
   <ItemDescription>k__BackingField: Death
+  shootSfx: {fileID: 8300000, guid: a89c5911ce2fb2d4ea5734d73b99487f, type: 3}
+  reloadSfx: {fileID: 8300000, guid: 88cf85387111a9b4db6f189bc153c0ec, type: 3}
   damage: 2
   fireRate: 7
   minspread: 0.5

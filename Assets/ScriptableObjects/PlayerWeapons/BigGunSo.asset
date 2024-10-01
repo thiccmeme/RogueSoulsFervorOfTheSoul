@@ -19,6 +19,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Double barrel
   itemType: 1
   <ItemDescription>k__BackingField: 'A classic in any souls arsenal '
+  shootSfx: {fileID: 8300000, guid: b0757fc7baf97f0488ddf80d30dcde72, type: 3}
+  reloadSfx: {fileID: 8300000, guid: 88cf85387111a9b4db6f189bc153c0ec, type: 3}
   damage: 4
   fireRate: 1
   minspread: 5

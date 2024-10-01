@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip clip;
 
+    public AudioClip enemyShoot;
+
     public AudioResource audioResource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +24,12 @@ public class AudioManager : MonoBehaviour
     public void ChangeCurrentClip(AudioClip Clip)
     {
         clip = Clip;
+    }
+
+    public void ChangeEnemyClip(AudioClip Clip)
+    {
+        enemyShoot = Clip;
+        source.PlayOneShot(Clip);
     }
 
     public void ChangeMusic(AudioClip Music)
@@ -45,6 +53,11 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         music.Stop();
+    }
+
+    public void StopClip()
+    {
+        source.Stop();
     }
 
     // Update is called once per frame

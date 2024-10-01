@@ -39,6 +39,9 @@ public class Enemy : EntityStats
     [SerializeField] protected GameObject mercySprite;
     [SerializeField] protected NpcSystem npc;
     [SerializeField] public NpcSystem npcNotify;
+    [SerializeField]private AudioManager audioManager;
+    [SerializeField] private AudioClip shootSfx;
+    [SerializeField] private AudioClip reloadSfx;
 
     #endregion
     
@@ -55,6 +58,9 @@ public class Enemy : EntityStats
         target = FindObjectOfType<PlayerController>().transform;
         transform.localRotation = Quaternion.Euler(0,0,0);
         weaponHandle = GetComponentInChildren<Handle>().gameObject;
+        audioManager = FindFirstObjectByType<AudioManager>();
+        shootSfx = enemyGun._gun.shootSfx;
+        reloadSfx = enemyGun._gun.reloadSfx;
         if (mercySprite != null)
         {
             if (type == NpcType.Aggressive || type == NpcType.Boss)
