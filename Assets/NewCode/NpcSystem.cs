@@ -125,7 +125,7 @@ public class NpcSystem : MonoBehaviour
 
     }
 
-    private void becomeAgressive()// if npc "sees" player kill npc turn agressive regardless of honour
+    public void becomeAgressive()// if npc "sees" player kill npc turn agressive regardless of honour
     {
         //Debug.Log("agressive");
         if (targetInRange && agent != null)

@@ -434,13 +434,11 @@ public class PlayerController : MonoBehaviour
         {
             if (_movement.x != 0 || _movement.y != 0)
             {
-                _animator.SetBool("Running", true);
                 if (!_effectHandler.RunParticlesPlaying())
                     _effectHandler.PlayRunParticles();
             }
             else
             {
-                _animator.SetBool("Running", false);
                 _effectHandler.StopRunParticles();
             }
 

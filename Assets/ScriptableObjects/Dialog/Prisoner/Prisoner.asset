@@ -16,9 +16,9 @@ MonoBehaviour:
   - Hey, you
   - Yeah you
   - If you're looking for a way out of this dump
-  - Try shooting those switches up a head
+  - Try moving those barrels off those plates
   - Least one of us poor souls can get out
   currentDialog: Is that sorry thing your excuse for a weapon?
   sprite: {fileID: 0}
-  DialogFinished: 0
+  dialogFinished: 0
   index: 0
