@@ -134,11 +134,20 @@ public class NpcSystem : MonoBehaviour
             enemy.Speed = 3;
                 agent.speed = 3;
             enemy.isRanged = true;
-            HonorNegativeThreshold();
             eventManager2._honorIncreased -= HonorPositiveThreshold;
             eventManager2._honorDecreased -= HonorNegativeThreshold;
             eventManager2._honorIncreased -= HonorNeutralThreshold;
             eventManager2._honorDecreased -= HonorNeutralThreshold;
+            if (dialogBad != null)
+            {
+                dialogBad.ResetDialog();
+                CurrentSo = dialogBad;
+                text.text = CurrentSo.currentDialog;
+                text.faceColor = Color.red;
+                text.color = Color.red;
+                text.outlineColor = Color.black;
+                finished = false;
+            }
         }
     }
 

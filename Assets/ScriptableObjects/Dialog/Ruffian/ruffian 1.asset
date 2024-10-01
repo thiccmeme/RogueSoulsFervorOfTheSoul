@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ruffian 1
   m_EditorClassIdentifier: 
   dialog:
-  - What are you looking at?
-  - 'Huh? I asked you a question '
-  - Not much of a talker eh?
-  currentDialog: 'Hey, hood '
+  - Everyone's got something to give...
+  - Or take.
+  - So which one is it gonna be for you?
+  currentDialog: What are you looking at?
   sprite: {fileID: 0}
-  DialogFinished: 0
+  dialogFinished: 0
   index: 0
