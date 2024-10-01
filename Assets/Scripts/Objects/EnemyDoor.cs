@@ -21,6 +21,7 @@ public class EnemyDoor : Door
         // If all enemies are dead, open the door
         if (enemies.Count == 0)
         {
+            UnlockDoor();
             OpenDoor();
         }
     }
