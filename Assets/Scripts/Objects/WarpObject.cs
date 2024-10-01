@@ -12,6 +12,8 @@ public class WarpObject : MonoBehaviour
     [SerializeField] private Vector3 targetScale = new Vector3(2f, 2f, 2f);
     [SerializeField] private float duration = 2f;
     [SerializeField] private bool hasRanTwice = false;
+    private AudioManager audioManager;
+    [SerializeField] private AudioClip clip;
 
     private Vector3 initialScale;
     private bool isScalingUp = true;
@@ -19,6 +21,13 @@ public class WarpObject : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
+            if (clip != null)
+            {
+                audioManager = FindFirstObjectByType<AudioManager>();
+                audioManager.StopMusic();
+                audioManager.ChangeMusic(clip);
+                audioManager.StartMusic();
+            }
             hasRanTwice = false;
             warpTarget = other.transform;
             warp.SetActive(true);

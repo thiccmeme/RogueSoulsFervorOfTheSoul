@@ -58,9 +58,6 @@ public class PlayerController : MonoBehaviour
     int _grappleBonkDamage;
 
     [SerializeField]
-    PoolObject _bonkEffect;
-
-    [SerializeField]
     float _bonkKnockback;
 
     public bool PreventingInput { get; private set; } = false;
@@ -84,12 +81,6 @@ public class PlayerController : MonoBehaviour
     CharacterInput _characterInput;
 
     [Space(10)]
-
-    #endregion
-
-    #region Inventory
-
-    Inventory _playerInventory;
 
     #endregion
 
@@ -142,17 +133,6 @@ public class PlayerController : MonoBehaviour
 
     #region Misc Interaction Variables
 
-    public Door CurrentDoor { get; private set; }
-    public bool InRangeOfDoor { get; private set; } = false;
-
-    public Chest CurrentChest { get; private set; }
-    public bool InRangeOfChest { get; private set; } = false;
-
-    public NPC CurrentNPC { get; private set; }
-    public bool InRangeOfNPC { get; private set; } = false;
-
-    HUD _playerHUD;
-
     [SerializeField]private bool isFlashing;
     [SerializeField]private SpriteRenderer spriteRenderer;
     [SerializeField]private Color originalColor;
@@ -194,6 +174,7 @@ public class PlayerController : MonoBehaviour
         Color flashColor = Color.red;
         if (!isFlashing)
         {
+            isFlashing = true;
             spriteRenderer.color = flashColor;
             yield return new WaitForSeconds(0.2f);
             spriteRenderer.color = originalColor;
@@ -212,10 +193,6 @@ public class PlayerController : MonoBehaviour
         _crosshairSprite = _crosshairHandle.GetComponentInChildren<SpriteRenderer>();
         _weaponOffsetHandle = GetComponentInChildren<WeaponOffsetHandle>();
         _effectHandler = GetComponentInChildren<PlayerEffectHandler>();
-        _playerInventory = FindObjectOfType<Inventory>();
-       // _dodgeSmearRenderer.enabled = false;
-        _playerHUD = GetComponentInChildren<HUD>();
-
         _normalMask = LayerMask.NameToLayer("Player");
         _invulnerableMask = LayerMask.NameToLayer("Invulnerable");
         _grappleMask = LayerMask.NameToLayer("Grapple");
@@ -246,7 +223,6 @@ public class PlayerController : MonoBehaviour
             HandleAim();
             HandleMovement();
         }
-        HandleCrosshairControllerMovement();
         
     }
 
@@ -330,11 +306,6 @@ public class PlayerController : MonoBehaviour
         canRoll = true;
     }
 
-    /*public void ToggleDashSmear(bool state)
-    {
-        _dodgeSmearRenderer.enabled = state;
-    }*/
-
     public bool CurrentlyRolling()
     {
         return _rolling;
@@ -404,24 +375,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //Handles where the crosshair should go when using a controller
-    private void HandleCrosshairControllerMovement()
-    {
-        _crosshairSprite.transform.localPosition = new Vector3(_crosshairSprite.transform.localPosition.x + _crosshairMovement.x * _crosshairMoveSpeed * Time.fixedDeltaTime,
-            _crosshairSprite.transform.localPosition.y + _crosshairMovement.y * _crosshairMoveSpeed * Time.fixedDeltaTime);
-        if (_crosshairClamp.enabled)
-        {
-            _crosshairSprite.enabled = true;
-            _crosshairHandle.transform.position = transform.position;
-            _crosshairClamp.ClampCrosshair(_crosshairMovement);
-            _crosshairHandle.CheckCrosshairPosition();
-        }
-    }
-
-    public void HandleAimControllerInput(Vector2 aimPosition)
-    {
-        _crosshairClamp.enabled = true;
-        _crosshairMovement = aimPosition;
-    }
 
     #endregion
 
@@ -455,149 +408,5 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region Collision Detection
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Carryable" && !_currentlyCarryingAnObject)
-        {
-            CarryableObjectInRange = true;
-            _carryableObject = other.gameObject;
-        }
-        if (other.gameObject.tag == "Chest" && !InRangeOfChest)
-        {
-            CurrentChest = other.GetComponent<Chest>();
-            InRangeOfChest = true;
-        }
-        if (other.GetComponent<Door>())
-        {
-            CurrentDoor = other.GetComponent<Door>();
-            InRangeOfDoor = true;
-        }
-        if (other.GetComponent<NPC>())
-        {
-            CurrentNPC = other.GetComponent<NPC>();
-            CurrentNPC.ResetIndex();
-            Debug.Log("npcs");
-            InRangeOfNPC = true;
-        }
+   
     }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Carryable" && !_currentlyCarryingAnObject)
-        {
-            CarryableObjectInRange = false;
-            _carryableObject = null;
-        }
-        if (other.gameObject.tag == "Chest")
-        {
-            CurrentChest = null;
-            InRangeOfChest = false;
-        }
-        if (other.GetComponent<Door>())
-        {
-            CurrentDoor = null;
-            InRangeOfDoor = false;
-        }
-        if (other.GetComponent<NPC>())
-        {
-            CurrentNPC = null;
-            InRangeOfNPC = false;
-            _playerHUD.CloseChatBox();
-        }
-    }
-    #endregion
-
-    #region Interactions
-
-    public void Interact()
-    {
-        if (CarryableObjectInRange && !_currentlyCarryingAnObject)
-        {
-            BoxCollider2D heldCollider = _carryableObject.GetComponent<BoxCollider2D>();
-            heldCollider.enabled = false;
-            _aimHandleTransform.gameObject.SetActive(false);
-            _carryableObject.transform.parent = _objectCarryPoint.transform;
-            _carryableObject.transform.localPosition = Vector3.zero;
-            _currentlyCarryingAnObject = true;
-        }
-        else if (_currentlyCarryingAnObject)
-        {
-            Rigidbody2D tempRb = _carryableObject.GetComponent<Rigidbody2D>();
-            tempRb.linearVelocity = new Vector2(_throwForce + (Mathf.Abs(_rb.linearVelocity.x) * 2), tempRb.linearVelocity.y) * _playerSpriteObject.transform.localScale.x;
-            _aimHandleTransform.gameObject.SetActive(true);
-            _carryableObject.transform.parent = null;
-            _currentlyCarryingAnObject = false;
-            BoxCollider2D heldCollider = _carryableObject.GetComponent<BoxCollider2D>();
-            heldCollider.enabled = true;
-        }
-
-        if (InRangeOfDoor)
-        {
-            if (CurrentDoor.IsLocked && _playerInventory.Keys.Count > 0)
-            {
-                CurrentDoor.UnlockDoor();
-                CurrentDoor.OpenDoor();
-                _playerInventory.Keys.RemoveAt(0);
-            }
-            else if (CurrentDoor.IsBossDoor && _playerInventory.BossKeys.Count > 0)
-            {
-                CurrentDoor.UnlockDoor();
-                CurrentDoor.OpenDoor();
-                _playerInventory.BossKeys.RemoveAt(0);
-            }
-        }
-
-        if(InRangeOfNPC && !_preventingDialogue)
-        {
-            _playerHUD.OpenChatBox();
-            CurrentNPC.ContinueDialogue();
-        }
-        
-        #endregion
-    }
-
-    public IEnumerator MoveToSpecificLocation(Vector3 targetPos, float speed, float grappleTime)
-    {
-        _grappling = true;
-        canRoll = false;
-        while (_grappling)
-        {
-            Vector3 moveDirection = targetPos - transform.position;
-            _rb.AddForce(moveDirection.normalized * speed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-            ///ToggleDashSmear(true);
-            GoGrapple();
-            if(Vector2.Distance(targetPos, transform.position) <= _grappleHookCancelRadius)
-            {
-                StopGrappling();
-            }
-
-            yield return _waitForFixedUpdate;
-        }
-    }
-
-    public void StopGrappling()
-    {
-        //ToggleDashSmear(false);
-        GoVulnerable();
-        _grappling = false;
-        canRoll = true;
-    }
-
-    public bool IsGrappling()
-    {
-        return _grappling;
-    }
-
-    public void PreventDialogue()
-    {
-        _preventingDialogue = true;
-        Invoke("AllowDialogue", 3f);
-    }
-
-    public void AllowDialogue()
-    {
-        _preventingDialogue = false;
-    }
-}

@@ -864,6 +864,7 @@ MonoBehaviour:
   _rotateSpeed: 100
   _enemyWeaponRotationAngle: 0
   weaponHandle: {fileID: 0}
+  enemyDoor: {fileID: 0}
   _offsetHandle: {fileID: 0}
   enemyGunSprite: {fileID: 4866879353989530262}
   Empty: {fileID: 8122697130334530247, guid: a9e52e9ffefda484c8cd634569ec2289, type: 3}
@@ -876,6 +877,9 @@ MonoBehaviour:
   mercySprite: {fileID: 623731717738652401}
   npc: {fileID: 0}
   npcNotify: {fileID: 0}
+  audioManager: {fileID: 0}
+  shootSfx: {fileID: 0}
+  reloadSfx: {fileID: 0}
 --- !u!195 &916371525316243720
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1049,6 +1053,9 @@ MonoBehaviour:
   timeToNextFire: 0
   _EventManager2: {fileID: 0}
   _uiHandler: {fileID: 0}
+  audioManager: {fileID: 0}
+  shootSfx: {fileID: 0}
+  reloadSfx: {fileID: 0}
   CurrentAmmo: 0
   isReloading: 0
 --- !u!1 &8094980398712456947

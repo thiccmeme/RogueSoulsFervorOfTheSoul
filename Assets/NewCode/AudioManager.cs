@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip musicClip;
 
+    private AudioClip originalMusic;
+
     public AudioClip clip;
 
     public AudioClip enemyShoot;
@@ -18,7 +20,7 @@ public class AudioManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        originalMusic = musicClip;
     }
 
     public void ChangeCurrentClip(AudioClip Clip)
@@ -30,6 +32,12 @@ public class AudioManager : MonoBehaviour
     {
         enemyShoot = Clip;
         source.PlayOneShot(Clip);
+    }
+
+    public void OriginalMusic()
+    {
+        musicClip = originalMusic;
+        music.clip = musicClip;
     }
 
     public void ChangeMusic(AudioClip Music)

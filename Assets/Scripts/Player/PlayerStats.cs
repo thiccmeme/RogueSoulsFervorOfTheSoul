@@ -6,12 +6,6 @@ using UnityEngine.Rendering.Universal;
 public class PlayerStats : EntityStats
 {
     #region Global Variables
-    [SerializeField]
-    protected int _playerLevel;
-    protected float _playerLevelProgression;
-    protected float _amountUntilNextLevel;
-    [SerializeField]
-    protected float _levelProgressionMultiplier;
     
     [SerializeField] private Transform _respawnPoint;
 
@@ -21,8 +15,6 @@ public class PlayerStats : EntityStats
 
     VolumeProfile _postProcessVolume;
     Vignette vignette;
-
-    ScreenShakeEffect _hurtScreenShake;
     [SerializeField]
     private Youdied youDied;
 
@@ -36,20 +28,11 @@ public class PlayerStats : EntityStats
 
 
     #endregion
-    protected override void Awake()
-    {
-        base.Awake();
-        //_postProcessVolume = FindObjectOfType<Volume>().profile;
-        //_cameraConfiner = FindObjectOfType<CinemachineConfiner2D>();
-        //_hurtScreenShake = GetComponent<ScreenShakeEffect>();
-        //_sfxHandler = GetComponent<AudioSource>();
-    }
 
     #region Damage
     public override void TakeDamage(int damage)
     {
         IncrementHealth(-damage);
-        StartHurtEffect();
         if (Health <= 0)
         {
             if(!PlayerIsDead)
@@ -81,44 +64,6 @@ public class PlayerStats : EntityStats
     public void ChangeRespawnPoint(Transform newPoint)
     {
         _respawnPoint = newPoint;
-    }
-
-    public void SetRespawnCameraBounds(PolygonCollider2D newBounds)
-    {
-        _newCameraBounds = newBounds;
-    }
-
-    public void IncreaseMajorSoulCount()
-    {
-        MajorSoulsCollected++;
-    }
-
-    public void IncreaseMinorSoulCount()
-    {
-        MinorSoulsCollected++;
-    }
-
-    void StartHurtEffect()
-    {
-        /*if (!_postProcessVolume.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
-        vignette.intensity.Override(0.5f);
-        InvokeRepeating("DecreaseHurtEffect", 0, 0.02f);
-        _hurtScreenShake.ShakeScreen();
-        _sfxHandler.PlayOneShot(hurtEffect);*/
-    }
-
-    void DecreaseHurtEffect() 
-    {
-        /*if (!_postProcessVolume.TryGet(out vignette)) throw new System.NullReferenceException(nameof(vignette));
-        if(vignette.intensity.value > 0)
-        {
-            float newIntesity = vignette.intensity.value - 0.01f;
-            vignette.intensity.Override(newIntesity);
-        }
-        else
-        {
-            CancelInvoke("DecreaseHurtEffect");
-        }*/
     }
 
 }

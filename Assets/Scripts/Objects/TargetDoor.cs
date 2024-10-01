@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TargetDoor : Door
 {
-    [SerializeField]
-    private TargetSwitch[] targetsToHit;
 
     [SerializeField] private NpcSystem npc;
 
@@ -14,21 +12,6 @@ public class TargetDoor : Door
     int targetsHit = 0;
     [SerializeField]
     float secondsToClose =5.0f;
-
-    public void CheckTargets(TargetSwitch targetToCheck)
-    {
-
-        if (targetToCheck.IsTriggered)
-        {
-            targetsHit++;
-        }
-        if (targetsHit == targetsToHit.Length)
-        {
-            base.OpenDoor();
-            Invoke("CloseAfterDuration", secondsToClose);
-        }
-
-    }
 
     public void CheckPlates(BackwardsPressurePlate plates)
     {
@@ -64,22 +47,6 @@ public class TargetDoor : Door
     private void FixedUpdate()
     {
 
-    }
-    public void CloseAfterDuration()
-    {
-        base.CloseDoor();
-        foreach (TargetSwitch target in targetsToHit)
-        {
-            if(target.IsTriggered)
-            {
-                target.ResetSwitch();
-            }
-        }
-        targetsHit = 0;
-    }
-    public void DecreaseIndex()
-    {
-        targetsHit--;
     }
 
 

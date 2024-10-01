@@ -111,6 +111,7 @@ MonoBehaviour:
   hasHit: 0
   renderer: {fileID: 0}
   queueOrder: 5000
+  Blood: {fileID: 2105905949159717633, guid: be30b2b6d8eea19458c0962cec8d4a6b, type: 3}
 --- !u!50 &-4375459539963107648
 Rigidbody2D:
   serializedVersion: 5

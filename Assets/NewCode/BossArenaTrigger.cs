@@ -83,6 +83,7 @@ public class BossArenaTrigger : MonoBehaviour
         if (other.GetComponent<Enemy>() || other.GetComponent<PlayerController>())
         {
             audioManager.StopMusic();
+            audioManager.OriginalMusic();
             camera.fieldOfView = 60;
             vignetteLastTime = Time.realtimeSinceStartup;
             T = 0;

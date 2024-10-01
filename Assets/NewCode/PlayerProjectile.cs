@@ -22,6 +22,7 @@ public class PlayerProjectile : MonoBehaviour
 
     public Renderer renderer;
     public int queueOrder = 5000;
+    [SerializeField]private GameObject Blood;
     
     
     
@@ -69,6 +70,8 @@ public class PlayerProjectile : MonoBehaviour
                 var enemyToHit = other.gameObject.GetComponentInParent<EntityStats>();
                 Debug.Log(bulletDamage);
                 enemyToHit.TakeDamage(bulletDamage);
+                var blood = Instantiate(Blood, enemyToHit.transform);
+
             }
             Destroy(this.gameObject);
         }

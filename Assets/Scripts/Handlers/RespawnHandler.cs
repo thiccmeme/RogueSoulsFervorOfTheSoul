@@ -26,6 +26,5 @@ public class RespawnHandler : MonoBehaviour
         _confiner.BoundingShape2D = _newCameraBounds;
         _playerStats = other.gameObject.GetComponent<PlayerStats>();
         _playerStats.ChangeRespawnPoint(_respawnPoint);
-        _playerStats.SetRespawnCameraBounds(_newCameraBounds);
     }
 }

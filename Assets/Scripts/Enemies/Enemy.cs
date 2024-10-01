@@ -33,6 +33,8 @@ public class Enemy : EntityStats
     [SerializeField]
     public PlayerWeapon enemyGun;
 
+    [SerializeField] private SpriteRenderer damageSprite;
+
     [SerializeField] private int MercyTreshold;
 
     [SerializeField] protected GameObject enemySprite;
@@ -136,6 +138,7 @@ public class Enemy : EntityStats
         }
         
     }
+    
 #endregion
     #region Update
     protected virtual void Update()
