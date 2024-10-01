@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8823339059980504611}
   - component: {fileID: 6003918512633093035}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSo: {fileID: 11400000, guid: 0a2dd622a790e3b4ca0c571398619a13, type: 2}
+  equipableItem: {fileID: 0}

@@ -88,10 +88,19 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else
         {
-            return;
+            _item.OnUnequip();
+            Invoke("ItemReplace", 0.1f);
         }
         
             //Debug.Log("Not Enought of item or already have item equipped");
+    }
+
+    private void ItemReplace()
+    {
+        EquipableItem Guntemp = Instantiate(_equipable, _transform);
+        Guntemp.transform.localRotation = Quaternion.Euler(0,0,0);
+        Guntemp.inventoryButton = this;
+        _eventManager2.RunEquipedEvent();
     }
         
         
