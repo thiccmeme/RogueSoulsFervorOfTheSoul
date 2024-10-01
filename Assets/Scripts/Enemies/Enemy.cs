@@ -21,7 +21,7 @@ public class Enemy : EntityStats
     public float _enemyWeaponRotationAngle;
     protected bool targetInRange;
     [SerializeField] public GameObject weaponHandle;
-    EnemyDoor enemyDoor;
+    [SerializeField]EnemyDoor enemyDoor;
     public WeaponOffsetHandle _offsetHandle;
     [SerializeField]protected SpriteRenderer enemyGunSprite;
     [SerializeField] protected SpriteRenderer Empty;

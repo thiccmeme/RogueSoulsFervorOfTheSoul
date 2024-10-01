@@ -88,6 +88,7 @@ public class BossArenaTrigger : MonoBehaviour
             T = 0;
             Debug.Log("notBossTime");
             started = false;
+            vignette.intensity.value = 0;
         }
     }
 

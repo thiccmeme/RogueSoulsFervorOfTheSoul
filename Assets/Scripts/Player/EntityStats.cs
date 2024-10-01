@@ -71,7 +71,7 @@ public class EntityStats : MonoBehaviour
         }
         
 
-        if (type == NpcType.Passive || type == NpcType.Neutral)
+        if (type == NpcType.Passive || type == NpcType.Neutral || type == NpcType.Questing)
         {
             eventManager2.RunNpcShotEvent();
         }
