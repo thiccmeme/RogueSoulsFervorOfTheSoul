@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSo: {fileID: 11400000, guid: 0a2dd622a790e3b4ca0c571398619a13, type: 2}
-  equipableItem: {fileID: 0}
+  equipableItem: {fileID: -2841583259698460135, guid: 5f49fe4e7d41f6741a37242975121ee4, type: 3}
